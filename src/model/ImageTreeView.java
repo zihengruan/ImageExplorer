@@ -3,7 +3,7 @@ package model;
 import java.io.File;
 import java.net.MalformedURLException;
 
-import controller.MainViewerController;
+import controller.MainExplorerController;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.TreeItem;
@@ -11,14 +11,14 @@ import javafx.scene.control.TreeView;
 
 public class ImageTreeView{
 	
-	private MainViewerController mainViewerController;
+	private MainExplorerController mainExplorerController;
 	
 	private TreeView<ImageFile> treeView;
 	
 	private TreeItem<ImageFile> root;
 	
-	public ImageTreeView(MainViewerController mainViewerController, TreeView<ImageFile> treeView) {
-		this.mainViewerController = mainViewerController;
+	public ImageTreeView(MainExplorerController mainExplorerController, TreeView<ImageFile> treeView) {
+		this.mainExplorerController = mainExplorerController;
 		this.treeView = treeView;
 		root = new TreeItem<ImageFile>(new ImageFile("root"));
 		root.setExpanded(true);
@@ -40,7 +40,7 @@ public class ImageTreeView{
 			@Override
 			public void changed(ObservableValue<? extends TreeItem<ImageFile>> observable, TreeItem<ImageFile> oldValue,
 					TreeItem<ImageFile> newValue) {
-				mainViewerController.clearFlowPane();
+				mainExplorerController.clearFlowPane();
 				ImageFile currentFile = treeView.getSelectionModel().getSelectedItem().getValue();
 				if(currentFile.isDirectory()) {
 					ImageFile[] imageFiles = currentFile.listFiles();
@@ -48,7 +48,7 @@ public class ImageTreeView{
 						if(imageFile.isImageFile()) {
 							try {
 								ImageLabel imageLabel = new ImageLabel(imageFile);
-								mainViewerController.getFlowPane().getChildren().add(imageLabel);			
+								mainExplorerController.getFlowPane().getChildren().add(imageLabel);			
 							} catch (MalformedURLException e) {
 								e.printStackTrace();
 							}

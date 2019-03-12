@@ -11,7 +11,7 @@ import javafx.scene.layout.FlowPane;
 import model.ImageFile;
 import model.ImageTreeView;
 
-public class MainViewerController implements Initializable {
+public class MainExplorerController implements Initializable {
 		
     @FXML
     private MenuBar menuBar;
