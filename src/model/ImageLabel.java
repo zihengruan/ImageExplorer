@@ -31,7 +31,7 @@ public class ImageLabel extends Label {
 	public ImageLabel(ImageFile imageFile) throws MalformedURLException {
 		this.imageFile = imageFile;
 		
-		Image image = new Image(imageFile.getImageFile().toURI().toURL().toString(), 150, 150, true, false);
+		Image image = new Image(imageFile.getImageFile().toURI().toURL().toString(), 150, 150, true, false, true);
 		ImageView imageView = new ImageView(image);
 		setGraphic(imageView);
 		setText(imageFile.getImageFile().getName());

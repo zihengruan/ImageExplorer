@@ -22,7 +22,7 @@ public class ImageTreeItem extends TreeItem<ImageFile> {
 
 	@Override
 	public boolean isLeaf() {
-		if (isFirstTimeLeaf) {//isFirstTimeLeaf 使只在第一次询问时进行判断，节省
+		if (isFirstTimeLeaf) {//isFirstTimeLeaf 使只锟节碉拷一锟斤拷询锟斤拷时锟斤拷锟斤拷锟叫断ｏ拷锟斤拷省
 			isFirstTimeLeaf = false;
 			ImageFile imageFile = getValue();
 			ImageFile[] imageFiles = imageFile.listFiles();
@@ -40,7 +40,7 @@ public class ImageTreeItem extends TreeItem<ImageFile> {
 		return isLeaf;
 	}
 
-	//docs指引
+	//docs指锟斤拷
 	@Override
 	public ObservableList<TreeItem<ImageFile>> getChildren() {
 		if (isFirstTimeChildren) {
@@ -58,7 +58,7 @@ public class ImageTreeItem extends TreeItem<ImageFile> {
 				ObservableList<TreeItem<ImageFile>> children = FXCollections.observableArrayList();
 
 				for (ImageFile childImageFile : imageFiles) {
-					if (childImageFile.isHidden()) {
+					if (childImageFile.isHidden() || childImageFile.isFile()) {
 						continue;
 					}
 					children.add(new ImageTreeItem(childImageFile));
