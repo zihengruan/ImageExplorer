@@ -11,7 +11,7 @@ import javafx.scene.layout.FlowPane;
 import model.ImageFile;
 import model.ImageTreeView;
 
-public class MainExplorerController implements Initializable {
+public class MainExplorerController extends RootController  {
 		
     @FXML
     private MenuBar menuBar;
@@ -22,10 +22,17 @@ public class MainExplorerController implements Initializable {
     @FXML
     private FlowPane flowPane;
     
+
+    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		treeView = new ImageTreeView(this, treeView).getTreeView();
+		treeView = new ImageTreeView(treeView).getTreeView();
+		
 	}
+	
+	
+	
+	
 
 	public FlowPane getFlowPane() {
 		return flowPane;
@@ -34,4 +41,7 @@ public class MainExplorerController implements Initializable {
 	public void clearFlowPane() {
 		this.flowPane.getChildren().clear();
 	}
+
+
+
 }
