@@ -2,6 +2,8 @@ package model;
 
 import java.net.MalformedURLException;
 
+import controller.MainViewerController;
+import controller.RootController;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.EventHandler;
@@ -37,7 +39,10 @@ public class ImageLabel extends Label {
 			@Override
 			public void handle(MouseEvent event) {
 				if(event.getClickCount() == 2) {
-					//TODO to viewer
+					((MainViewerController)RootController.controllers.get("controller.MainViewerController")).setImage(ImageLabel.this.imageFile);
+					if(!((MainViewerController)RootController.controllers.get("controller.MainViewerController")).getViewerStage().isShowing()) {
+						((MainViewerController)RootController.controllers.get("controller.MainViewerController")).getViewerStage().show();
+					}
 				}
 				
 			}
