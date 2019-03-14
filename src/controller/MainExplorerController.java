@@ -8,10 +8,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.FlowPane;
+import javafx.stage.Stage;
 import model.ImageFile;
 import model.ImageTreeView;
 
 public class MainExplorerController extends RootController  {
+	
+	private Stage mainStage;
 		
     @FXML
     private MenuBar menuBar;
@@ -41,6 +44,26 @@ public class MainExplorerController extends RootController  {
 	public void clearFlowPane() {
 		this.flowPane.getChildren().clear();
 	}
+
+
+
+
+
+	@Override
+	public Stage getStage() {
+		// TODO Auto-generated method stub
+		return mainStage;
+	}
+
+	@Override
+	public void setStage(Stage stage) {
+		// TODO Auto-generated method stub
+		this.mainStage = stage;
+		
+	}
+
+
+
 
 
 

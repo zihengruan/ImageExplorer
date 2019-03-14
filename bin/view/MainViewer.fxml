@@ -36,7 +36,7 @@
                            <children>
                               <Button fx:id="editButton" mnemonicParsing="false" text="edit" />
                               <Button fx:id="detailsButton" mnemonicParsing="false" text="details" />
-                              <Button fx:id="slideButton" mnemonicParsing="false" text="slide" />
+                              <Button fx:id="slideButton" mnemonicParsing="false" onMouseClicked="#showSlideWindow" text="slide" />
                            </children>
                            <opaqueInsets>
                               <Insets />

@@ -4,10 +4,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.ImageFile;
 
@@ -45,6 +47,11 @@ public class MainViewerController extends RootController {
     @FXML
     private Button likeButton;
     
+    @FXML
+    void showSlideWindow(MouseEvent event) {
+    	RootController.controllers.get("controller.SlideController").getStage().show();
+    }
+    
     public void initialize(URL location, ResourceBundle resources) {		
     }
     
@@ -62,14 +69,21 @@ public class MainViewerController extends RootController {
 		}
     	
     }
-
-	public Stage getViewerStage() {
+    
+    
+    @Override
+	public Stage getStage() {
 		return viewerStage;
 	}
 
-	public void setViewerStage(Stage viewerStage) {
+	@Override
+	public void setStage(Stage viewerStage) {
 		this.viewerStage = viewerStage;
 	}
+
+
+
+
     
 
 }

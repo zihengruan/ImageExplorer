@@ -40,8 +40,8 @@ public class ImageLabel extends Label {
 			public void handle(MouseEvent event) {
 				if(event.getClickCount() == 2) {
 					((MainViewerController)RootController.controllers.get("controller.MainViewerController")).setImage(ImageLabel.this.imageFile);
-					if(!((MainViewerController)RootController.controllers.get("controller.MainViewerController")).getViewerStage().isShowing()) {
-						((MainViewerController)RootController.controllers.get("controller.MainViewerController")).getViewerStage().show();
+					if(!RootController.controllers.get("controller.MainViewerController").getStage().isShowing()) {
+						RootController.controllers.get("controller.MainViewerController").getStage().show();
 					}
 				}
 				
