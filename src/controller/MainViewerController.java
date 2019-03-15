@@ -49,6 +49,8 @@ public class MainViewerController extends RootController {
     
     @FXML
     void showSlideWindow(MouseEvent event) {
+    	RootController.controllers.get("controller.SlideController").getStage().setFullScreen(true);
+    	((CanShowImage)RootController.controllers.get("controller.SlideController")).setImage(this.image.getImage());
     	RootController.controllers.get("controller.SlideController").getStage().show();
     }
     
