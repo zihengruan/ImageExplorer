@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="1500.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditController">
+   <children>
+      <SplitPane dividerPositions="0.8" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane>
+               <children>
+                  <ImageView fx:id="imageView" layoutY="120.0" pickOnBounds="true" preserveRatio="true" />
+                  <HBox layoutX="381.0" layoutY="441.0" prefHeight="0.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0">
+                     <children>
+                        <Button fx:id="zoomInButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="-" />
+                        <Button fx:id="zoomOutButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="+" />
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane SplitPane.resizableWithParent="false">
+               <children>
+                  <GridPane alignment="CENTER" prefHeight="1078.0" prefWidth="339.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="200.0" minHeight="0.0" percentHeight="10.0" prefHeight="200.0" valignment="CENTER" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="789.0" minHeight="10.0" percentHeight="70.0" prefHeight="681.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="100.0" minHeight="0.0" percentHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="100.0" minHeight="10.0" percentHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <GridPane GridPane.rowIndex="2">
+                          <columnConstraints>
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Button fx:id="undoButtton" mnemonicParsing="false" text="Undo" />
+                              <Button fx:id="saveButton" mnemonicParsing="false" text="Save" GridPane.columnIndex="1" />
+                           </children>
+                        </GridPane>
+                        <TabPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                          <tabs>
+                            <Tab text="Enhance" />
+                            <Tab text="Adjust" />
+                          </tabs>
+                        </TabPane>
+                        <Button fx:id="cutAndRotate" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Cut&amp;Rotate" />
+                        <Button fx:id="saveCopyButton" mnemonicParsing="false" text="SaveCpoy" GridPane.rowIndex="3" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

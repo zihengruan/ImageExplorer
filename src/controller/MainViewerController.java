@@ -52,6 +52,12 @@ public class MainViewerController extends RootController {
     	RootController.controllers.get("controller.SlideController").getStage().show();
     }
     
+    @FXML
+    void showEditWIndow(MouseEvent event) {
+    	((EditController)RootController.controllers.get("controller.EditController")).setImageView(this.image.getImage());
+    	RootController.controllers.get("controller.EditController").getStage().show();
+    }
+    
     public void initialize(URL location, ResourceBundle resources) {		
     }
     

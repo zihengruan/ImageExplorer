@@ -37,6 +37,7 @@ public class Main extends Application {
 			createStage("../view/MainExplorer.fxml", "controller.MainExplorerController", true);
 			createStage("../view/MainViewer.fxml", "controller.MainViewerController", false);
 			createStage("../view/Slide.fxml", "controller.SlideController", false);
+			createStage("../view/Edit.fxml", "controller.EditController", false);
 			
 		} catch(Exception e) {
 			e.printStackTrace();

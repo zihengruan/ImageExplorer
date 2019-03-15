@@ -34,7 +34,7 @@
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" GridPane.columnIndex="2">
                            <children>
-                              <Button fx:id="editButton" mnemonicParsing="false" text="edit" />
+                              <Button fx:id="editButton" mnemonicParsing="false" onMouseClicked="#showEditWIndow" text="edit" />
                               <Button fx:id="detailsButton" mnemonicParsing="false" text="details" />
                               <Button fx:id="slideButton" mnemonicParsing="false" onMouseClicked="#showSlideWindow" text="slide" />
                            </children>
