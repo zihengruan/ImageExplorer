@@ -6,11 +6,13 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import model.ImageFile;
 
-public class SlideController extends RootController {
+public class SlideController extends RootController implements CanShowImage{
 	
 	private Stage slideStage;
 	
@@ -49,6 +51,19 @@ public class SlideController extends RootController {
 
 
 		});
+	}
+
+
+	@Override
+	public void setImage(Image image) {
+		this.image.setImage(image);
+	}
+
+
+	@Override
+	public void setImage(ImageFile imageFile) {
+		Image image = new Image(imageFile.getImageFile().getAbsolutePath(), true);
+		this.setImage(image);
 	}
 
 
