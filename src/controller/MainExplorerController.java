@@ -3,12 +3,15 @@ package controller;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.FlowPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import model.ImageFile;
 import model.ImageTreeView;
 
@@ -30,7 +33,6 @@ public class MainExplorerController extends RootController  {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		treeView = new ImageTreeView(treeView).getTreeView();
-		
 	}
 	
 	
@@ -58,7 +60,15 @@ public class MainExplorerController extends RootController  {
 	@Override
 	public void setStage(Stage stage) {
 		// TODO Auto-generated method stub
+
 		this.mainStage = stage;
+		this.mainStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+			
+			@Override
+			public void handle(WindowEvent event) {
+				Platform.exit();
+			}
+		});
 		
 	}
 
