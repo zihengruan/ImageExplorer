@@ -2,6 +2,7 @@ package model;
 
 import java.net.MalformedURLException;
 
+import controller.MainExplorerController;
 import controller.MainViewerController;
 import controller.RootController;
 import javafx.beans.property.BooleanProperty;
@@ -13,8 +14,11 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
 
 public class ImageLabel extends Label {
+	
+	//TODO
 	
 
 	private ImageFile imageFile;
@@ -22,6 +26,10 @@ public class ImageLabel extends Label {
 	public BooleanProperty selected = new SimpleBooleanProperty();
 
 
+	/**
+	 * @param imageFile
+	 * @throws MalformedURLException
+	 */
 	public ImageLabel(ImageFile imageFile) throws MalformedURLException {
 		this.imageFile = imageFile;
 		
@@ -43,6 +51,21 @@ public class ImageLabel extends Label {
 					if(!RootController.controllers.get("controller.MainViewerController").getStage().isShowing()) {
 						RootController.controllers.get("controller.MainViewerController").getStage().show();
 					}
+				}
+				
+			}
+		});
+		
+		this.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				if(event.getClickCount() == 1) { 
+					
+					((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setNameText("名称：\n\n" + ImageLabel.this.imageFile.getImageName());
+					((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setDateText("创建时间：\n\n" + ImageLabel.this.imageFile.getImageDate());
+					((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setSizeText("大小：\n\n" + ImageLabel.this.imageFile.getImageSize());
+					((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setPathText("文件夹路径：\n\n" + ImageLabel.this.imageFile.getImagePath());
+					((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setResText("分辨率：\n\n" + ImageLabel.this.imageFile.getResolution());
 				}
 				
 			}

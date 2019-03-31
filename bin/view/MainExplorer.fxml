@@ -1,12 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainExplorerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainExplorerController">
    <children>
       <GridPane prefHeight="500.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -14,7 +27,8 @@
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="24.0" minHeight="24.0" prefHeight="24.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="476.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="732.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <MenuBar fx:id="menuBar" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="800.0">
@@ -49,15 +63,90 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="474.0" prefWidth="557.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <content>
-                              <FlowPane fx:id="flowPane" prefHeight="474.0" prefWidth="420.0" />
-                           </content>
-                        </ScrollPane>
+                        <SplitPane dividerPositions="0.75" prefHeight="454.0" prefWidth="445.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <items>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <GridPane prefHeight="772.0" prefWidth="666.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints maxHeight="376.0" minHeight="10.0" prefHeight="51.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="730.0" minHeight="10.0" prefHeight="695.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="772.0" prefWidth="666.0" GridPane.rowIndex="1">
+                                             <children>
+                                                <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="748.0" prefWidth="664.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                   <content>
+                                                      <FlowPane fx:id="flowPane" prefHeight="748.0" prefWidth="664.0" />
+                                                   </content>
+                                                </ScrollPane>
+                                             </children>
+                                          </AnchorPane>
+                                          <AnchorPane prefHeight="51.0" prefWidth="666.0">
+                                             <children>
+                                                <Text fx:id="amountText" layoutX="37.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" " />
+                                             </children>
+                                          </AnchorPane>
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </AnchorPane>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <GridPane layoutX="10.0" layoutY="34.0" prefHeight="484.0" prefWidth="220.0" AnchorPane.bottomAnchor="254.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="34.0">
+                                      <columnConstraints>
+                                          <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <Text fx:id="nameText" strokeType="OUTSIDE" strokeWidth="0.0" text=" ">
+                                             <GridPane.margin>
+                                                <Insets left="10.0" />
+                                             </GridPane.margin>
+                                          </Text>
+                                          <Text fx:id="dateText" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.rowIndex="1">
+                                             <GridPane.margin>
+                                                <Insets left="10.0" />
+                                             </GridPane.margin>
+                                          </Text>
+                                          <Text fx:id="sizeText" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.rowIndex="2">
+                                             <GridPane.margin>
+                                                <Insets left="10.0" />
+                                             </GridPane.margin>
+                                          </Text>
+                                          <Text fx:id="resText" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.rowIndex="3">
+                                             <GridPane.margin>
+                                                <Insets left="10.0" />
+                                             </GridPane.margin>
+                                          </Text>
+                                          <Text fx:id="pathText" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.rowIndex="4">
+                                             <GridPane.margin>
+                                                <Insets left="10.0" />
+                                             </GridPane.margin>
+                                          </Text>
+                                       </children>
+                                    </GridPane>
+                                 </children></AnchorPane>
+                          </items>
+                        </SplitPane>
                      </children>
                   </AnchorPane>
               </items>
             </SplitPane>
+            <Text fx:id="statusText" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Text>
          </children>
       </GridPane>
    </children>

@@ -2,6 +2,7 @@ package model;
 
 import java.io.File;
 import java.net.MalformedURLException;
+import java.text.DecimalFormat;
 
 import controller.MainExplorerController;
 import controller.RootController;
@@ -19,7 +20,7 @@ public class ImageTreeView{
 	
 	public ImageTreeView(TreeView<ImageFile> treeView) {
 		this.treeView = treeView;
-		root = new TreeItem<ImageFile>(new ImageFile("root"));
+		root = new TreeItem<ImageFile>(new ImageFile(""));
 		root.setExpanded(true);
 		treeView.setRoot(root);
 		
@@ -43,8 +44,13 @@ public class ImageTreeView{
 				ImageFile currentFile = treeView.getSelectionModel().getSelectedItem().getValue();
 				if(currentFile.isDirectory() && currentFile.listFiles() != null) {
 					ImageFile[] imageFiles = currentFile.listFiles();
+					int amount = 0;
+					long size = 0L;
 					for(ImageFile imageFile : imageFiles) {
 						if(imageFile.isImageFile()) {
+							amount++;
+							size += imageFile.length();
+							model.Utilities.imageList.add(imageFile);
 							try {
 								ImageLabel imageLabel = new ImageLabel(imageFile);
 								((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).getFlowPane().getChildren().add(imageLabel);
@@ -53,10 +59,23 @@ public class ImageTreeView{
 							}
 						}
 					}
-					
+					if(amount != 0) {
+						((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setStatusText(amount + "张图片(" + getAmountSize(size) + ")");
+						((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setAmountText("文件夹：" + currentFile.getImageFile().getName() + " - 共"+ amount + "张图片");
+					}
 				}
 			}
 		});
+	}
+	
+	private String getAmountSize(long size)  {
+		if(size <= 0) {
+			return "0";
+		}
+		final String[] units = new String[] {"B","KB","MB","GB","TB"};
+		int digitGroup = (int)(Math.log10(size)/Math.log10(1024));
+		
+		return new DecimalFormat("#,##0.#").format(size/Math.pow(1024, digitGroup)) + " " + units[digitGroup];
 	}
 	
 	public TreeView<ImageFile> getTreeView(){

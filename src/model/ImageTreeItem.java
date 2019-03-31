@@ -22,7 +22,7 @@ public class ImageTreeItem extends TreeItem<ImageFile> {
 
 	@Override
 	public boolean isLeaf() {
-		if (isFirstTimeLeaf) {//isFirstTimeLeaf ʹֻ�ڵ�һ��ѯ��ʱ�����жϣ���ʡ
+		if (isFirstTimeLeaf) {
 			isFirstTimeLeaf = false;
 			ImageFile imageFile = getValue();
 			ImageFile[] imageFiles = imageFile.listFiles();
@@ -40,7 +40,6 @@ public class ImageTreeItem extends TreeItem<ImageFile> {
 		return isLeaf;
 	}
 
-	//docsָ��
 	@Override
 	public ObservableList<TreeItem<ImageFile>> getChildren() {
 		if (isFirstTimeChildren) {
