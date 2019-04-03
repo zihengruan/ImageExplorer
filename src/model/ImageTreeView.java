@@ -23,6 +23,7 @@ public class ImageTreeView{
 		root = new TreeItem<ImageFile>(new ImageFile(""));
 		root.setExpanded(true);
 		treeView.setRoot(root);
+		treeView.setShowRoot(false); 
 		
 		File[] rootDirectory = File.listRoots();
 		
@@ -40,8 +41,14 @@ public class ImageTreeView{
 			@Override
 			public void changed(ObservableValue<? extends TreeItem<ImageFile>> observable, TreeItem<ImageFile> oldValue,
 					TreeItem<ImageFile> newValue) {
+				//单选展开
+				if(!newValue.getChildren().isEmpty()) {
+					newValue.setExpanded(true);
+				}
+				System.gc();
+				//右侧显示
 				((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).clearFlowPane();
-				ImageFile currentFile = treeView.getSelectionModel().getSelectedItem().getValue();
+				ImageFile currentFile = newValue.getValue();
 				if(currentFile.isDirectory() && currentFile.listFiles() != null) {
 					ImageFile[] imageFiles = currentFile.listFiles();
 					int amount = 0;
