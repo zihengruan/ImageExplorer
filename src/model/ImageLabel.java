@@ -56,20 +56,7 @@ public class ImageLabel extends Label {
 			}
 		});
 		
-		this.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				if(event.getClickCount() == 1) { 
-					
-					((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setNameText("名称：\n\n" + ImageLabel.this.imageFile.getImageName());
-					((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setDateText("创建时间：\n\n" + ImageLabel.this.imageFile.getImageDate());
-					((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setSizeText("大小：\n\n" + ImageLabel.this.imageFile.getImageSize());
-					((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setPathText("文件夹路径：\n\n" + ImageLabel.this.imageFile.getImagePath());
-					((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setResText("分辨率：\n\n" + ImageLabel.this.imageFile.getResolution());
-				}
-				
-			}
-		});
+
 	}
 
 	public ImageFile getImageFile() {

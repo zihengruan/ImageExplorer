@@ -45,7 +45,6 @@ public class ImageTreeView{
 				if(!newValue.getChildren().isEmpty()) {
 					newValue.setExpanded(true);
 				}
-				System.gc();
 				//右侧显示
 				((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).clearFlowPane();
 				ImageFile currentFile = newValue.getValue();
