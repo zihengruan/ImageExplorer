@@ -165,3 +165,44 @@
 .imageList>.label:seleted {
 	-fx-background-color: #00fdfd;
 }
+
+/*图片按钮 */
+
+.button{
+	-fx-background-color: transparent;
+}
+
+.button:hover{
+	-fx-background-color: #e6e6e6;
+}
+
+.button:pressed {
+	-fx-background-color: #c8c8c8;
+}
+
+.openButton {
+	-fx-graphic: url(./button/open.png);
+}
+
+.copyButton {
+	-fx-graphic: url(./button/copy.png);
+}
+
+.pasteButton {
+	-fx-graphic: url(./button/paste.png);
+}
+
+.editButton {
+
+	-fx-graphic: url(./button/edit.png); 
+}
+
+.deleteButton {
+
+	-fx-graphic: url(./button/delete.png); 
+}
+
+.slideButton {
+
+	-fx-graphic: url(./button/slide.png); 
+}

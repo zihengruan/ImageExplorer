@@ -47,11 +47,15 @@ public class ImageTreeView{
 				}
 				//右侧显示
 				((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).clearFlowPane();
-				ImageFile currentFile = newValue.getValue();
+				ImageFile currentFile = newValue.getValue();//test
 				if(currentFile.isDirectory() && currentFile.listFiles() != null) {
+					long st = System.currentTimeMillis();
 					ImageFile[] imageFiles = currentFile.listFiles();
+					long et = System.currentTimeMillis();//test
+					System.out.println("获取目录时间: "+(et-st)); //test
 					int amount = 0;
 					long size = 0L;
+					st = System.currentTimeMillis(); //test
 					for(ImageFile imageFile : imageFiles) {
 						if(imageFile.isImageFile()) {
 							amount++;
@@ -65,6 +69,9 @@ public class ImageTreeView{
 							}
 						}
 					}
+					et = System.currentTimeMillis();//test
+					System.out.println("列出图片时间: "+(et-st));//test
+					
 					if(amount != 0) {
 						((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setStatusText(amount + "张图片(" + getAmountSize(size) + ")");
 						((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setAmountText("文件夹：" + currentFile.getImageFile().getName() + " - 共"+ amount + "张图片");

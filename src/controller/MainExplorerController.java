@@ -21,8 +21,6 @@ public class MainExplorerController extends RootController  {
 	
 	//TODO ARRAY
 		
-    @FXML
-    private MenuBar menuBar;
 
     @FXML
     private TreeView<ImageFile> treeView;
