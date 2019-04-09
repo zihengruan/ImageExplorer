@@ -1,15 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TreeView?>
@@ -18,135 +11,64 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainExplorerController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" stylesheets="@theme.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainExplorerController">
    <children>
       <GridPane prefHeight="500.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="24.0" minHeight="24.0" prefHeight="24.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="732.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" percentHeight="93.0" prefHeight="699.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="44.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <MenuBar fx:id="menuBar" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="800.0">
-              <menus>
-                <Menu mnemonicParsing="false" text="File">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
-            <SplitPane dividerPositions="0.29797979797979796" prefHeight="500.0" prefWidth="800.0" GridPane.hgrow="NEVER" GridPane.rowIndex="1">
+            <SplitPane dividerPositions="0.3" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.hgrow="NEVER" GridPane.rowIndex="1">
               <items>
-                  <AnchorPane maxWidth="800.0" prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="474.0" prefWidth="235.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                           <content>
-                              <TreeView fx:id="treeView" prefHeight="468.0" prefWidth="235.0" />
-                           </content>
-                        </ScrollPane>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <SplitPane dividerPositions="0.75" prefHeight="454.0" prefWidth="445.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <items>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                 <children>
-                                    <GridPane prefHeight="772.0" prefWidth="666.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                      <columnConstraints>
-                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                        <RowConstraints maxHeight="376.0" minHeight="10.0" prefHeight="51.0" valignment="CENTER" vgrow="SOMETIMES" />
-                                        <RowConstraints maxHeight="730.0" minHeight="10.0" prefHeight="695.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
-                                       <children>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="772.0" prefWidth="666.0" GridPane.rowIndex="1">
-                                             <children>
-                                                <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="748.0" prefWidth="664.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                   <content>
-                                                      <FlowPane fx:id="flowPane" prefHeight="748.0" prefWidth="664.0" />
-                                                   </content>
-                                                </ScrollPane>
-                                             </children>
-                                          </AnchorPane>
-                                          <AnchorPane prefHeight="51.0" prefWidth="666.0">
-                                             <children>
-                                                <Text fx:id="amountText" layoutX="37.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" " />
-                                             </children>
-                                          </AnchorPane>
-                                       </children>
-                                    </GridPane>
-                                 </children>
-                              </AnchorPane>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                                 <children>
-                                    <GridPane layoutX="10.0" layoutY="34.0" prefHeight="484.0" prefWidth="220.0" AnchorPane.bottomAnchor="254.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="34.0">
-                                      <columnConstraints>
-                                          <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                      </columnConstraints>
-                                      <rowConstraints>
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                      </rowConstraints>
-                                       <children>
-                                          <Text fx:id="nameText" strokeType="OUTSIDE" strokeWidth="0.0" text=" ">
-                                             <GridPane.margin>
-                                                <Insets left="10.0" />
-                                             </GridPane.margin>
-                                          </Text>
-                                          <Text fx:id="dateText" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.rowIndex="1">
-                                             <GridPane.margin>
-                                                <Insets left="10.0" />
-                                             </GridPane.margin>
-                                          </Text>
-                                          <Text fx:id="sizeText" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.rowIndex="2">
-                                             <GridPane.margin>
-                                                <Insets left="10.0" />
-                                             </GridPane.margin>
-                                          </Text>
-                                          <Text fx:id="resText" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.rowIndex="3">
-                                             <GridPane.margin>
-                                                <Insets left="10.0" />
-                                             </GridPane.margin>
-                                          </Text>
-                                          <Text fx:id="pathText" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.rowIndex="4">
-                                             <GridPane.margin>
-                                                <Insets left="10.0" />
-                                             </GridPane.margin>
-                                          </Text>
-                                       </children>
-                                    </GridPane>
-                                 </children></AnchorPane>
-                          </items>
-                        </SplitPane>
-                     </children>
-                  </AnchorPane>
+                  <ScrollPane fitToHeight="true" fitToWidth="true" maxWidth="300.0" prefHeight="474.0" prefWidth="235.0" styleClass="scrollPane" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <TreeView fx:id="treeView" prefHeight="468.0" prefWidth="235.0" />
+                     </content>
+                  </ScrollPane>
+                  <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="748.0" prefWidth="664.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <FlowPane fx:id="flowPane" prefHeight="748.0" prefWidth="664.0" styleClass="imageList" />
+                     </content>
+                  </ScrollPane>
               </items>
-            </SplitPane>
-            <Text fx:id="statusText" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.rowIndex="2">
                <GridPane.margin>
-                  <Insets left="10.0" />
+                  <Insets />
                </GridPane.margin>
-            </Text>
+            </SplitPane>
+            <GridPane maxHeight="44.0" styleClass="whiteBG" GridPane.rowIndex="2">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="3.55078125" />
+                  <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="3.55078125" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="44.0" minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Text fx:id="amountText" strokeType="OUTSIDE" strokeWidth="0.0" text=" " GridPane.columnIndex="1">
+                     <GridPane.margin>
+                        <Insets left="10.0" />
+                     </GridPane.margin>
+                  </Text>
+                  <Text fx:id="statusText" strokeType="OUTSIDE" strokeWidth="0.0" text=" " />
+               </children>
+            </GridPane>
+            <ButtonBar prefHeight="40.0" prefWidth="200.0">
+              <buttons>
+                  <Button mnemonicParsing="false" styleClass="openButton" />
+                  <Button contentDisplay="CENTER" mnemonicParsing="false" styleClass="editButton" />
+                <Button mnemonicParsing="false" styleClass="copyButton" />
+                <Button mnemonicParsing="false" styleClass="pasteButton" />
+                  <Button mnemonicParsing="false" styleClass="deleteButton" />
+                  <Button mnemonicParsing="false" styleClass="slideButton" />
+              </buttons>
+            </ButtonBar>
          </children>
       </GridPane>
    </children>

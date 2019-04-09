@@ -61,16 +61,21 @@ public class ImageTreeView{
 				}
 				//右侧显示
 				((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).clearFlowPane();
+				long st = System.currentTimeMillis();
 				ImageFile currentFile = newValue.getValue();
-				if(currentFile.isDirectory() && currentFile.listFiles() != null) {
-					ImageFile[] imageFiles = currentFile.listFiles();
-					int amount = 0;
-					long size = 0L;
-					for(ImageFile imageFile : imageFiles) {
-						if(imageFile.isImageFile()) {
+				if(currentFile.isDirectory()) {
+//					long st = System.currentTimeMillis();//test
+					ImageFile[] imageFiles = currentFile.listImageFiles(); //1279ms 
+//					long et = System.currentTimeMillis();//test
+//					System.out.println(et - st);//test
+					if(imageFiles != null) {
+						int amount = 0;
+						long size = 0L;
+						for(ImageFile imageFile : imageFiles) {
 							amount++;
 							size += imageFile.length();
-							model.Utilities.imageFileList.add(imageFile);
+
+
 							try {
 								ImageLabel imageLabel = new ImageLabel(imageFile);
 								((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).getFlowPane().getChildren().add(imageLabel);
@@ -78,12 +83,15 @@ public class ImageTreeView{
 								e.printStackTrace();
 							}
 						}
-					}
-					if(amount != 0) {
-						((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setStatusText(amount + "张图片(" + getAmountSize(size) + ")");
-						((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setAmountText("文件夹：" + currentFile.getImageFile().getName() + " - 共"+ amount + "张图片");
+						model.Utilities.imageFileList.setAll(imageFiles);
+						if(amount != 0) {
+							((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setStatusText(amount + "张图片(" + getAmountSize(size) + ")");
+							((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setAmountText("文件夹：" + currentFile.getImageFile().getName() + " - 共"+ amount + "张图片");
+						}
 					}
 				}
+				long et = System.currentTimeMillis();
+				System.out.println(et - st);
 			}
 		});
 	}

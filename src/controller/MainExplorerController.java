@@ -19,8 +19,6 @@ public class MainExplorerController extends RootController  {
 	
 	private Stage mainStage;
 		
-    @FXML
-    private MenuBar menuBar;
 
     @FXML
     private TreeView<ImageFile> treeView;

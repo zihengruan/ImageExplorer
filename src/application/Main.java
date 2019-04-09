@@ -7,6 +7,7 @@ import controller.RootController;
 import controller.SlideController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.scene.Parent;
@@ -50,6 +51,7 @@ public class Main extends Application {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
 			Scene scene = new Scene(root);
+//			scene.setFill(null);
 			Stage stage = new Stage();
 //			stage.initStyle(StageStyle.TRANSPARENT);
 			stage.setScene(scene);

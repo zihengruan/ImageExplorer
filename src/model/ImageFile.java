@@ -2,6 +2,7 @@ package model;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FilenameFilter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.LinkOption;
@@ -10,6 +11,7 @@ import java.nio.file.attribute.BasicFileAttributeView;
 import java.nio.file.attribute.BasicFileAttributes;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.regex.Pattern;
 
 import javax.imageio.ImageIO;
 
@@ -74,6 +76,7 @@ public class ImageFile {
 		}
 	}
 
+	//获取文件列表
 	public ImageFile[] listFiles() {
 		File[] files = imageFile.listFiles();
 		if(files == null || files.length == 0) {
@@ -85,6 +88,33 @@ public class ImageFile {
 			imageFiles[i] = new ImageFile(files[i]);
 		}
 		return imageFiles;
+	}
+	
+	//获取图片文件
+	public ImageFile[] listImageFiles() {
+		
+		//内部类 用于过滤文件
+		class ImageFileFilter implements FilenameFilter {
+			private Pattern pattern = null;
+			
+			public ImageFileFilter() {
+				this.pattern = Pattern.compile(".+(\\.JPEG|\\.jpeg|\\.JPG|\\.jpg|\\.png|\\.PNG|\\.gif|\\.GIF|\\.bmp|\\.BMP)");
+			}
+			
+			@Override
+			public boolean accept(File dir, String name) {
+				return this.pattern.matcher(name).matches();
+			}
+		}
+		
+		ImageFileFilter iff = new ImageFileFilter();
+		File[] files = this.imageFile.listFiles(iff);
+		ImageFile[] imageFiles = new ImageFile[files.length];
+		for(int i = 0; i < files.length; i++) {
+			imageFiles[i] = new ImageFile(files[i]);
+		}
+		return imageFiles;
+		
 	}
 	
 	private String getFileSize(long size) {

@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -140,7 +141,7 @@ public class MainViewerController extends RootController {
     
 	private void addScrollEvent() {
 //		TODO to shift or zoom and move
-
+		
 //		this.viewerStage.getScene().addEventHandler(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {
 //			@Override
 //			public void handle(ScrollEvent event) {

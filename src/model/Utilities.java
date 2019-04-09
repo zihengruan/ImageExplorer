@@ -10,8 +10,8 @@ import javafx.collections.ObservableList;
 public class Utilities {
 	public static ObservableList<ImageFile> selectedImage = FXCollections.observableArrayList(new ArrayList<>());
 	public static ObservableList<ImageFile> imageFileList = FXCollections.observableArrayList(new ArrayList<>());	
-	public static double originalFitWidth;
-	public static double originalFitHeight;
+	public static double originalFitWidth = 960;
+	public static double originalFitHeight = 720;
 	private static double zoomRate = 1.25;
 	
 	public static void resetAll() {
