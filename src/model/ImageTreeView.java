@@ -47,20 +47,19 @@ public class ImageTreeView{
 				}
 				//右侧显示
 				((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).clearFlowPane();
-				ImageFile currentFile = newValue.getValue();//test
-				if(currentFile.isDirectory() && currentFile.listFiles() != null) {
-					long st = System.currentTimeMillis();
-					ImageFile[] imageFiles = currentFile.listFiles();
-					long et = System.currentTimeMillis();//test
-					System.out.println("获取目录时间: "+(et-st)); //test
-					int amount = 0;
-					long size = 0L;
-					st = System.currentTimeMillis(); //test
-					for(ImageFile imageFile : imageFiles) {
-						if(imageFile.isImageFile()) {
+				long st = System.currentTimeMillis();
+				ImageFile currentFile = newValue.getValue();
+				if(currentFile.isDirectory()) {
+//					long st = System.currentTimeMillis();//test
+					ImageFile[] imageFiles = currentFile.listImageFiles(); //1279ms 
+//					long et = System.currentTimeMillis();//test
+//					System.out.println(et - st);//test
+					if(imageFiles != null) {
+						int amount = 0;
+						long size = 0L;
+						for(ImageFile imageFile : imageFiles) {
 							amount++;
 							size += imageFile.length();
-							model.Utilities.imageList.add(imageFile);
 							try {
 								ImageLabel imageLabel = new ImageLabel(imageFile);
 								((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).getFlowPane().getChildren().add(imageLabel);
@@ -68,15 +67,15 @@ public class ImageTreeView{
 								e.printStackTrace();
 							}
 						}
-					}
-					et = System.currentTimeMillis();//test
-					System.out.println("列出图片时间: "+(et-st));//test
-					
-					if(amount != 0) {
-						((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setStatusText(amount + "张图片(" + getAmountSize(size) + ")");
-						((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setAmountText("文件夹：" + currentFile.getImageFile().getName() + " - 共"+ amount + "张图片");
+						model.Utilities.imageList.setAll(imageFiles);
+						if(amount != 0) {
+							((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setStatusText(amount + "张图片(" + getAmountSize(size) + ")");
+							((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setAmountText("文件夹：" + currentFile.getImageFile().getName() + " - 共"+ amount + "张图片");
+						}
 					}
 				}
+				long et = System.currentTimeMillis();
+				System.out.println(et - st);
 			}
 		});
 	}
