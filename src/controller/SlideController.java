@@ -1,6 +1,9 @@
 package controller;
 
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -24,6 +27,10 @@ public class SlideController extends RootController implements CanShowImage{
 	
 	@FXML
 	private TextField delayTime;
+	
+    public void initialize(URL location, ResourceBundle resources) {
+//    	TODO timeline
+    }
 	
 	@FXML
 	void switchMode(MouseEvent event) {

@@ -18,8 +18,6 @@ import model.ImageTreeView;
 public class MainExplorerController extends RootController  {
 	
 	private Stage mainStage;
-	
-	//TODO ARRAY
 		
     @FXML
     private MenuBar menuBar;

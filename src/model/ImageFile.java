@@ -147,6 +147,7 @@ public class ImageFile {
 			BufferedImage reader = ImageIO.read(this.imageFile);
 			this.height = reader.getHeight();
 			this.widht = reader.getWidth();
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

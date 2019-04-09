@@ -35,6 +35,20 @@ public class ImageTreeView{
 		loadImage();
 	}
 
+	private String getAmountSize(long size)  {
+		if(size <= 0) {
+			return "0";
+		}
+		final String[] units = new String[] {"B","KB","MB","GB","TB"};
+		int digitGroup = (int)(Math.log10(size)/Math.log10(1024));
+		
+		return new DecimalFormat("#,##0.#").format(size/Math.pow(1024, digitGroup)) + " " + units[digitGroup];
+	}
+	
+	public TreeView<ImageFile> getTreeView(){
+		return treeView;
+	}
+	
 	private void loadImage() {
 		treeView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<TreeItem<ImageFile>>() {
 
@@ -45,7 +59,6 @@ public class ImageTreeView{
 				if(!newValue.getChildren().isEmpty()) {
 					newValue.setExpanded(true);
 				}
-				System.gc();
 				//右侧显示
 				((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).clearFlowPane();
 				ImageFile currentFile = newValue.getValue();
@@ -57,7 +70,7 @@ public class ImageTreeView{
 						if(imageFile.isImageFile()) {
 							amount++;
 							size += imageFile.length();
-							model.Utilities.imageList.add(imageFile);
+							model.Utilities.imageFileList.add(imageFile);
 							try {
 								ImageLabel imageLabel = new ImageLabel(imageFile);
 								((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).getFlowPane().getChildren().add(imageLabel);
@@ -73,19 +86,5 @@ public class ImageTreeView{
 				}
 			}
 		});
-	}
-	
-	private String getAmountSize(long size)  {
-		if(size <= 0) {
-			return "0";
-		}
-		final String[] units = new String[] {"B","KB","MB","GB","TB"};
-		int digitGroup = (int)(Math.log10(size)/Math.log10(1024));
-		
-		return new DecimalFormat("#,##0.#").format(size/Math.pow(1024, digitGroup)) + " " + units[digitGroup];
-	}
-	
-	public TreeView<ImageFile> getTreeView(){
-		return treeView;
 	}
 }

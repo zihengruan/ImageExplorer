@@ -26,10 +26,12 @@
                      <children>
                         <HBox alignment="CENTER" GridPane.columnIndex="1">
                            <children>
-                              <Button fx:id="zoomButton" mnemonicParsing="false" text="zoom" />
+                              <Button fx:id="zoomOutButton" mnemonicParsing="false" onMouseClicked="#zoomOutImage" text="zoom out" />
+                              <Button fx:id="zoomInButton" mnemonicParsing="false" onMouseClicked="#zoomInImage" text="zoom in" />
                               <Button fx:id="deleteButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="delete" />
                               <Button fx:id="likeButton" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" text="like" />
-                              <Button fx:id="rotateButton" layoutX="30.0" layoutY="30.0" mnemonicParsing="false" text="rotate" />
+                              <Button fx:id="rotateButton" layoutX="30.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#rotateImage" text="rotate" />
+                              <Button fx:id="resetButton" mnemonicParsing="false" onMouseClicked="#resetAllProperties" text="reset" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" GridPane.columnIndex="2">
@@ -54,26 +56,26 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
-                     <children>
-                        <ImageView fx:id="image" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="0.0">
+                     <center>
+                        <ImageView fx:id="image" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                            <viewport>
                               <Rectangle2D />
                            </viewport></ImageView>
-                     </children>
-                  </AnchorPane>
+                     </center>
+                  </BorderPane>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <left>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Button fx:id="previous" mnemonicParsing="false" prefHeight="580.0" prefWidth="111.0" text="←" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Button fx:id="previousButton" mnemonicParsing="false" onMouseClicked="#getPriviousImage" prefHeight="580.0" prefWidth="111.0" text="←" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                      </left>
                      <right>
                         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                            <children>
-                              <Button fx:id="next" maxWidth="113.0" mnemonicParsing="false" prefWidth="111.0" text="→" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <Button fx:id="nextButton" maxWidth="113.0" mnemonicParsing="false" onMouseClicked="#getNextImage" prefWidth="111.0" text="→" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                            </children>
                         </AnchorPane>
                      </right>
