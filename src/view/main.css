@@ -16,6 +16,7 @@
 }
 
 .scroll-pane:focused, tree-view:focused{
+	-fx-border-color: transparent;
 	-fx-padding: 0;
 	-fx-background-insets: 0;
 }
@@ -168,17 +169,18 @@
 
 /*图片按钮 */
 
-.button{
+.rootButton{
 	-fx-background-color: transparent;
 }
 
-.button:hover{
+.rootButton:hover{
 	-fx-background-color: #e6e6e6;
 }
 
-.button:pressed {
+.rootButton:pressed {
 	-fx-background-color: #c8c8c8;
 }
+
 
 .openButton {
 	-fx-graphic: url(./button/open.png);
@@ -205,4 +207,77 @@
 .slideButton {
 
 	-fx-graphic: url(./button/slide.png); 
+}
+
+
+.zoomInButton {
+	-fx-graphic: url(./button/zoom_in.png); 
+}
+
+.zoomOutButton {
+	-fx-graphic: url(./button/zoom_out.png); 
+}
+
+.deleteButton {
+	-fx-graphic: url(./button/delete.png); 
+}
+
+.rotateButton {
+	-fx-graphic: url(./button/rotate.png); 
+}
+
+.likeButton {
+	-fx-graphic: url(./button/like.png); 
+}
+
+.likedButton {
+	-fx-graphic: url(./button/liked.png);
+}
+
+.resetButton {
+	-fx-graphic: url(./button/reset.png); 
+}
+
+.detailsButton {
+	-fx-graphic: url(./button/details.png); 
+}
+
+/*viewer中上一张 下一张 按钮 */
+
+.previousButton, 
+.nextButton {
+	-fx-background-color: transparent;
+}
+
+.previousButton:hover {
+	-fx-background-color: linear-gradient(to right, rgba(220,220,220,0.9), rgba(220,220,220,0)); 
+}
+
+.nextButton:hover {
+	-fx-background-color: linear-gradient(to left, rgba(220,220,220,0.9), rgba(220,220,220,0))
+}
+
+.previousButton:pressed {
+	-fx-background-color: linear-gradient(to right, rgba(200,200,200,0.9), rgba(200,200,200,0)); 
+}
+
+.nextButton:pressed {
+	-fx-background-color: linear-gradient(to left, rgba(200,200,200,0.9), rgba(200,200,200,0))
+}
+
+
+/*纯文字按钮 */
+
+.textButton {
+	-fx-background-color: rgba(230, 230, 230, 0.7);
+	
+}
+
+.textButton:hover {
+	-fx-border-color: rgba(124,124,124,0.7);
+	-fx-border-width: 3
+}
+
+.textButton:pressed {
+	-fx-background-color: rgba(124,124,124,0.7);
 }
