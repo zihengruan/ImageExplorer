@@ -74,8 +74,6 @@ public class ImageTreeView{
 						for(ImageFile imageFile : imageFiles) {
 							amount++;
 							size += imageFile.length();
-
-
 							try {
 								ImageLabel imageLabel = new ImageLabel(imageFile);
 								((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).getFlowPane().getChildren().add(imageLabel);

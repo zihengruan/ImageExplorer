@@ -47,7 +47,7 @@ public class ImageLabel extends Label {
 				if(event.getClickCount() == 2) {
 					((MainViewerController)RootController.controllers.get("controller.MainViewerController")).setImage(ImageLabel.this.imageFile);
 					if(!RootController.controllers.get("controller.MainViewerController").getStage().isShowing()) {
-						RootController.controllers.get("controller.MainViewerController").getStage().show();
+						((MainViewerController)RootController.controllers.get("controller.MainViewerController")).showStage();;
 					}
 				}
 				

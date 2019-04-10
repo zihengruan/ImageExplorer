@@ -21,13 +21,20 @@ public class Utilities {
 	}
 	
 	public static ImageFile getNextImageFile(ImageFile imageFile) {
-		if(imageFileList.listIterator(imageFileList.indexOf(imageFile)).hasNext()) {
+		if(imageFileList.indexOf(imageFile)+1 < imageFileList.size()) {
 //			return imageFileList.listIterator(imageFileList.indexOf(imageFile)).next();
 			return imageFileList.get(imageFileList.indexOf(imageFile)+1);
 		}
 		else {
 			return null;
 		}
+//		if(imageFileList.listIterator(imageFileList.indexOf(imageFile)).hasNext()) {
+////			return imageFileList.listIterator(imageFileList.indexOf(imageFile)).next();
+//			return imageFileList.get(imageFileList.indexOf(imageFile)+1);
+//		}
+//		else {
+//			return null;
+//		}
 	}
 	
 	public static ImageFile getPriviousImageFile(ImageFile imageFile) {
