@@ -28,7 +28,7 @@ public class MainViewerController extends RootController {
 	private double oldScreenX;
 	
 	private double oldScreenY;
-
+	
 	@FXML
 	private ImageView image;
 
@@ -170,8 +170,6 @@ public class MainViewerController extends RootController {
 						setNextImage();
 					}
 				}
-				
-
 			}
 		});
 	}
@@ -201,6 +199,7 @@ public class MainViewerController extends RootController {
 		ImageFile t_ImageFile = model.Utilities.getPriviousImageFile(MainViewerController.this.imagefile);
 		if (t_ImageFile != null) {
 			MainViewerController.this.setImage(t_ImageFile);
+			model.Utilities.resetAll();
 		}
 	}
 
@@ -208,34 +207,34 @@ public class MainViewerController extends RootController {
 		ImageFile t_ImageFile = model.Utilities.getNextImageFile(MainViewerController.this.imagefile);
 		if (t_ImageFile != null) {
 			MainViewerController.this.setImage(t_ImageFile);
+			model.Utilities.resetAll();
 		}
 	}
 	
-//	private void addImageDragEvent() {
-//		this.viewerStage.addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
-//
-//			@Override
-//			public void handle(MouseEvent event) {
-////				TODO	
-//				if(event.getEventType().equals(MouseEvent.MOUSE_PRESSED)) {
-//					oldX = MainViewerController.this.image.getX();
-//					oldY = MainViewerController.this.image.getY();
-//					oldScreenX = event.getScreenX();
-//					oldScreenY = event.getScreenY();
-//					System.out.println("old: " + oldX + oldY + oldScreenX + oldScreenY);
-//				}
-//				if(event.getEventType().equals(MouseEvent.MOUSE_DRAGGED)) {
-//					MainViewerController.this.image.setX(MainViewerController.this.oldX + MainViewerController.this.oldScreenX - event.getScreenX());
-//					MainViewerController.this.image.setY(MainViewerController.this.oldY + MainViewerController.this.oldScreenY - event.getScreenY());
-//					System.out.println("new: " + MainViewerController.this.image.getX() + MainViewerController.this.image.getY() + event.getScreenX() + event.getScreenY());
-//				}
-//			}
-//		});
-//	}
+	private void addImageDragEvent() {
+		this.image.addEventHandler(MouseEvent.ANY, new EventHandler<MouseEvent>() {
+
+			@Override
+			public void handle(MouseEvent event) {
+//				TODO	
+				if(event.getEventType().equals(MouseEvent.MOUSE_PRESSED)) {
+					oldX = MainViewerController.this.image.getX();
+					oldY = MainViewerController.this.image.getY();
+					oldScreenX = event.getScreenX();
+					oldScreenY = event.getScreenY();
+					System.out.println("old: " + oldX + oldY + oldScreenX + oldScreenY);
+				}else if(event.getEventType().equals(MouseEvent.MOUSE_DRAGGED)) {
+					MainViewerController.this.image.setX(MainViewerController.this.oldX + MainViewerController.this.oldScreenX - event.getScreenX());
+					MainViewerController.this.image.setY(MainViewerController.this.oldY + MainViewerController.this.oldScreenY - event.getScreenY());
+					System.out.println("new: " + MainViewerController.this.image.getX() + MainViewerController.this.image.getY() + event.getScreenX() + event.getScreenY());
+				}
+			}
+		});
+	}
 
 
 	public void showStage() {
-//		addImageDragEvent();
+		addImageDragEvent();
 		addScrollEvent();
 		addDirectionKeyEvent();
 		this.viewerStage.show();

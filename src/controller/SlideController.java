@@ -12,6 +12,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -32,18 +33,12 @@ public class SlideController extends RootController implements CanShowImage {
 	private int currentIndex;
 
 	private Stage slideStage;
+	
+    @FXML
+    private ToggleButton playPauseButton;
 
 	@FXML
 	private ImageView image;
-
-	@FXML
-	private Button playButton;
-
-	@FXML
-	private Button pauseButton;
-	
-    @FXML
-    private Button stopButton;
 	
     @FXML
     private Button confirmAndPlayButton;
@@ -63,23 +58,34 @@ public class SlideController extends RootController implements CanShowImage {
     		newTimeline();
     		timeline.play();
     	}
-    }
-    
-	@FXML
-	void pause(MouseEvent event) {
-		timeline.pause();
-	}
-
-	@FXML
-	void play(MouseEvent event) {
-		timeline.play();
-	}
+    } 
 
     @FXML
-    void stop(MouseEvent event) {
-    	i = currentIndex;
-    	timeline.stop();
+    void playPause(MouseEvent event) {
+    	if(this.playPauseButton.isSelected()) {
+    		timeline.play();
+    		playPauseButton.setText("Pause");
+    	}else {
+    		timeline.pause();
+    		playPauseButton.setText("Play");
+    	}
     }
+    
+//	@FXML
+//	void pause(MouseEvent event) {
+//		timeline.pause();
+//	}
+//
+//	@FXML
+//	void play(MouseEvent event) {
+//		timeline.play();
+//	}
+//
+//    @FXML
+//    void stop(MouseEvent event) {
+//    	i = currentIndex;
+//    	timeline.stop();
+//    }
 	
 	@Override
 	public Stage getStage() {
@@ -95,6 +101,8 @@ public class SlideController extends RootController implements CanShowImage {
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 				if (newValue == false) {
 					SlideController.this.getStage().hide();
+		    		i = currentIndex + 1;
+		    		timeline.stop();
 				}
 
 			}
