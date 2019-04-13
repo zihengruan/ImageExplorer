@@ -12,6 +12,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import model.ImageFile;
 
@@ -20,15 +21,18 @@ public class MainViewerController extends RootController {
 	private Stage viewerStage;
 
 	private ImageFile imagefile;
-	
-	private double oldX;
-	
-	private double oldY;
-	
+
 	private double oldScreenX;
-	
+
 	private double oldScreenY;
-	
+
+	private double translateX = 0;
+
+	private double translateY = 0;
+
+	@FXML
+	private BorderPane controllPane;
+
 	@FXML
 	private ImageView image;
 
@@ -80,17 +84,13 @@ public class MainViewerController extends RootController {
 		RootController.controllers.get("controller.EditController").getStage().show();
 	}
 
-	public void initialize(URL location, ResourceBundle resources) {
-	}
-
 	public void setImage(ImageFile imageFile) {
 		this.imagefile = imageFile;
 		Image t_image;
 		try {
 			t_image = new Image(imageFile.getImageFile().toURI().toURL().toString(), true);
 			this.image.setImage(t_image);
-			this.image.setFitWidth(model.Utilities.originalFitWidth);
-			this.image.setFitHeight(model.Utilities.originalFitHeight);
+			model.Utilities.resetAll();
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
@@ -156,19 +156,19 @@ public class MainViewerController extends RootController {
 			@Override
 			public void handle(ScrollEvent event) {
 				double deltaY = event.getDeltaY();
-				if(event.isControlDown()) {
-					
+				if (event.isControlDown()) {
 					if (deltaY > 0) {
 						model.Utilities.zoomInImage();
 					} else {
 						model.Utilities.zoomOutImage();
 					}
-				}else {
+				} else {
 					if (deltaY > 0) {
 						setPriviousImage();
 					} else {
 						setNextImage();
 					}
+					model.Utilities.resetAll();
 				}
 			}
 		});
@@ -199,7 +199,6 @@ public class MainViewerController extends RootController {
 		ImageFile t_ImageFile = model.Utilities.getPriviousImageFile(MainViewerController.this.imagefile);
 		if (t_ImageFile != null) {
 			MainViewerController.this.setImage(t_ImageFile);
-			model.Utilities.resetAll();
 		}
 	}
 
@@ -207,36 +206,42 @@ public class MainViewerController extends RootController {
 		ImageFile t_ImageFile = model.Utilities.getNextImageFile(MainViewerController.this.imagefile);
 		if (t_ImageFile != null) {
 			MainViewerController.this.setImage(t_ImageFile);
-			model.Utilities.resetAll();
 		}
 	}
-	
+
 	private void addImageDragEvent() {
-		this.image.addEventHandler(MouseEvent.ANY, new EventHandler<MouseEvent>() {
+		this.controllPane.addEventHandler(MouseEvent.ANY, new EventHandler<MouseEvent>() {
 
 			@Override
 			public void handle(MouseEvent event) {
-//				TODO	
-				if(event.getEventType().equals(MouseEvent.MOUSE_PRESSED)) {
-					oldX = MainViewerController.this.image.getX();
-					oldY = MainViewerController.this.image.getY();
+				if (event.getEventType().equals(MouseEvent.MOUSE_PRESSED)) {
 					oldScreenX = event.getScreenX();
 					oldScreenY = event.getScreenY();
-					System.out.println("old: " + oldX + oldY + oldScreenX + oldScreenY);
-				}else if(event.getEventType().equals(MouseEvent.MOUSE_DRAGGED)) {
-					MainViewerController.this.image.setX(MainViewerController.this.oldX + MainViewerController.this.oldScreenX - event.getScreenX());
-					MainViewerController.this.image.setY(MainViewerController.this.oldY + MainViewerController.this.oldScreenY - event.getScreenY());
-					System.out.println("new: " + MainViewerController.this.image.getX() + MainViewerController.this.image.getY() + event.getScreenX() + event.getScreenY());
+				} else if (event.getEventType().equals(MouseEvent.MOUSE_DRAGGED)) {
+					MainViewerController.this.image
+							.setTranslateX(translateX + event.getScreenX() - MainViewerController.this.oldScreenX);
+					MainViewerController.this.image
+							.setTranslateY(translateY + event.getScreenY() - MainViewerController.this.oldScreenY);
+				} else if (event.getEventType().equals(MouseEvent.MOUSE_RELEASED)) {
+					translateX += event.getScreenX() - MainViewerController.this.oldScreenX;
+					translateY += event.getScreenY() - MainViewerController.this.oldScreenY;
 				}
 			}
 		});
 	}
 
+	public void resetImagePosition() {
+		MainViewerController.this.image.setTranslateX(0);
+		MainViewerController.this.image.setTranslateY(0);
+		translateX = 0;
+		translateY = 0;
+	}
 
 	public void showStage() {
 		addImageDragEvent();
 		addScrollEvent();
 		addDirectionKeyEvent();
+
 		this.viewerStage.show();
 	}
 
