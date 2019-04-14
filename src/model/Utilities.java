@@ -13,11 +13,14 @@ public class Utilities {
 	public static double originalFitWidth = 960;
 	public static double originalFitHeight = 720;
 	private static double zoomRate = 1.25;
+	private static double maxWidth = originalFitWidth * Math.pow(zoomRate, 12);
+	private static double minWidth = originalFitWidth * Math.pow(zoomRate, -5);
 	
 	public static void resetAll() {
 		((MainViewerController)RootController.controllers.get("controller.MainViewerController")).getImageView().setRotate(0);
 		((MainViewerController)RootController.controllers.get("controller.MainViewerController")).getImageView().setFitWidth(originalFitWidth);
-		((MainViewerController)RootController.controllers.get("controller.MainViewerController")).getImageView().setFitHeight(originalFitHeight); 
+		((MainViewerController)RootController.controllers.get("controller.MainViewerController")).getImageView().setFitHeight(originalFitHeight);
+		((MainViewerController)RootController.controllers.get("controller.MainViewerController")).resetImagePosition();
 	}
 	
 	public static ImageFile getNextImageFile(ImageFile imageFile) {
@@ -54,7 +57,7 @@ public class Utilities {
 	public static void zoomInImage() {
 		double w = ((MainViewerController)RootController.controllers.get("controller.MainViewerController")).getImageView().getFitWidth();		
 		double h = ((MainViewerController)RootController.controllers.get("controller.MainViewerController")).getImageView().getFitHeight();
-		if(w < 3662) {
+		if(w < maxWidth) {
 			((MainViewerController)RootController.controllers.get("controller.MainViewerController")).getImageView().setFitWidth(w * zoomRate);
 			((MainViewerController)RootController.controllers.get("controller.MainViewerController")).getImageView().setFitHeight(h * zoomRate);
 		}
@@ -63,9 +66,11 @@ public class Utilities {
 	public static void zoomOutImage() {
 		double w = ((MainViewerController)RootController.controllers.get("controller.MainViewerController")).getImageView().getFitWidth();		
 		double h = ((MainViewerController)RootController.controllers.get("controller.MainViewerController")).getImageView().getFitHeight();	
-		if(w > 252) {
+		if(w > minWidth) {
 			((MainViewerController)RootController.controllers.get("controller.MainViewerController")).getImageView().setFitWidth(w / zoomRate);
 			((MainViewerController)RootController.controllers.get("controller.MainViewerController")).getImageView().setFitHeight(h / zoomRate);
+		}else if (w == minWidth) {
+			((MainViewerController)RootController.controllers.get("controller.MainViewerController")).resetImagePosition();
 		}
 	}
 	
