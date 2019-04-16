@@ -281,3 +281,42 @@
 .textButton:pressed {
 	-fx-background-color: rgba(124,124,124,0.7);
 }
+
+
+/*幻灯片按钮 */
+
+.slideBottomBar {
+	-fx-background-color: transparent;
+}
+
+.slideBottomBar:hover {
+	-fx-background-color: linear-gradient(to top, #cccccc, rgba(238,238,238,0.5) 80%, rgba(255,255,255, 0));
+}
+
+
+.playToggleButton {
+	-fx-background-color: transparent;
+	-fx-graphic: url(./button/play.png);
+}
+
+.playToggleButton:hover {
+	-fx-background-color: transparent;
+	-fx-graphic: url(./button/play_hover.png);
+}
+
+.playToggleButton:pressed {
+	-fx-background-color: transparent;
+	-fx-graphic: url(./button/play_pressed.png);
+}
+
+.playToggleButton:selected {
+	-fx-graphic: url(./button/stop.png);
+}
+.playToggleButton:selected:hover {
+	-fx-graphic: url(./button/stop_hover.png);
+}
+
+.playToggleButton:selected:pressed {
+	-fx-graphic: url(./button/stop_pressed.png);
+}
+
