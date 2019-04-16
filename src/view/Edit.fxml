@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Tab?>
@@ -12,7 +18,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="1500.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditController">
+<AnchorPane maxHeight="-Infinity" maxWidth="1500.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" stylesheets="@main.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditController">
    <children>
       <GridPane prefHeight="1080.0" prefWidth="1920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -25,15 +31,14 @@
          <children>
             <AnchorPane GridPane.columnIndex="1">
                <children>
-                  <GridPane alignment="CENTER" prefHeight="1078.0" prefWidth="339.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GridPane layoutX="31.0" layoutY="140.0" prefHeight="720.0" prefWidth="262.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columnConstraints>
                       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints maxHeight="200.0" minHeight="0.0" percentHeight="10.0" prefHeight="200.0" valignment="CENTER" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="789.0" minHeight="10.0" percentHeight="70.0" prefHeight="681.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="100.0" minHeight="0.0" percentHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="100.0" minHeight="10.0" percentHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="580.0" minHeight="10.0" prefHeight="570.6666717529297" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
                         <GridPane GridPane.rowIndex="2">
@@ -45,18 +50,48 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Button fx:id="undoButtton" mnemonicParsing="false" styleClass="textButton" text="Undo" />
                               <Button fx:id="saveButton" mnemonicParsing="false" styleClass="textButton" text="Save" GridPane.columnIndex="1" />
+                              <Button fx:id="saveCopyButton" mnemonicParsing="false" styleClass="textButton" text="SaveCpoy" />
                            </children>
                         </GridPane>
-                        <TabPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                        <TabPane fx:id="functionPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.rowIndex="1">
                           <tabs>
-                            <Tab text="Enhance" />
-                            <Tab text="Adjust" />
+                            <Tab text="旋转和裁切">
+                                 <content>
+                                    <AnchorPane>
+                                       <children>
+                                          <Button fx:id="cutAndRotate" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="textButton" text="Cut&amp;Rotate" />
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                            <Tab text="滤镜">
+                                 <content>
+                                    <AnchorPane>
+                                       <children>
+                                          <Button mnemonicParsing="false" text="滤镜" />
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab text="调整">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <Button mnemonicParsing="false" text="调整" />
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </Tab>
                           </tabs>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <padding>
+                              <Insets top="-29.0" />
+                           </padding>
                         </TabPane>
-                        <Button fx:id="cutAndRotate" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="textButton" text="Cut&amp;Rotate" />
-                        <Button fx:id="saveCopyButton" mnemonicParsing="false" styleClass="textButton" text="SaveCpoy" GridPane.rowIndex="3" />
+                        <Text fx:id="functionTabName" strokeType="OUTSIDE" strokeWidth="0.0" text="裁剪与旋转" />
                      </children>
                   </GridPane>
                </children>
@@ -66,16 +101,45 @@
                   <ImageView fx:id="imageView" fitHeight="606.0" fitWidth="818.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
                </center>
                <bottom>
-                  <HBox alignment="TOP_RIGHT" prefHeight="9.0" prefWidth="1338.0" BorderPane.alignment="CENTER">
+                  <HBox alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="1018.0" BorderPane.alignment="CENTER">
                      <children>
                         <Button fx:id="zoomInButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="-" />
                         <Button fx:id="zoomOutButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="+" />
                      </children>
                      <opaqueInsets>
-                        <Insets />
+                        <Insets bottom="10.0" right="10.0" />
                      </opaqueInsets>
+                     <padding>
+                        <Insets bottom="10.0" right="10.0" />
+                     </padding>
                   </HBox>
                </bottom>
+               <top>
+                  <GridPane prefHeight="39.0" prefWidth="1018.0" BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
+                           <children>
+                              <Button fx:id="rotateButton" mnemonicParsing="false" text="裁剪与旋转" />
+                              <Button fx:id="filterButton" mnemonicParsing="false" text="滤镜" />
+                              <Button fx:id="adjustButton" mnemonicParsing="false" text="调整" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" GridPane.columnIndex="2">
+                           <children>
+                              <Button fx:id="undoButtton" mnemonicParsing="false" styleClass="textButton" text="Undo" GridPane.columnIndex="2" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </GridPane>
+               </top>
             </BorderPane>
          </children>
       </GridPane>

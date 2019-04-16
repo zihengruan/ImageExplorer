@@ -1,8 +1,6 @@
 package controller;
 
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -81,7 +79,7 @@ public class MainViewerController extends RootController {
 	void showEditWIndow(MouseEvent event) {
 		((EditController) RootController.controllers.get("controller.EditController"))
 				.setImageView(this.image.getImage());
-		RootController.controllers.get("controller.EditController").getStage().show();
+		((EditController)RootController.controllers.get("controller.EditController")).showStage();
 	}
 
 	public void setImage(ImageFile imageFile) {
