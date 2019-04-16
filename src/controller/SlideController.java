@@ -3,6 +3,7 @@ package controller;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.value.ChangeListener;
@@ -27,66 +28,49 @@ public class SlideController extends RootController implements CanShowImage {
 	private Timeline timeline;
 
 	private Duration duration = Duration.seconds(2);
-	
+
 	private int i;
-	
+
 	private int currentIndex;
 
 	private Stage slideStage;
-	
-    @FXML
-    private ToggleButton playPauseButton;
+
+	@FXML
+	private ToggleButton playPauseButton;
 
 	@FXML
 	private ImageView image;
-	
-    @FXML
-    private Button confirmAndPlayButton;
+
+	@FXML
+	private Button confirmAndPlayButton;
 
 	@FXML
 	private TextField delayTime;
 
 	public void initialize(URL location, ResourceBundle resources) {
 	}
-	
-    @FXML
-    void confirmAndPlay(MouseEvent event) {
-    	if(delayTime.getText() != null && !delayTime.getText().isEmpty()) {
-    		i = currentIndex + 1;
-    		timeline.stop();
-    		duration = Duration.seconds(Double.parseDouble(delayTime.getText()));
-    		newTimeline();
-    		timeline.play();
-    	}
-    } 
 
-    @FXML
-    void playPause(MouseEvent event) {
-    	if(this.playPauseButton.isSelected()) {
-    		timeline.play();
-    		playPauseButton.setText("Pause");
-    	}else {
-    		timeline.pause();
-    		playPauseButton.setText("Play");
-    	}
-    }
-    
-//	@FXML
-//	void pause(MouseEvent event) {
-//		timeline.pause();
-//	}
-//
-//	@FXML
-//	void play(MouseEvent event) {
-//		timeline.play();
-//	}
-//
-//    @FXML
-//    void stop(MouseEvent event) {
-//    	i = currentIndex;
-//    	timeline.stop();
-//    }
-	
+	@FXML
+	void confirmAndPlay(MouseEvent event) {
+		if (delayTime.getText() != null && !delayTime.getText().isEmpty()) {
+			timeline.stop();
+			duration = Duration.seconds(Double.parseDouble(delayTime.getText()));
+			newTimeline();
+			timeline.play();
+		}
+	}
+
+	@FXML
+	void playPause(MouseEvent event) {
+		if (this.playPauseButton.isSelected()) {
+			timeline.play();
+			playPauseButton.setText("Pause");
+		} else {
+			timeline.pause();
+			playPauseButton.setText("Play");
+		}
+	}
+
 	@Override
 	public Stage getStage() {
 		return this.slideStage;
@@ -101,8 +85,8 @@ public class SlideController extends RootController implements CanShowImage {
 			public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
 				if (newValue == false) {
 					SlideController.this.getStage().hide();
-		    		i = currentIndex + 1;
-		    		timeline.stop();
+					i = currentIndex + 1;
+					timeline.stop();
 				}
 
 			}
@@ -122,28 +106,37 @@ public class SlideController extends RootController implements CanShowImage {
 	}
 
 	private void newTimeline() {
-		ImageFile t_imageFile = ((MainViewerController)RootController.controllers.get("controller.MainViewerController")).getImagefile();
+		ImageFile t_imageFile = ((MainViewerController) RootController.controllers
+				.get("controller.MainViewerController")).getImagefile();
+//		TODO should be selected imageFileList
 		currentIndex = model.Utilities.imageFileList.indexOf(t_imageFile);
 		i = currentIndex + 1;
-		
+
 		timeline = new Timeline();
 		timeline.setCycleCount(Timeline.INDEFINITE);
+
 		EventHandler<ActionEvent> onFinished = new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
-				if(i == currentIndex) {
+
+				if (i == currentIndex) {
 					timeline.stop();
+					// 复位按钮
+					SlideController.this.playPauseButton.setSelected(false);
+					SlideController.this.playPauseButton.setText("Play");
+
 				} else if (i < model.Utilities.imageFileList.size()) {
 					try {
 						SlideController.this.image.setImage(new Image(
 								model.Utilities.imageFileList.get(i).getImageFile().toURI().toURL().toString(), true));
+//						TODO should be selected imageFileList
 					} catch (MalformedURLException e) {
 						e.printStackTrace();
 
 					}
 					i++;
-				}else {
+				} else {
 					i = 0;
 				}
 
@@ -153,32 +146,30 @@ public class SlideController extends RootController implements CanShowImage {
 		KeyFrame keyFrame = new KeyFrame(duration, onFinished);
 		timeline.getKeyFrames().add(keyFrame);
 	}
-	
+
 	private void addTextFieldEnterEvent() {
 		delayTime.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
 			@Override
 			public void handle(KeyEvent event) {
-				if(event.getCode().equals(KeyCode.ENTER)) {
-					if(delayTime.getText() != null && !delayTime.getText().isEmpty()) {
-			    		i = currentIndex + 1;
-			    		timeline.stop();
-			    		duration = Duration.seconds(Double.parseDouble(delayTime.getText()));
-			    		newTimeline();
-			    		timeline.play();
-			    	}
+				if (event.getCode().equals(KeyCode.ENTER)) {
+					if (delayTime.getText() != null && !delayTime.getText().isEmpty()) {
+						i = currentIndex + 1;
+						timeline.stop();
+						duration = Duration.seconds(Double.parseDouble(delayTime.getText()));
+						newTimeline();
+						timeline.play();
+					}
 				}
 			}
 		});
 	}
 
-	
 	public void showStage() {
 		this.newTimeline();
-		addTextFieldEnterEvent();
+		this.addTextFieldEnterEvent();
 		this.slideStage.show();
-		
-	}
-	
-}
 
+	}
+
+}

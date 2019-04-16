@@ -37,11 +37,11 @@
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="580.0" minHeight="10.0" prefHeight="570.6666717529297" vgrow="SOMETIMES" />
-                      <RowConstraints minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="580.0" minHeight="10.0" prefHeight="556.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="115.0" minHeight="10.0" prefHeight="75.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <GridPane GridPane.rowIndex="2">
+                        <GridPane prefHeight="94.0" prefWidth="264.0" GridPane.rowIndex="2">
                           <columnConstraints>
                             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -50,8 +50,8 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Button fx:id="saveButton" mnemonicParsing="false" styleClass="textButton" text="Save" GridPane.columnIndex="1" />
-                              <Button fx:id="saveCopyButton" mnemonicParsing="false" styleClass="textButton" text="SaveCpoy" />
+                              <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveImage" styleClass="textButton" text="Save" GridPane.columnIndex="1" />
+                              <Button fx:id="saveCopyButton" mnemonicParsing="false" onAction="#saveImageCopy" styleClass="textButton" text="SaveCpoy" />
                            </children>
                         </GridPane>
                         <TabPane fx:id="functionPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.rowIndex="1">
@@ -67,18 +67,115 @@
                               </Tab>
                             <Tab text="滤镜">
                                  <content>
-                                    <AnchorPane>
-                                       <children>
-                                          <Button mnemonicParsing="false" text="滤镜" />
-                                       </children>
-                                    </AnchorPane>
+                                    <ScrollPane prefViewportHeight="499.0" prefViewportWidth="262.0">
+                                       <content>
+                                          <AnchorPane prefHeight="499.0" prefWidth="262.0">
+                                             <children>
+                                                <GridPane prefHeight="296.0" prefWidth="262.0" AnchorPane.bottomAnchor="203.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                  <columnConstraints>
+                                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                  </columnConstraints>
+                                                  <rowConstraints>
+                                                    <RowConstraints maxHeight="458.0" minHeight="10.0" prefHeight="317.0" vgrow="SOMETIMES" />
+                                                  </rowConstraints>
+                                                   <children>
+                                                      <GridPane prefHeight="358.0" prefWidth="256.0">
+                                                        <columnConstraints>
+                                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                        </columnConstraints>
+                                                        <rowConstraints>
+                                                          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="100.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                                          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="100.0" vgrow="SOMETIMES" />
+                                                          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="100.0" vgrow="SOMETIMES" />
+                                                        </rowConstraints>
+                                                         <children>
+                                                            <Button fx:id="originalEffectButton" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0">
+                                                               <graphic>
+                                                                  <ImageView fx:id="originalEffectImageView" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
+                                                               </graphic>
+                                                            </Button>
+                                                            <Button fx:id="overlayEffectButton" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="1">
+                                                               <graphic>
+                                                                  <ImageView fx:id="overlayEffectImageview" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
+                                                               </graphic>
+                                                            </Button>
+                                                            <Button fx:id="exclusionEffectButton" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="2">
+                                                               <graphic>
+                                                                  <ImageView fx:id="exclusionEffectImageView" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
+                                                               </graphic>
+                                                            </Button>
+                                                            <Button fx:id="bEffectButton1" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" GridPane.rowIndex="1">
+                                                               <graphic>
+                                                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
+                                                               </graphic>
+                                                            </Button>
+                                                            <Button fx:id="bEffectButton2" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                               <graphic>
+                                                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
+                                                               </graphic>
+                                                            </Button>
+                                                            <Button fx:id="bEffectButton3" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                               <graphic>
+                                                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
+                                                               </graphic>
+                                                            </Button>
+                                                         </children>
+                                                      </GridPane>
+                                                   </children>
+                                                </GridPane>
+                                             </children>
+                                          </AnchorPane>
+                                       </content>
+                                    </ScrollPane>
                                  </content>
                               </Tab>
                               <Tab text="调整">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
-                                          <Button mnemonicParsing="false" text="调整" />
+                                          <GridPane prefHeight="410.0" prefWidth="262.0" AnchorPane.bottomAnchor="152.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <Slider fx:id="ContrastSlider" blockIncrement="0.1" max="1.0" value="0.5" GridPane.rowIndex="1" />
+                                                <Slider fx:id="hueSlider" blockIncrement="0.1" max="1.0" value="0.5" GridPane.rowIndex="3" />
+                                                <Slider fx:id="saturationSlider" blockIncrement="0.1" max="1.0" value="0.5" GridPane.rowIndex="5" />
+                                                <Slider fx:id="brightnessSlider" blockIncrement="0.1" max="1.0" value="0.5" GridPane.rowIndex="7" />
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="色相" GridPane.rowIndex="2">
+                                                   <GridPane.margin>
+                                                      <Insets left="15.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="饱和度" GridPane.rowIndex="4">
+                                                   <GridPane.margin>
+                                                      <Insets left="15.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="明度" GridPane.rowIndex="6">
+                                                   <GridPane.margin>
+                                                      <Insets left="15.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="对比度">
+                                                   <GridPane.margin>
+                                                      <Insets left="15.0" />
+                                                   </GridPane.margin>
+                                                </Text>
+                                             </children>
+                                          </GridPane>
                                        </children>
                                     </AnchorPane>
                                 </content>
@@ -100,26 +197,12 @@
                <center>
                   <ImageView fx:id="imageView" fitHeight="606.0" fitWidth="818.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
                </center>
-               <bottom>
-                  <HBox alignment="CENTER_RIGHT" prefHeight="43.0" prefWidth="1018.0" BorderPane.alignment="CENTER">
-                     <children>
-                        <Button fx:id="zoomInButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="-" />
-                        <Button fx:id="zoomOutButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" text="+" />
-                     </children>
-                     <opaqueInsets>
-                        <Insets bottom="10.0" right="10.0" />
-                     </opaqueInsets>
-                     <padding>
-                        <Insets bottom="10.0" right="10.0" />
-                     </padding>
-                  </HBox>
-               </bottom>
                <top>
                   <GridPane prefHeight="39.0" prefWidth="1018.0" BorderPane.alignment="CENTER">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -127,15 +210,21 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <Button fx:id="rotateButton" mnemonicParsing="false" text="裁剪与旋转" />
-                              <Button fx:id="filterButton" mnemonicParsing="false" text="滤镜" />
-                              <Button fx:id="adjustButton" mnemonicParsing="false" text="调整" />
+                              <Button fx:id="rotateButton" mnemonicParsing="false" onAction="#shiftToCutPane" text="裁剪与旋转" />
+                              <Button fx:id="filterButton" mnemonicParsing="false" onAction="#shiftToFilterPane" text="滤镜" />
+                              <Button fx:id="adjustButton" mnemonicParsing="false" onAction="#shiftToAdjustPane" text="调整" />
                            </children>
                         </HBox>
-                        <HBox alignment="CENTER" GridPane.columnIndex="2">
+                        <HBox alignment="CENTER_RIGHT" GridPane.columnIndex="2">
                            <children>
-                              <Button fx:id="undoButtton" mnemonicParsing="false" styleClass="textButton" text="Undo" GridPane.columnIndex="2" />
+                              <Button fx:id="undoButtton" mnemonicParsing="false" onAction="#undoAll" styleClass="textButton" text="Undo" GridPane.columnIndex="2" />
                            </children>
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <GridPane.margin>
+                              <Insets right="40.0" />
+                           </GridPane.margin>
                         </HBox>
                      </children>
                   </GridPane>

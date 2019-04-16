@@ -35,7 +35,7 @@
                      <children>
                         <Label nodeOrientation="RIGHT_TO_LEFT" prefHeight="30.0" prefWidth="119.0" text="delay" GridPane.columnIndex="2">
                            <graphic>
-                              <TextField fx:id="delayTime" alignment="CENTER" maxWidth="61.0" prefHeight="30.0" prefWidth="61.0" promptText="2" />
+                              <TextField fx:id="delayTime" alignment="CENTER" maxWidth="61.0" prefHeight="30.0" prefWidth="61.0" promptText="5" />
                            </graphic>
                         </Label>
                         <Button fx:id="confirmAndPlayButton" mnemonicParsing="false" onMouseClicked="#confirmAndPlay" text="ConfirmAndPlay" GridPane.columnIndex="2" />
