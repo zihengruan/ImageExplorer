@@ -19,12 +19,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.ImageFile;
 
 public class SlideController extends RootController implements CanShowImage {
-
+	
 	private Timeline timeline;
 
 	private Duration duration = Duration.seconds(2);
@@ -34,9 +35,12 @@ public class SlideController extends RootController implements CanShowImage {
 	private int currentIndex;
 
 	private Stage slideStage;
-
-	@FXML
-	private ToggleButton playPauseButton;
+	
+    @FXML
+    private GridPane bottomBar;
+	
+    @FXML
+    private ToggleButton playPauseButton;
 
 	@FXML
 	private ImageView image;
@@ -48,28 +52,42 @@ public class SlideController extends RootController implements CanShowImage {
 	private TextField delayTime;
 
 	public void initialize(URL location, ResourceBundle resources) {
+		this.bottomBar.setVisible(false);
 	}
 
-	@FXML
-	void confirmAndPlay(MouseEvent event) {
-		if (delayTime.getText() != null && !delayTime.getText().isEmpty()) {
-			timeline.stop();
-			duration = Duration.seconds(Double.parseDouble(delayTime.getText()));
-			newTimeline();
-			timeline.play();
-		}
-	}
+	
+    @FXML
+    void confirmAndPlay(MouseEvent event) {
+    	if(delayTime.getText() != null && !delayTime.getText().isEmpty()) {
+    		i = currentIndex + 1;
+    		timeline.stop();
+    		duration = Duration.seconds(Double.parseDouble(delayTime.getText()));
+    		newTimeline();
+    		timeline.play();
+    	}
+    } 
 
-	@FXML
-	void playPause(MouseEvent event) {
-		if (this.playPauseButton.isSelected()) {
-			timeline.play();
-			playPauseButton.setText("Pause");
-		} else {
-			timeline.pause();
-			playPauseButton.setText("Play");
-		}
-	}
+    @FXML
+    void playPause(MouseEvent event) {
+    	if(this.playPauseButton.isSelected()) {
+    		timeline.play();
+//    		playPauseButton.setText("Pause");
+    	}else {
+    		timeline.pause();
+//    		playPauseButton.setText("Play");
+    	}
+    }
+    
+    @FXML
+    void mouseEnteredBottomBar(MouseEvent event) {
+    	this.bottomBar.setVisible(true);
+    }
+
+    @FXML
+    void mouseExitedBottomBar(MouseEvent event) {
+    	this.bottomBar.setVisible(false);
+    }
+    
 
 	@Override
 	public Stage getStage() {
@@ -122,10 +140,7 @@ public class SlideController extends RootController implements CanShowImage {
 
 				if (i == currentIndex) {
 					timeline.stop();
-					// 复位按钮
 					SlideController.this.playPauseButton.setSelected(false);
-					SlideController.this.playPauseButton.setText("Play");
-
 				} else if (i < model.Utilities.imageFileList.size()) {
 					try {
 						SlideController.this.image.setImage(new Image(
@@ -133,7 +148,6 @@ public class SlideController extends RootController implements CanShowImage {
 //						TODO should be selected imageFileList
 					} catch (MalformedURLException e) {
 						e.printStackTrace();
-
 					}
 					i++;
 				} else {
