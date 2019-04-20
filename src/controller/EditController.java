@@ -58,6 +58,24 @@ public class EditController extends RootController {
 
 	@FXML
 	private ImageView exclusionEffectImageView;
+	
+    @FXML
+    private Button saunaEffectButton;
+    
+    @FXML
+    private ImageView saunaEffectImageView;
+    
+    @FXML
+    private Button rougeEffectButton;
+    
+    @FXML
+    private ImageView rougeEffectImageView;
+    
+    @FXML
+    private Button suckyEffectButton;
+    
+    @FXML
+    private ImageView suckyEffectImageView;
 
 	// 调整面板
 	@FXML
@@ -111,6 +129,9 @@ public class EditController extends RootController {
 		this.originalEffectImageView.setImage(image);
 		this.overlayEffectImageview.setImage(image);
 		this.exclusionEffectImageView.setImage(image);
+		this.saunaEffectImageView.setImage(image);
+		this.rougeEffectImageView.setImage(image);
+		this.suckyEffectImageView.setImage(image);
 	}
 
 	public Image getImage() {
@@ -164,6 +185,12 @@ public class EditController extends RootController {
 		overlay(this.overlayEffectImageview);
 
 		exclusion(this.exclusionEffectImageView);
+		
+		sauna(this.saunaEffectImageView);
+		
+		rouge(this.rougeEffectImageView);
+		
+		sucky(this.suckyEffectImageView);
 
 		this.originalEffectButton.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
@@ -185,6 +212,27 @@ public class EditController extends RootController {
 				exclusion(EditController.this.imageView);
 			}
 		});
+		
+		this.saunaEffectButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				sauna(EditController.this.imageView);
+			}
+		});
+		
+		this.rougeEffectButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				rouge(EditController.this.imageView);
+			}
+		});
+		
+		this.suckyEffectButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				sucky(EditController.this.imageView);
+			}
+		});
 
 	}
 
@@ -203,6 +251,21 @@ public class EditController extends RootController {
 		blend.setMode(BlendMode.EXCLUSION);
 		imageView.setEffect(blend);
 	}
+	
+	private void sauna(ImageView imageView) {
+		ColorAdjust colorAdjust = new ColorAdjust(-0.1, -0.1, -0.1, -0.2);
+		imageView.setEffect(colorAdjust);
+	}
+	
+	private void rouge(ImageView imageView) {
+		ColorAdjust colorAdjust = new ColorAdjust(0.15, -0.13, -0.1, -0.17);
+		imageView.setEffect(colorAdjust);
+	}
+	
+	private void sucky(ImageView imageView) {
+		ColorAdjust colorAdjust = new ColorAdjust(0.30, 0.5, 0.1, 0.1);
+		imageView.setEffect(colorAdjust);
+	}
 
 	private void addAdjustTab() {
 		this.ContrastSlider.valueProperty()
@@ -210,6 +273,7 @@ public class EditController extends RootController {
 					this.colorAdjust.setContrast(contrastValue + newValue.doubleValue() - oldValue.doubleValue());
 					contrastValue += (newValue.doubleValue() - oldValue.doubleValue());
 					EditController.this.imageView.setEffect(colorAdjust);
+					System.out.println("contast:" + contrastValue);
 				});
 
 		this.hueSlider.valueProperty()
@@ -217,6 +281,7 @@ public class EditController extends RootController {
 					this.colorAdjust.setHue(hueValue + newValue.doubleValue() - oldValue.doubleValue());
 					hueValue += (newValue.doubleValue() - oldValue.doubleValue());
 					EditController.this.imageView.setEffect(colorAdjust);
+					System.out.println("hue:" + hueValue);
 				});
 
 		this.saturationSlider.valueProperty()
@@ -224,6 +289,7 @@ public class EditController extends RootController {
 					this.colorAdjust.setSaturation(saturationValue + newValue.doubleValue() - oldValue.doubleValue());
 					saturationValue += (newValue.doubleValue() - oldValue.doubleValue());
 					EditController.this.imageView.setEffect(colorAdjust);
+					System.out.println("saturation:" + saturationValue);
 				});
 
 		this.brightnessSlider.valueProperty()
@@ -231,6 +297,7 @@ public class EditController extends RootController {
 					this.colorAdjust.setBrightness(brightnessValue + newValue.doubleValue() - oldValue.doubleValue());
 					brightnessValue += (newValue.doubleValue() - oldValue.doubleValue());
 					EditController.this.imageView.setEffect(colorAdjust);
+					System.out.println("brightness:" + brightnessValue );
 				});
 	}
 

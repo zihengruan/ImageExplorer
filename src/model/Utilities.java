@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Utilities {
+	
 	public static ObservableList<ImageFile> selectedImage = FXCollections.observableArrayList(new ArrayList<>());
 	public static ObservableList<ImageFile> imageFileList = FXCollections.observableArrayList(new ArrayList<>());	
 	public static double originalFitWidth = 960;

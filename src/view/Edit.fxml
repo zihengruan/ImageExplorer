@@ -71,7 +71,7 @@
                                        <content>
                                           <AnchorPane prefHeight="499.0" prefWidth="262.0">
                                              <children>
-                                                <GridPane prefHeight="296.0" prefWidth="262.0" AnchorPane.bottomAnchor="203.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                <GridPane prefHeight="197.0" prefWidth="262.0" AnchorPane.bottomAnchor="302.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                   <columnConstraints>
                                                     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                   </columnConstraints>
@@ -79,46 +79,45 @@
                                                     <RowConstraints maxHeight="458.0" minHeight="10.0" prefHeight="317.0" vgrow="SOMETIMES" />
                                                   </rowConstraints>
                                                    <children>
-                                                      <GridPane prefHeight="358.0" prefWidth="256.0">
+                                                      <GridPane prefHeight="489.0" prefWidth="268.0">
                                                         <columnConstraints>
                                                           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                         </columnConstraints>
                                                         <rowConstraints>
-                                                          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="100.0" valignment="CENTER" vgrow="SOMETIMES" />
-                                                          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="100.0" vgrow="SOMETIMES" />
-                                                          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="100.0" vgrow="SOMETIMES" />
+                                                          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="85.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                                          <RowConstraints maxHeight="1.7976931348623157E308" minHeight="-Infinity" prefHeight="85.0" vgrow="SOMETIMES" />
                                                         </rowConstraints>
                                                          <children>
-                                                            <Button fx:id="originalEffectButton" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0">
+                                                            <Button fx:id="originalEffectButton" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" text="Original">
                                                                <graphic>
                                                                   <ImageView fx:id="originalEffectImageView" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
                                                                </graphic>
                                                             </Button>
-                                                            <Button fx:id="overlayEffectButton" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="1">
+                                                            <Button fx:id="overlayEffectButton" contentDisplay="TOP" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" text="Overlay" GridPane.columnIndex="1">
                                                                <graphic>
                                                                   <ImageView fx:id="overlayEffectImageview" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
                                                                </graphic>
                                                             </Button>
-                                                            <Button fx:id="exclusionEffectButton" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="2">
+                                                            <Button fx:id="exclusionEffectButton" contentDisplay="TOP" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" text="Exclusion" GridPane.columnIndex="2">
                                                                <graphic>
                                                                   <ImageView fx:id="exclusionEffectImageView" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
                                                                </graphic>
                                                             </Button>
-                                                            <Button fx:id="bEffectButton1" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" GridPane.rowIndex="1">
+                                                            <Button fx:id="saunaEffectButton" contentDisplay="TOP" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" text="Sauna" GridPane.rowIndex="1">
                                                                <graphic>
-                                                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
+                                                                  <ImageView fx:id="saunaEffectImageView" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
                                                                </graphic>
                                                             </Button>
-                                                            <Button fx:id="bEffectButton2" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                                            <Button fx:id="rougeEffectButton" contentDisplay="TOP" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" text="Rouge" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                                                <graphic>
-                                                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
+                                                                  <ImageView fx:id="rougeEffectImageView" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
                                                                </graphic>
                                                             </Button>
-                                                            <Button fx:id="bEffectButton3" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                                                            <Button fx:id="suckyEffectButton" contentDisplay="TOP" mnemonicParsing="false" prefHeight="75.0" prefWidth="75.0" text="Sucky" GridPane.columnIndex="2" GridPane.rowIndex="1">
                                                                <graphic>
-                                                                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
+                                                                  <ImageView fx:id="suckyEffectImageView" fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true" />
                                                                </graphic>
                                                             </Button>
                                                          </children>
