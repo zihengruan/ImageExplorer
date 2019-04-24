@@ -323,10 +323,10 @@ public class EditController extends RootController {
 				.getImagefile().getImageFile();
 		WritableImage image = this.imageView.snapshot(new SnapshotParameters(), null);
 		
-		String parentPath = file.getParentFile().getAbsolutePath();
-		String fileName = file.getName();
-		String fileNameWithOutFormatName = fileName.substring(0, fileName.indexOf("."));
-		String imageCopyName = parentPath.concat(fileNameWithOutFormatName).concat("(副本）.jpg");
+		String filePath = file.getAbsolutePath();
+		String filePathWithOutFormatName = filePath.substring(0, filePath.lastIndexOf("."));
+		String imageCopyName =filePathWithOutFormatName + ".(副本).jpg";
+		
 		File imageCopy = new File(imageCopyName);
 		
 		try {

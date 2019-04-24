@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.FlowPane;

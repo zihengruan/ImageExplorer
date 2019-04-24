@@ -9,8 +9,10 @@ import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.control.OverrunStyle;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -40,6 +42,8 @@ public class ImageLabel extends Label {
 		super.setContentDisplay(ContentDisplay.TOP);
 		super.setPrefSize(170, 170);
 		super.setPadding(new Insets(2, 2, 2, 2));
+		super.setAlignment(Pos.CENTER);
+		super.setTextOverrun(OverrunStyle.CENTER_ELLIPSIS);
 		
 		this.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
 			@Override

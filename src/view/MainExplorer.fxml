@@ -35,7 +35,10 @@
                   </ScrollPane>
                   <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="748.0" prefWidth="664.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <content>
-                        <FlowPane fx:id="flowPane" prefHeight="748.0" prefWidth="664.0" styleClass="imageList" />
+                        <FlowPane fx:id="flowPane" columnHalignment="CENTER" hgap="10.0" prefHeight="748.0" prefWidth="664.0" styleClass="imageList" vgap="10.0">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets></FlowPane>
                      </content>
                   </ScrollPane>
               </items>
