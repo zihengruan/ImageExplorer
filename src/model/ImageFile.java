@@ -21,7 +21,7 @@ public class ImageFile {
 	
 	private String imageName; 
 	
-	private String imagePath;
+//	private String imagePath;
 	
 	private String imageSize;
 	
@@ -64,6 +64,9 @@ public class ImageFile {
 		this.imageDate = dFormat.format(this.imageFile.lastModified());
 	}
 	
+/*
+ * 弃用函数
+ */
 	public boolean isImageFile() {
 		if(imageFile.getPath().toLowerCase().endsWith(".jpg")||
 				imageFile.getPath().toLowerCase().endsWith(".jpeg")||

@@ -1,9 +1,18 @@
 package controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+
+import org.opencv.core.Mat;
+import org.opencv.imgcodecs.Imgcodecs;
+import org.opencv.imgproc.Imgproc;
 
 import javafx.beans.value.ObservableValue;
 import javafx.embed.swing.SwingFXUtils;
@@ -267,35 +276,36 @@ public class EditController extends RootController {
 		imageView.setEffect(colorAdjust);
 	}
 
+	// 滑动条[0,1] 映射到 colorAdjust[-1,1]
 	private void addAdjustTab() {
 		this.ContrastSlider.valueProperty()
 				.addListener((ObservableValue<? extends Number> ov, Number oldValue, Number newValue) -> {
-					this.colorAdjust.setContrast(contrastValue + newValue.doubleValue() - oldValue.doubleValue());
-					contrastValue += (newValue.doubleValue() - oldValue.doubleValue());
+					this.colorAdjust.setContrast(2*newValue.doubleValue()-1);
+					contrastValue = (2*newValue.doubleValue()-1);
 					EditController.this.imageView.setEffect(colorAdjust);
 					System.out.println("contast:" + contrastValue);
 				});
 
 		this.hueSlider.valueProperty()
 				.addListener((ObservableValue<? extends Number> ov, Number oldValue, Number newValue) -> {
-					this.colorAdjust.setHue(hueValue + newValue.doubleValue() - oldValue.doubleValue());
-					hueValue += (newValue.doubleValue() - oldValue.doubleValue());
+					this.colorAdjust.setHue(2*newValue.doubleValue()-1);
+					hueValue = (2*newValue.doubleValue()-1);
 					EditController.this.imageView.setEffect(colorAdjust);
 					System.out.println("hue:" + hueValue);
 				});
 
 		this.saturationSlider.valueProperty()
 				.addListener((ObservableValue<? extends Number> ov, Number oldValue, Number newValue) -> {
-					this.colorAdjust.setSaturation(saturationValue + newValue.doubleValue() - oldValue.doubleValue());
-					saturationValue += (newValue.doubleValue() - oldValue.doubleValue());
+					this.colorAdjust.setSaturation(2*newValue.doubleValue()-1);
+					saturationValue = (2*newValue.doubleValue()-1);
 					EditController.this.imageView.setEffect(colorAdjust);
 					System.out.println("saturation:" + saturationValue);
 				});
 
 		this.brightnessSlider.valueProperty()
 				.addListener((ObservableValue<? extends Number> ov, Number oldValue, Number newValue) -> {
-					this.colorAdjust.setBrightness(brightnessValue + newValue.doubleValue() - oldValue.doubleValue());
-					brightnessValue += (newValue.doubleValue() - oldValue.doubleValue());
+					this.colorAdjust.setBrightness(2*newValue.doubleValue()-1);
+					brightnessValue = (2*newValue.doubleValue()-1);
 					EditController.this.imageView.setEffect(colorAdjust);
 					System.out.println("brightness:" + brightnessValue );
 				});
@@ -316,25 +326,126 @@ public class EditController extends RootController {
 		}
 	}
 
+	/*
+	 *  2019/5/1
+	 *  更改了保存方式, 使用了opencv
+	 *  现在能保存和原图一样大的图片了
+	 *  TODO 对比度  更准确的映射
+	 */
 	@FXML
 	void saveImageCopy(ActionEvent event) {
 //		TODO should be selectedImage
 		File file = ((MainViewerController) RootController.controllers.get("controller.MainViewerController"))
 				.getImagefile().getImageFile();
-		WritableImage image = this.imageView.snapshot(new SnapshotParameters(), null);
+		try {
+			FileInputStream input = new FileInputStream(file);
+			BufferedInputStream inBuffer = new BufferedInputStream(input);
+			FileOutputStream output = new FileOutputStream("./tmp.jpg");
+			BufferedOutputStream outBuffer = new BufferedOutputStream(output);
+			
+			byte[] b = new byte[1024*5];
+			int len;
+			while((len = inBuffer.read(b)) != -1) {
+				outBuffer.write(b, 0, len);
+			}
+			outBuffer.flush();
+			inBuffer.close();
+			outBuffer.close();
+			output.close();
+			input.close();
+			
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Mat image = Imgcodecs.imread("./tmp.jpg");
+		Imgproc.cvtColor(image, image, Imgproc.COLOR_BGR2HSV);
+		hsvAddjust(image, this.hueValue, this.saturationValue, this.brightnessValue);
+		Imgproc.cvtColor(image, image, Imgproc.COLOR_HSV2BGR);
+		Imgcodecs.imwrite("./tmp.jpg", image);
 		
 		String filePath = file.getAbsolutePath();
 		String filePathWithOutFormatName = filePath.substring(0, filePath.lastIndexOf("."));
-		String imageCopyName =filePathWithOutFormatName + ".(副本).jpg";
-		
-		File imageCopy = new File(imageCopyName);
+		String imageCopyName = filePathWithOutFormatName + ".(副本).jpg";
 		
 		try {
-			ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", imageCopy);
+			FileInputStream input = new FileInputStream("./tmp.jpg");
+			BufferedInputStream inBuffer = new BufferedInputStream(input);
+			FileOutputStream output = new FileOutputStream(imageCopyName);
+			BufferedOutputStream outBuffer = new BufferedOutputStream(output);
+			
+			byte[] b = new byte[1024*5];
+			int len;
+			while((len = inBuffer.read(b)) != -1) {
+				outBuffer.write(b, 0, len);
+			}
+			outBuffer.flush();
+			inBuffer.close();
+			outBuffer.close();
+			output.close();
+			input.close();
+			
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
+//		WritableImage image = this.imageView.snapshot(new SnapshotParameters(), null);
+//		
+//		String filePath = file.getAbsolutePath();
+//		String filePathWithOutFormatName = filePath.substring(0, filePath.lastIndexOf("."));
+//		String imageCopyName =filePathWithOutFormatName + ".(副本).jpg";
+//		
+//		File imageCopy = new File(imageCopyName);
+//		
+//		try {
+//			ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", imageCopy);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 	}
+	
+	private void hsvAddjust(Mat m, double dh, double ds, double dv) {
+		int height = m.height();
+		int width = m.width();
+		for (int r = 0; r<height; r++) {
+			for(int c = 0; c<width; c++) {
+				double[] hsv = m.get(r, c);
+				hsv[0] = hsv[0]+dh*90;
+				hsv[0] %= 180;
+				if(hsv[1]+ds*255 > 255) {
+					hsv[1] = 255;
+				}
+				else if(hsv[1]+ds*255 < 0) {
+					hsv[1] = 0;
+				}
+				else {
+					hsv[1] = hsv[1]+ds*255;
+				}
+				
+				if(hsv[2]+dv*255 > 255) {
+					hsv[2] = 255;
+				}
+				else if(hsv[2]+dv*255 < 0) {
+					hsv[2] = 0;
+				}
+				else {
+					hsv[2] = hsv[2]+dv*255;
+				}
+				m.put(r, c, hsv);
+			}
+		}
+	}
+	
+	
 
 	public void showStage() {
 		addAdjustTab();

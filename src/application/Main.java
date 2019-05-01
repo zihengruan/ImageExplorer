@@ -18,25 +18,9 @@ import javafx.scene.image.Image;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
+		System.loadLibrary("opencv_java410");
 		try {
-//			Parent root = FXMLLoader.load(getClass().getResource("../view/MainExplorer.fxml"));
-//			Scene scene = new Scene(root);
-//			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-//			primaryStage.setScene(scene);
-//			primaryStage.show();
-//			
-//			root = FXMLLoader.load(getClass().getResource("../view/MainViewer.fxml"));
-//			Scene viewerScene = new Scene(root);
-//			Stage viewerStage = new Stage();
-//			viewerStage.setScene(viewerScene);
-//			((MainViewerController)RootController.controllers.get("controller.MainViewerController")).setViewerStage(viewerStage);
-//			
-//			root = FXMLLoader.load(getClass().getResource("../view/Slide.fxml"));
-//			Scene slideScene = new Scene(root);
-//			Stage slideStage = new Stage();
-//			slideStage.setScene(slideScene);
-//			((SlideController)RootController.controllers.get("controller.SlideController")).setSlideStage(slideStage);
-//			
+			//准备好所有窗口
 			createStage("../view/MainExplorer.fxml", "controller.MainExplorerController", true);
 			createStage("../view/MainViewer.fxml", "controller.MainViewerController", false);
 			createStage("../view/Slide.fxml", "controller.SlideController", false);
