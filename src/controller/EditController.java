@@ -182,13 +182,17 @@ public class EditController extends RootController {
 
 	@FXML
 	void undoAll(ActionEvent event) {
+		this.reset();
+	}
+
+	void reset() {
 		this.imageView.setEffect(null);
 		this.ContrastSlider.setValue(0.5);
 		this.hueSlider.setValue(0.5);
 		this.saturationSlider.setValue(0.5);
 		this.brightnessSlider.setValue(0.5);
 	}
-
+	
 	private void addEffectTab() {
 
 		overlay(this.overlayEffectImageview);
@@ -314,16 +318,65 @@ public class EditController extends RootController {
 	@FXML
 	void saveImage(ActionEvent event) {
 //		TODO should be selectedImage
+//		TODO bug fix
 		File file = ((MainViewerController) RootController.controllers.get("controller.MainViewerController"))
 				.getImagefile().getImageFile();
 
-		WritableImage image = this.imageView.snapshot(new SnapshotParameters(), null);
-
+		
 		try {
-			ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", file);
+			FileInputStream input = new FileInputStream(file);
+			BufferedInputStream inBuffer = new BufferedInputStream(input);
+			FileOutputStream output = new FileOutputStream("./tmp.jpg");
+			BufferedOutputStream outBuffer = new BufferedOutputStream(output);
+			
+			byte[] b = new byte[1024*5];
+			int len;
+			while((len = inBuffer.read(b)) != -1) {
+				outBuffer.write(b, 0, len);
+			}
+			outBuffer.flush();
+			inBuffer.close();
+			outBuffer.close();
+			output.close();
+			input.close();
+			
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		Mat image = Imgcodecs.imread("./tmp.jpg");
+		hsvAddjust(image, this.contrastValue, this.hueValue, this.saturationValue, this.brightnessValue);
+		Imgcodecs.imwrite("./tmp.jpg", image);
+		
+		try {
+			FileInputStream input = new FileInputStream("./tmp.jpg");
+			BufferedInputStream inBuffer = new BufferedInputStream(input);
+			FileOutputStream output = new FileOutputStream(file);
+			BufferedOutputStream outBuffer = new BufferedOutputStream(output);
+			
+			byte[] b = new byte[1024*5];
+			int len;
+			while((len = inBuffer.read(b)) != -1) {
+				outBuffer.write(b, 0, len);
+			}
+			outBuffer.flush();
+			inBuffer.close();
+			outBuffer.close();
+			output.close();
+			input.close();
+			
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		this.reset();
 	}
 
 	/*
@@ -363,9 +416,7 @@ public class EditController extends RootController {
 		}
 		
 		Mat image = Imgcodecs.imread("./tmp.jpg");
-		Imgproc.cvtColor(image, image, Imgproc.COLOR_BGR2HSV);
-		hsvAddjust(image, this.hueValue, this.saturationValue, this.brightnessValue);
-		Imgproc.cvtColor(image, image, Imgproc.COLOR_HSV2BGR);
+		hsvAddjust(image, this.contrastValue, this.hueValue, this.saturationValue, this.brightnessValue);
 		Imgcodecs.imwrite("./tmp.jpg", image);
 		
 		String filePath = file.getAbsolutePath();
@@ -397,30 +448,32 @@ public class EditController extends RootController {
 			e.printStackTrace();
 		}
 		
-		
-//		WritableImage image = this.imageView.snapshot(new SnapshotParameters(), null);
-//		
-//		String filePath = file.getAbsolutePath();
-//		String filePathWithOutFormatName = filePath.substring(0, filePath.lastIndexOf("."));
-//		String imageCopyName =filePathWithOutFormatName + ".(副本).jpg";
-//		
-//		File imageCopy = new File(imageCopyName);
-//		
-//		try {
-//			ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", imageCopy);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
+	
 	}
 	
-	private void hsvAddjust(Mat m, double dh, double ds, double dv) {
+	/*
+	 * 2019/5/4 加入调整对比度
+	 */
+	private void hsvAddjust(Mat m, double dc, double dh, double ds, double dv) {
 		int height = m.height();
 		int width = m.width();
+		double k = Math.tan((45 + 44 * dc) * (Math.PI/180));	
+		for (int r = 0; r<height; r++) {
+			for(int c = 0; c<width; c++) {
+				double[] hsv = m.get(r, c);
+				hsv[0] = (hsv[0] - 127.5) * k + 127.5;
+				hsv[1] = (hsv[1] - 127.5) * k + 127.5;
+				hsv[2] = (hsv[2] - 127.5) * k + 127.5;
+				m.put(r, c, hsv);
+			}
+		}
+		Imgproc.cvtColor(m, m, Imgproc.COLOR_BGR2HSV);
 		for (int r = 0; r<height; r++) {
 			for(int c = 0; c<width; c++) {
 				double[] hsv = m.get(r, c);
 				hsv[0] = hsv[0]+dh*90;
 				hsv[0] %= 180;
+				
 				if(hsv[1]+ds*255 > 255) {
 					hsv[1] = 255;
 				}
@@ -443,6 +496,8 @@ public class EditController extends RootController {
 				m.put(r, c, hsv);
 			}
 		}
+		Imgproc.cvtColor(m, m, Imgproc.COLOR_HSV2BGR);
+		
 	}
 	
 	

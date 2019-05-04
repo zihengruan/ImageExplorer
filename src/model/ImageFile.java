@@ -16,146 +16,67 @@ import java.util.regex.Pattern;
 import javax.imageio.ImageIO;
 
 public class ImageFile {
-	
+
 	private File imageFile;
-	
-	private String imageName; 
-	
-//	private String imagePath;
-	
+
+	private String imageName;
+
 	private String imageSize;
-	
+
 	private int height;
-	
-	private int widht;
-	
+
+	private int width;
+
 	private String imageDate;
-	
-	
+
+	public ImageFile(File file) {
+		imageFile = file;
+
+		this.imageName = this.imageFile.getName();
+		this.imageSize = getFileSize(this.imageFile.length());
+
+		SimpleDateFormat dFormat = new SimpleDateFormat("yyyy 年 MM 月 dd 日, E HH:mm");
+		this.imageDate = dFormat.format(this.imageFile.lastModified());
+	}
 
 	public ImageFile(String file) {
 		this(new File(file));
-		
+
 		this.imageName = this.imageFile.getName();
 		this.imageSize = getFileSize(this.imageFile.length());
-//		this.imagePath = this.imageFile.getAbsolutePath();
-		
+
 		SimpleDateFormat dFormat = new SimpleDateFormat("yyyy年MM月dd日,E HH:mm");
-		
-		
-		BasicFileAttributeView bView = Files.getFileAttributeView(Paths.get(imageName), BasicFileAttributeView.class, LinkOption.NOFOLLOW_LINKS);
+
+		BasicFileAttributeView bView = Files.getFileAttributeView(Paths.get(imageName), BasicFileAttributeView.class,
+				LinkOption.NOFOLLOW_LINKS);
 		try {
 			BasicFileAttributes bAttributes = bView.readAttributes();
 			this.imageDate = dFormat.format(bAttributes.creationTime().toMillis());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-	}
-	
-	public ImageFile(File file) {
-		imageFile = file;
-		
-		this.imageName = this.imageFile.getName();
-		this.imageSize = getFileSize(this.imageFile.length());
-//		this.imagePath = this.imageFile.getAbsolutePath();
-		
-		SimpleDateFormat dFormat = new SimpleDateFormat("yyyy 年 MM 月 dd 日, E HH:mm");
-		this.imageDate = dFormat.format(this.imageFile.lastModified());
-	}
-	
-/*
- * 弃用函数
- */
-	public boolean isImageFile() {
-		if(imageFile.getPath().toLowerCase().endsWith(".jpg")||
-				imageFile.getPath().toLowerCase().endsWith(".jpeg")||
-				imageFile.getPath().toLowerCase().endsWith(".gif")||
-				imageFile.getPath().toLowerCase().endsWith(".png")||
-				imageFile.getPath().toLowerCase().endsWith(".bmp")) {
-			return true;
-		} else {
-			return false;
-		}
+
 	}
 
-	//获取文件列表
-	public ImageFile[] listFiles() {
-		File[] files = imageFile.listFiles();
-		if(files == null || files.length == 0) {
-			return null;
-		}
-		
-		ImageFile[] imageFiles = new ImageFile[files.length];
-		for(int i = 0; i < files.length; i++) {
-			imageFiles[i] = new ImageFile(files[i]);
-		}
-		return imageFiles;
-	}
-	
-	//获取图片文件
-	public ImageFile[] listImageFiles() {
-		
-		//内部类 用于过滤文件
-		class ImageFileFilter implements FilenameFilter {
-			private Pattern pattern = null;
-			
-			public ImageFileFilter() {
-				this.pattern = Pattern.compile(".+(\\.JPEG|\\.jpeg|\\.JPG|\\.jpg|\\.png|\\.PNG|\\.gif|\\.GIF|\\.bmp|\\.BMP)");
-			}
-			
-			@Override
-			public boolean accept(File dir, String name) {
-				return this.pattern.matcher(name).matches();
-			}
-		}
-		
-		ImageFileFilter iff = new ImageFileFilter();
-		File[] files = this.imageFile.listFiles(iff);
-		ImageFile[] imageFiles = new ImageFile[files.length];
-		for(int i = 0; i < files.length; i++) {
-			imageFiles[i] = new ImageFile(files[i]);
-		}
-		return imageFiles;
-		
-	}
-	
 	private String getFileSize(long size) {
-		if(size <= 0) {
+		if (size <= 0) {
 			return "0";
 		}
-		final String[] units = new String[] {"B","KB","MB","GB","TB"};
-		int digitGroup = (int)(Math.log10(size)/Math.log10(1024));
-		
-		return new DecimalFormat("#,##0.#").format(size/Math.pow(1024, digitGroup)) + " " + units[digitGroup];
-	}
-	
-    public boolean isDirectory() {
-    	return imageFile.isDirectory();
-    }
-    
-    public boolean isFile() {
-    	return imageFile.isFile();
-    }
-    
-    public boolean isHidden() {
-    	return imageFile.isHidden();
-    }
-    
-    public long length() {
-    	return imageFile.length();
-    }
-    
+		final String[] units = new String[] { "B", "KB", "MB", "GB", "TB" };
+		int digitGroup = (int) (Math.log10(size) / Math.log10(1024));
 
-    public String toString() {
-    	if(imageFile.getName().equals("")) {
-    		return imageFile.getPath();
-    	} else {
-    		return imageFile.getName();
-    	}
+		return new DecimalFormat("#,##0.#").format(size / Math.pow(1024, digitGroup)) + " " + units[digitGroup];
 	}
-    
-    public File getImageFile() {
+
+	public int getHeight() {
+		return height;
+	}
+
+	public String getImageDate() {
+		return imageDate;
+	}
+
+	public File getImageFile() {
 		return imageFile;
 	}
 
@@ -171,23 +92,103 @@ public class ImageFile {
 		return imageSize;
 	}
 
-	public String getImageDate() {
-		return imageDate ;
-	} 
-    
 	public String getResolution() {
 		try {
 			BufferedImage reader = ImageIO.read(this.imageFile);
 			this.height = reader.getHeight();
-			this.widht = reader.getWidth();
-			
+			this.width = reader.getWidth();
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return String.format("%d×%d", widht,height);
+		return String.format("%d×%d", width, height);
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public boolean isDirectory() {
+		return imageFile.isDirectory();
+	}
+
+	public boolean isFile() {
+		return imageFile.isFile();
+	}
+
+	public boolean isHidden() {
+		return imageFile.isHidden();
+	}
+
+	/*
+	 * 弃用函数
+	 */
+	public boolean isImageFile() {
+		if (imageFile.getPath().toLowerCase().endsWith(".jpg") || imageFile.getPath().toLowerCase().endsWith(".jpeg")
+				|| imageFile.getPath().toLowerCase().endsWith(".gif")
+				|| imageFile.getPath().toLowerCase().endsWith(".png")
+				|| imageFile.getPath().toLowerCase().endsWith(".bmp")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public long length() {
+		return imageFile.length();
+	}
+
+	// 获取文件列表
+	public ImageFile[] listFiles() {
+		File[] files = imageFile.listFiles();
+		if (files == null || files.length == 0) {
+			return null;
+		}
+
+		ImageFile[] imageFiles = new ImageFile[files.length];
+		for (int i = 0; i < files.length; i++) {
+			imageFiles[i] = new ImageFile(files[i]);
+		}
+		return imageFiles;
+	}
+
+	// 获取图片文件
+	public ImageFile[] listImageFiles() {
+
+		// 内部类 用于过滤文件
+		class ImageFileFilter implements FilenameFilter {
+			private Pattern pattern = null;
+
+			public ImageFileFilter() {
+				this.pattern = Pattern
+						.compile(".+(\\.JPEG|\\.jpeg|\\.JPG|\\.jpg|\\.png|\\.PNG|\\.gif|\\.GIF|\\.bmp|\\.BMP)");
+			}
+
+			@Override
+			public boolean accept(File dir, String name) {
+				return this.pattern.matcher(name).matches();
+			}
+		}
+
+		ImageFileFilter iff = new ImageFileFilter();
+		File[] files = this.imageFile.listFiles(iff);
+		ImageFile[] imageFiles = new ImageFile[files.length];
+		for (int i = 0; i < files.length; i++) {
+			imageFiles[i] = new ImageFile(files[i]);
+		}
+		return imageFiles;
+
 	}
 
 	public void setImageName(String imageName) {
 		this.imageName = imageName;
+	}
+
+	public String toString() {
+		if (imageFile.getName().equals("")) {
+			return imageFile.getPath();
+		} else {
+			return imageFile.getName();
+		}
 	}
 }

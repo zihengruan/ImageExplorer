@@ -56,7 +56,7 @@
                         </GridPane>
                         <TabPane fx:id="functionPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.rowIndex="1">
                           <tabs>
-                            <Tab text="旋转和裁切">
+                            <Tab style="-fx-background-color: transparent;" text="旋转和裁切">
                                  <content>
                                     <AnchorPane>
                                        <children>
@@ -65,7 +65,7 @@
                                     </AnchorPane>
                                  </content>
                               </Tab>
-                            <Tab text="滤镜">
+                            <Tab style="-fx-background-color: transparent;" text="滤镜">
                                  <content>
                                     <ScrollPane prefViewportHeight="499.0" prefViewportWidth="262.0">
                                        <content>
@@ -130,7 +130,7 @@
                                     </ScrollPane>
                                  </content>
                               </Tab>
-                              <Tab text="调整">
+                              <Tab style="-fx-background-color: transparent;" text="调整">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                        <children>
@@ -184,7 +184,7 @@
                               <Insets />
                            </opaqueInsets>
                            <padding>
-                              <Insets top="-29.0" />
+                              <Insets top="-35.0" />
                            </padding>
                         </TabPane>
                         <Text fx:id="functionTabName" strokeType="OUTSIDE" strokeWidth="0.0" text="裁剪与旋转" />
