@@ -1,9 +1,17 @@
 package controller;
 
 import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ResourceBundle;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
@@ -11,8 +19,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import model.ImageFile;
+import model.ImageTreeView;
 
 public class MainViewerController extends RootController {
 
@@ -27,6 +38,24 @@ public class MainViewerController extends RootController {
 	private double translateX = 0;
 
 	private double translateY = 0;
+	
+    @FXML
+    private Label fileSize;
+
+    @FXML
+    private Label fileDate;
+
+    @FXML
+    private Label fileResolution;
+
+    @FXML
+    private Label filePath;
+
+    @FXML
+    private Label fileName;
+    
+    @FXML
+    private ColumnConstraints detailsFrame;
 
 	@FXML
 	private BorderPane controllPane;
@@ -56,9 +85,6 @@ public class MainViewerController extends RootController {
 	private Button detailsButton;
 
 	@FXML
-	private Button likeButton;
-
-	@FXML
 	private Button resetButton;
 
 	@FXML
@@ -66,6 +92,24 @@ public class MainViewerController extends RootController {
 
 	@FXML
 	private Button zoomInButton;
+	
+	private Timeline showDetails;
+	private Timeline closeDetails;
+	
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		this.showDetails = new Timeline();
+		this.showDetails.setAutoReverse(true);
+		KeyValue kv = new KeyValue(this.detailsFrame.prefWidthProperty(), 450);
+		KeyFrame kf = new KeyFrame(Duration.millis(500), kv);
+		this.showDetails.getKeyFrames().add(kf);
+		
+		this.closeDetails = new Timeline();
+		this.closeDetails.setAutoReverse(true);
+		KeyValue kv2 = new KeyValue(this.detailsFrame.prefWidthProperty(), 0);
+		KeyFrame kf2 = new KeyFrame(Duration.millis(500), kv2);
+		this.closeDetails.getKeyFrames().add(kf2);
+	}
 
 	@FXML
 	void showSlideWindow(MouseEvent event) {
@@ -83,6 +127,12 @@ public class MainViewerController extends RootController {
 	}
 
 	public void setImage(ImageFile imageFile) {
+		this.fileDate.setText(imageFile.getImageDate());
+		this.fileName.setText(imageFile.getImageName());
+		this.filePath.setText(imageFile.getImagePath());
+		this.fileSize.setText(imageFile.getImageSize());
+		this.fileResolution.setText(imageFile.getResolution());
+		
 		this.imagefile = imageFile;
 		Image t_image;
 		try {
@@ -227,6 +277,18 @@ public class MainViewerController extends RootController {
 			}
 		});
 	}
+	
+    @FXML
+    void toggleDetails(ActionEvent event) {
+    	if(MainViewerController.this.detailsFrame.getPrefWidth() == 0) {
+//    		MainViewerController.this.detailsFrame.setPrefWidth(450);
+    		this.showDetails.play();
+    	}
+    	else {
+//    		MainViewerController.this.detailsFrame.setPrefWidth(0);
+    		this.closeDetails.play();
+    	}
+    }
 
 	public void resetImagePosition() {
 		MainViewerController.this.image.setTranslateX(0);
@@ -239,7 +301,7 @@ public class MainViewerController extends RootController {
 		addImageDragEvent();
 		addScrollEvent();
 		addDirectionKeyEvent();
-
+		detailsFrame.setPrefWidth(0);
 		this.viewerStage.show();
 	}
 

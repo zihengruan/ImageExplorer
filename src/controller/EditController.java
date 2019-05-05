@@ -162,7 +162,7 @@ public class EditController extends RootController {
 	private void calMaxSize() {
 		double height = this.getImage().getHeight();
 		double width = this.getImage().getWidth();
-		if(width/height > 0.75) {
+		if(height/width < 0.75) {
 			this.maxWidth = 800;
 			this.maxHeight = height/width*800;
 		}

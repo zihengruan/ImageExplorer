@@ -21,7 +21,7 @@ public class Main extends Application {
 		if(System.getProperty("os.arch").endsWith("64")) {
 			System.loadLibrary("opencv_java410_64");
 		}else {
-			System.loadLibrary("opencv_java410_32");
+			System.loadLibrary("opencv_java410_86");
 		}
 		
 		try {
