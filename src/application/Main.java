@@ -18,7 +18,12 @@ import javafx.scene.image.Image;
 public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
-		System.loadLibrary("opencv_java410");
+		if(System.getProperty("os.arch").endsWith("64")) {
+			System.loadLibrary("opencv_java410_64");
+		}else {
+			System.loadLibrary("opencv_java410_32");
+		}
+		
 		try {
 			//准备好所有窗口
 			createStage("../view/MainExplorer.fxml", "controller.MainExplorerController", true);
