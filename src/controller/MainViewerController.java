@@ -98,6 +98,10 @@ public class MainViewerController extends RootController {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		addImageDragEvent();
+		addScrollEvent();
+		addDirectionKeyEvent();
+		
 		this.showDetails = new Timeline();
 		this.showDetails.setAutoReverse(true);
 		KeyValue kv = new KeyValue(this.detailsFrame.prefWidthProperty(), 450);
@@ -200,7 +204,7 @@ public class MainViewerController extends RootController {
 	}
 
 	private void addScrollEvent() {
-		this.viewerStage.getScene().addEventHandler(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {
+		this.controllPane.addEventHandler(ScrollEvent.SCROLL, new EventHandler<ScrollEvent>() {
 			@Override
 			public void handle(ScrollEvent event) {
 				double deltaY = event.getDeltaY();
@@ -223,7 +227,7 @@ public class MainViewerController extends RootController {
 	}
 
 	private void addDirectionKeyEvent() {
-		this.viewerStage.getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
+		this.controllPane.setOnKeyPressed(new EventHandler<KeyEvent>() {
 
 			@Override
 			public void handle(KeyEvent event) {
@@ -298,9 +302,7 @@ public class MainViewerController extends RootController {
 	}
 
 	public void showStage() {
-		addImageDragEvent();
-		addScrollEvent();
-		addDirectionKeyEvent();
+
 		detailsFrame.setPrefWidth(0);
 		this.viewerStage.show();
 	}

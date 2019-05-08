@@ -54,7 +54,6 @@ public class ImageLabel extends Label {
 						((MainViewerController)RootController.controllers.get("controller.MainViewerController")).showStage();;
 					}
 				}
-				
 			}
 		});
 		
