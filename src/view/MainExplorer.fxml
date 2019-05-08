@@ -6,6 +6,7 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -65,36 +66,54 @@
             </GridPane>
             <ButtonBar prefHeight="40.0" prefWidth="200.0">
               <buttons>
-                  <Button mnemonicParsing="false">
+                  <Button fx:id="exitButton" accessibleRoleDescription="fff" mnemonicParsing="false">
                      <styleClass>
                         <String fx:value="openButton" />
                         <String fx:value="rootButton" />
-                     </styleClass></Button>
-                  <Button contentDisplay="CENTER" mnemonicParsing="false">
+                     </styleClass>
+                     <tooltip>
+                        <Tooltip text="退出" />
+                     </tooltip></Button>
+                  <Button fx:id="editButton" contentDisplay="CENTER" mnemonicParsing="false">
                      <styleClass>
                         <String fx:value="editButton" />
                         <String fx:value="rootButton" />
-                     </styleClass></Button>
-                <Button mnemonicParsing="false">
+                     </styleClass>
+                     <tooltip>
+                        <Tooltip text="编辑" />
+                     </tooltip></Button>
+                <Button fx:id="copyButton" mnemonicParsing="false">
                      <styleClass>
                         <String fx:value="copyButton" />
                         <String fx:value="rootButton" />
-                     </styleClass></Button>
-                <Button mnemonicParsing="false">
+                     </styleClass>
+                     <tooltip>
+                        <Tooltip text="复制" />
+                     </tooltip></Button>
+                <Button fx:id="pasteButton" mnemonicParsing="false">
                      <styleClass>
                         <String fx:value="pasteButton" />
                         <String fx:value="rootButton" />
-                     </styleClass></Button>
-                  <Button mnemonicParsing="false">
+                     </styleClass>
+                     <tooltip>
+                        <Tooltip text="粘贴" />
+                     </tooltip></Button>
+                  <Button fx:id="deleteButton" mnemonicParsing="false">
                      <styleClass>
                         <String fx:value="deleteButton" />
                         <String fx:value="rootButton" />
-                     </styleClass></Button>
-                  <Button mnemonicParsing="false">
+                     </styleClass>
+                     <tooltip>
+                        <Tooltip text="删除" />
+                     </tooltip></Button>
+                  <Button fx:id="slideButton" mnemonicParsing="false">
                      <styleClass>
                         <String fx:value="slideButton" />
                         <String fx:value="rootButton" />
-                     </styleClass></Button>
+                     </styleClass>
+                     <tooltip>
+                        <Tooltip text="幻灯片" />
+                     </tooltip></Button>
               </buttons>
             </ButtonBar>
          </children>

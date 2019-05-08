@@ -7,6 +7,7 @@
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -51,19 +52,15 @@
                             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                           </rowConstraints>
                            <children>
-                              <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveImage" styleClass="textButton" text="Save" GridPane.columnIndex="1" />
-                              <Button fx:id="saveCopyButton" mnemonicParsing="false" onAction="#saveImageCopy" styleClass="textButton" text="SaveCpoy" />
+                              <Button fx:id="saveButton" mnemonicParsing="false" onAction="#saveImage" styleClass="textButton" text="保存" GridPane.columnIndex="1" />
+                              <Button fx:id="saveCopyButton" mnemonicParsing="false" onAction="#saveImageCopy" styleClass="textButton" text="保存副本" />
                            </children>
                         </GridPane>
                         <TabPane fx:id="functionPane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" GridPane.rowIndex="1">
                           <tabs>
                             <Tab style="-fx-background-color: transparent;" text="旋转和裁切">
                                  <content>
-                                    <AnchorPane>
-                                       <children>
-                                          <Button fx:id="cutAndRotate" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" styleClass="textButton" text="即将弃用" />
-                                       </children>
-                                    </AnchorPane>
+                                    <AnchorPane />
                                  </content>
                               </Tab>
                             <Tab style="-fx-background-color: transparent;" text="滤镜">
@@ -188,7 +185,7 @@
                               <Insets top="-35.0" />
                            </padding>
                         </TabPane>
-                        <Text fx:id="functionTabName" strokeType="OUTSIDE" strokeWidth="0.0" text="裁剪与旋转" />
+                        <Text fx:id="functionTabName" strokeType="OUTSIDE" strokeWidth="0.0" text="裁剪" />
                      </children>
                   </GridPane>
                </children>
@@ -224,14 +221,26 @@
                      <children>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1">
                            <children>
-                              <Button fx:id="rotateButton" mnemonicParsing="false" onAction="#shiftToCutPane" text="裁剪与旋转" />
-                              <Button fx:id="filterButton" mnemonicParsing="false" onAction="#shiftToFilterPane" text="滤镜" />
-                              <Button fx:id="adjustButton" mnemonicParsing="false" onAction="#shiftToAdjustPane" text="调整" />
+                              <Button fx:id="rotateButton" mnemonicParsing="false" onAction="#shiftToCutPane" text="裁剪">
+                                 <tooltip>
+                                    <Tooltip text="裁剪" />
+                                 </tooltip></Button>
+                              <Button fx:id="filterButton" mnemonicParsing="false" onAction="#shiftToFilterPane" text="滤镜">
+                                 <tooltip>
+                                    <Tooltip text="滤镜" />
+                                 </tooltip></Button>
+                              <Button fx:id="adjustButton" mnemonicParsing="false" onAction="#shiftToAdjustPane" text="调整">
+                                 <tooltip>
+                                    <Tooltip text="调整" />
+                                 </tooltip></Button>
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" GridPane.columnIndex="2">
                            <children>
-                              <Button fx:id="undoButtton" mnemonicParsing="false" onAction="#undoAll" styleClass="textButton" text="Undo" GridPane.columnIndex="2" />
+                              <Button fx:id="undoButtton" mnemonicParsing="false" onAction="#undoAll" styleClass="textButton" text="重置" GridPane.columnIndex="2">
+                                 <tooltip>
+                                    <Tooltip text="重置" />
+                                 </tooltip></Button>
                            </children>
                            <opaqueInsets>
                               <Insets />

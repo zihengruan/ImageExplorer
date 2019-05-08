@@ -37,12 +37,12 @@
                   </HBox>
                   <HBox alignment="CENTER" spacing="10.0" GridPane.columnIndex="2">
                      <children>
-                        <Label nodeOrientation="RIGHT_TO_LEFT" prefHeight="30.0" prefWidth="119.0" text="delay" GridPane.columnIndex="2">
+                        <Label nodeOrientation="RIGHT_TO_LEFT" prefHeight="30.0" prefWidth="119.0" text="间隔时间" GridPane.columnIndex="2">
                            <graphic>
                               <TextField fx:id="delayTime" alignment="CENTER" maxWidth="61.0" prefHeight="30.0" prefWidth="61.0" promptText="5" />
                            </graphic>
                         </Label>
-                        <Button fx:id="confirmAndPlayButton" mnemonicParsing="false" onMouseClicked="#confirmAndPlay" styleClass="textButton" text="ConfirmAndPlay" GridPane.columnIndex="2" />
+                        <Button fx:id="confirmAndPlayButton" mnemonicParsing="false" onMouseClicked="#confirmAndPlay" styleClass="textButton" text="确定" GridPane.columnIndex="2" />
                      </children>
                   </HBox>
                </children>

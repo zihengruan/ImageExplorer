@@ -7,6 +7,7 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.FlowPane;
@@ -26,6 +27,24 @@ public class MainExplorerController extends RootController  {
 
     @FXML
     private FlowPane flowPane;
+    
+    @FXML
+    private Button exitButton;
+
+    @FXML
+    private Button editButton;
+    
+    @FXML
+    private Button copyButton;
+
+    @FXML
+    private Button pasteButton;
+
+    @FXML
+    private Button deleteButton;
+
+    @FXML
+    private Button slideButton;
     
     @FXML
     private Text dateText;
