@@ -85,6 +85,9 @@ public class ImageTreeView{
 						if(amount != 0) {
 							((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setStatusText(amount + "张图片(" + getAmountSize(size) + ")");
 							((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setAmountText("文件夹：" + currentFile.getImageFile().getName() + " - 共"+ amount + "张图片");
+						}else {
+							((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setStatusText("0张图片");
+							((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setAmountText("文件夹：" + currentFile.getImageFile().getName() + " - 共0张图片");
 						}
 					}
 				}

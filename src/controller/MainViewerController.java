@@ -131,7 +131,7 @@ public class MainViewerController extends RootController {
 	}
 
 	public void setImage(ImageFile imageFile) {
-		this.fileDate.setText(imageFile.getImageDate());
+		this.fileDate.setText(imageFile.getImageLastModifiedDate());
 		this.fileName.setText(imageFile.getImageName());
 		this.filePath.setText(imageFile.getImagePath());
 		this.fileSize.setText(imageFile.getImageSize());

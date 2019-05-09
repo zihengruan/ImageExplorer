@@ -4,11 +4,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.LinkOption;
-import java.nio.file.Paths;
-import java.nio.file.attribute.BasicFileAttributeView;
-import java.nio.file.attribute.BasicFileAttributes;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.regex.Pattern;
@@ -27,7 +22,7 @@ public class ImageFile {
 
 	private int width;
 
-	private String imageDate;
+	private String imageLastModifiedDate;
 
 	public ImageFile(File file) {
 		imageFile = file;
@@ -36,7 +31,8 @@ public class ImageFile {
 		this.imageSize = getFileSize(this.imageFile.length());
 
 		SimpleDateFormat dFormat = new SimpleDateFormat("yyyy 年 MM 月 dd 日, E HH:mm");
-		this.imageDate = dFormat.format(this.imageFile.lastModified());
+		
+		this.imageLastModifiedDate = dFormat.format(this.imageFile.lastModified());
 	}
 
 	public ImageFile(String file) {
@@ -46,16 +42,8 @@ public class ImageFile {
 		this.imageSize = getFileSize(this.imageFile.length());
 
 		SimpleDateFormat dFormat = new SimpleDateFormat("yyyy年MM月dd日,E HH:mm");
-
-		BasicFileAttributeView bView = Files.getFileAttributeView(Paths.get(imageName), BasicFileAttributeView.class,
-				LinkOption.NOFOLLOW_LINKS);
-		try {
-			BasicFileAttributes bAttributes = bView.readAttributes();
-			this.imageDate = dFormat.format(bAttributes.creationTime().toMillis());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
+		
+		this.imageLastModifiedDate = dFormat.format(this.imageFile.lastModified());
 	}
 
 	private String getFileSize(long size) {
@@ -72,8 +60,8 @@ public class ImageFile {
 		return height;
 	}
 
-	public String getImageDate() {
-		return imageDate;
+	public String getImageLastModifiedDate() {
+		return imageLastModifiedDate;
 	}
 
 	public File getImageFile() {
