@@ -10,12 +10,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 
 
 public class Main extends Application {
+	public static Window mainStage;
 	@Override
 	public void start(Stage primaryStage) {
 		if(System.getProperty("os.arch").endsWith("64")) {

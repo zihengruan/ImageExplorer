@@ -1,12 +1,15 @@
 package model;
 
+import java.io.File;
 import java.net.MalformedURLException;
+import java.util.HashMap;
 
 import controller.MainExplorerController;
 import controller.MainViewerController;
 import controller.RootController;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -15,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.OverrunStyle;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.DataFormat;
 import javafx.scene.input.MouseEvent;
 
 public class ImageLabel extends Label {
@@ -24,6 +28,10 @@ public class ImageLabel extends Label {
 	private Image image;
 	
 	private ImageView imageView;
+	
+	private ImageLabel imageLabel = this;
+	
+	public MainExplorerController mainScene;
 	
 	public BooleanProperty selected = new SimpleBooleanProperty();
 
@@ -44,32 +52,43 @@ public class ImageLabel extends Label {
 		super.setPadding(new Insets(2, 2, 2, 2));
 		super.setAlignment(Pos.CENTER);
 		super.setTextOverrun(OverrunStyle.CENTER_ELLIPSIS);
-		
-		this.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				if(event.getClickCount() == 2) {
-					((MainViewerController)RootController.controllers.get("controller.MainViewerController")).setImage(ImageLabel.this.imageFile);
-					if(!RootController.controllers.get("controller.MainViewerController").getStage().isShowing()) {
-						((MainViewerController)RootController.controllers.get("controller.MainViewerController")).showStage();;
-					}
-				}
-			}
-		});
+		this.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseEventHandler(this,imageFile));
 		
 
 	}
-
-	public ImageFile getImageFile() {
-		return imageFile;
+	
+	
+	public void setSelected(boolean value) {
+		boolean istrue = selected.get();
+		selected.set(value);
+		if (selected.get() && !istrue) {
+			Utilities.selectedImage.add(this);
+			Utilities.selectedfiles.add(this.getImageFile());
+			imageLabel.setStyle("-fx-background-color:#a7a7a7;");
+		}
+		else if (istrue && !selected.get()) {
+			Utilities.selectedImage.remove(this);
+			Utilities.selectedfiles.remove(this.getImageFile());
+			imageLabel.setStyle("-fx-background-color:transparent;");
+		}
+		System.out.println(Utilities.selectedImage.size());
+		System.out.println(Utilities.selectedfiles.size());
+//		mainScene.getTextTwo().setText("已选中 "+selectedPictures.size()+" 张图片");
 	}
+	
 
+	public File getImageFile() {
+//		return this.imageFile;
+		return this.imageFile.getImageFile();
+	}
+	
+	public ImageFile getImageFile2() {
+		return this.imageFile;
+//		return this.imageFile.getImageFile();
+	}
+	
 	public void setImageFile(ImageFile imageFile) {
 		this.imageFile = imageFile;
-	}
-
-	public void setSelected(boolean selected) {
-		this.selected.set(selected);
 	}
 
 	public ImageView getImageView() {
@@ -79,7 +98,16 @@ public class ImageLabel extends Label {
 	public Image getImage() {
 		return image;
 	}
+
+	public static ObservableList<ImageLabel> getSelectedPictures() {
+		return Utilities.selectedImage;
+	}
 	
+	public static ObservableList<File> getSelectedPictureFiles() {
+		return Utilities.selectedfiles;
+	}
 	
-	
+	public static ObservableList<ImageLabel> getCutedPictures() {
+		return Utilities.cutedPictures;
+	}
 }

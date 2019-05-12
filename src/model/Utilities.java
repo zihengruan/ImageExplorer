@@ -1,5 +1,5 @@
 package model;
-
+import java.io.File;
 import java.util.ArrayList;
 
 import controller.MainViewerController;
@@ -8,9 +8,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Utilities {
-	
-	public static ObservableList<ImageFile> selectedImage = FXCollections.observableArrayList(new ArrayList<>());
 	public static ObservableList<ImageFile> imageFileList = FXCollections.observableArrayList(new ArrayList<>());	
+	public static ObservableList<ImageLabel> selectedImage = FXCollections.observableArrayList(new ArrayList<>());
+	public static ObservableList<File> selectedfiles = FXCollections.observableArrayList(new ArrayList<>());
+	public static ObservableList<ImageLabel> cutedPictures = FXCollections.observableArrayList(new ArrayList<>()); 
+	
 	public static double originalFitWidth = 960;
 	public static double originalFitHeight = 720;
 	private static double zoomRate = 1.25;
