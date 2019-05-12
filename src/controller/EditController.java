@@ -287,30 +287,39 @@ public class EditController extends RootController {
 	}
 
 	private void overlay(ImageView imageView) {
-		Blend blend = new Blend();
-		blend.setMode(BlendMode.OVERLAY);
-		imageView.setEffect(blend);
+//		Blend blend = new Blend();
+//		blend.setMode(BlendMode.OVERLAY);
+//		imageView.setEffect(blend);
+		ColorAdjust colorAdjust = new ColorAdjust(0.6, 0, -0.3, 0.25);
+		imageView.setEffect(colorAdjust);
+		this.setHsvValue(0.6, 0, -0.3, 0.25);
 	}
 
 	private void exclusion(ImageView imageView) {
-		Blend blend = new Blend();
-		blend.setMode(BlendMode.EXCLUSION);
-		imageView.setEffect(blend);
+//		Blend blend = new Blend();
+//		blend.setMode(BlendMode.EXCLUSION);
+//		imageView.setEffect(blend);
+		ColorAdjust colorAdjust = new ColorAdjust(-0.3, -0.1, -0.3, -0.25);
+		imageView.setEffect(colorAdjust);
+		this.setHsvValue(-0.3, -0.1, -0.3, -0.25);
 	}
 
 	private void sauna(ImageView imageView) {
 		ColorAdjust colorAdjust = new ColorAdjust(-0.1, -0.1, -0.1, -0.2);
 		imageView.setEffect(colorAdjust);
+		this.setHsvValue(-0.1, -0.1, -0.1, -0.2);
 	}
 
 	private void rouge(ImageView imageView) {
 		ColorAdjust colorAdjust = new ColorAdjust(0.15, -0.13, -0.1, -0.17);
 		imageView.setEffect(colorAdjust);
+		this.setHsvValue(0.15, -0.13, -0.1, -0.17);
 	}
 
 	private void sucky(ImageView imageView) {
 		ColorAdjust colorAdjust = new ColorAdjust(0.30, 0.5, 0.1, 0.1);
 		imageView.setEffect(colorAdjust);
+		this.setHsvValue(0.30, 0.5, 0.1, 0.1);
 	}
 
 	// 滑动条[0,1] 映射到 colorAdjust[-1,1]
@@ -610,6 +619,14 @@ public class EditController extends RootController {
 			}
 			
 		});
+	}
+	
+	private void setHsvValue(double contrastValue, double hueValue, double saturationValue, double brightnessValue) {
+		this.contrastValue = contrastValue;
+		this.hueValue = hueValue;
+		this.saturationValue = saturationValue;
+		this.brightnessValue = brightnessValue;
+				
 	}
 
 	public void showStage() {
