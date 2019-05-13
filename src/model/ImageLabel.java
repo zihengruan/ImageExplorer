@@ -64,6 +64,7 @@ public class ImageLabel extends Label {
 		if (selected.get() && !istrue) {
 			Utilities.selectedImage.add(this);
 			Utilities.selectedfiles.add(this.getImageFile());
+			Utilities.selectedImageFiles.add(this.imageFile);//新增选中数组 imagefile
 			imageLabel.setStyle("-fx-background-color:#a7a7a7;");
 		}
 		else if (istrue && !selected.get()) {

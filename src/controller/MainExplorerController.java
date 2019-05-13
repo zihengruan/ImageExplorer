@@ -113,11 +113,23 @@ public class MainExplorerController extends RootController  {
 		
 //		TODO cut button
 		
+//		TODO open image
+		
 //		TODO open edit 
 
 //		TODO　open　silde
 		
 	}
+	
+    @FXML
+    void openImage() {
+    	((MainViewerController) RootController.controllers.get("controller.MainViewerController"))
+		.setImage(model.Utilities.selectedImageFiles.get(0));
+    	if (!RootController.controllers.get("controller.MainViewerController").getStage().isShowing()) {
+			((MainViewerController) RootController.controllers.get("controller.MainViewerController"))
+					.showStage();
+		}
+    }
 
 	public FlowPane getFlowPane() {
 		return flowPane;

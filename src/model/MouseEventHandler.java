@@ -29,6 +29,9 @@ public class MouseEventHandler implements EventHandler<MouseEvent> {
 
 					Utilities.selectedImage.removeAll(Utilities.selectedImage);
 					Utilities.selectedfiles.removeAll(Utilities.selectedfiles);
+					
+					Utilities.selectedImageFiles.removeAll(Utilities.selectedImageFiles);//新增选中数组
+					
 					System.out.println("clean all selected image&files");
 					System.out.println("print imageFIleList:");
 					System.out.println(Utilities.selectedfiles);
@@ -37,6 +40,8 @@ public class MouseEventHandler implements EventHandler<MouseEvent> {
 				System.out.println("选中");
 				System.out.println("print imageFIleList:");
 				System.out.println(Utilities.selectedfiles);
+//				TODO 单张统计
+				
 				if (event.getClickCount() >= 2 && event.getButton() == MouseButton.PRIMARY) {
 					// 双击打开事件
 					((ImageLabel) node).setSelected(true);
@@ -50,6 +55,8 @@ public class MouseEventHandler implements EventHandler<MouseEvent> {
 					System.out.println("Open!");
 //					System.out.println(PictureNode.getSelectedPictures().size()+"~~~");
 				}
+				
+				
 				if (event.getButton() == MouseButton.SECONDARY) {
 					new RightClickMenu(((ImageLabel) node), ((ImageLabel) node).mainScene, true);
 				}
@@ -59,6 +66,7 @@ public class MouseEventHandler implements EventHandler<MouseEvent> {
 				System.out.println("多选中");
 				System.out.println("print imageFIleList:");
 				System.out.println(Utilities.selectedfiles);
+//				TODO 多张统计
 			}
 		} else {
 			for (ImageLabel iLabel : Utilities.selectedImage) {
@@ -67,6 +75,9 @@ public class MouseEventHandler implements EventHandler<MouseEvent> {
 			}
 			Utilities.selectedImage.clear();
 			Utilities.selectedfiles.clear();
+			
+			Utilities.selectedImageFiles.clear();//新增选中数组
+			
 			System.out.println("clean all selected image&files");
 			System.out.println("print imageFIleList:");
 			System.out.println(Utilities.selectedfiles);

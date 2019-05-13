@@ -71,6 +71,7 @@ public class PanelListener {
 					}
 //					((PictureNode)childrenNode).setSelected(false);
 				}
+//				TODO 统计选中
 			}
 			
 		});

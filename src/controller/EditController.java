@@ -384,6 +384,8 @@ public class EditController extends RootController {
 			outBuffer.close();
 			output.close();
 			input.close();
+			
+			
 
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
