@@ -61,6 +61,7 @@ public class PanelListener {
 				
 				Utilities.selectedImage.removeAll(Utilities.selectedImage);
 				Utilities.selectedfiles.removeAll(Utilities.selectedfiles);
+				Utilities.selectedImageFiles.removeAll(Utilities.selectedImageFiles);//新增选中数组
 				System.out.println("clean all selected image&files");
 				System.out.println("print imageFIleList:");
 				System.out.println(Utilities.selectedfiles);
@@ -71,7 +72,6 @@ public class PanelListener {
 					}
 //					((PictureNode)childrenNode).setSelected(false);
 				}
-//				TODO 统计选中
 			}
 			
 		});

@@ -40,7 +40,6 @@ public class MouseEventHandler implements EventHandler<MouseEvent> {
 				System.out.println("选中");
 				System.out.println("print imageFIleList:");
 				System.out.println(Utilities.selectedfiles);
-//				TODO 单张统计
 				
 				if (event.getClickCount() >= 2 && event.getButton() == MouseButton.PRIMARY) {
 					// 双击打开事件
@@ -66,7 +65,6 @@ public class MouseEventHandler implements EventHandler<MouseEvent> {
 				System.out.println("多选中");
 				System.out.println("print imageFIleList:");
 				System.out.println(Utilities.selectedfiles);
-//				TODO 多张统计
 			}
 		} else {
 			for (ImageLabel iLabel : Utilities.selectedImage) {

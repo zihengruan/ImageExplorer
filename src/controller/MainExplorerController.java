@@ -32,6 +32,8 @@ public class MainExplorerController extends RootController  {
 		
 	public static String theFilePath;
 	
+	public static String diretoryName;
+	
 	private MainExplorerController mainExplorerController;
 	
 	private ArrayList<ImageLabel> pictures;
