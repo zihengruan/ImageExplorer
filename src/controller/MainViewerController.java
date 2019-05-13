@@ -126,7 +126,7 @@ public class MainViewerController extends RootController {
 	@FXML
 	void showEditWIndow(MouseEvent event) {
 		((EditController) RootController.controllers.get("controller.EditController"))
-				.setImageView(this.image.getImage());
+				.setImage(this.imagefile);
 		((EditController)RootController.controllers.get("controller.EditController")).showStage();
 	}
 

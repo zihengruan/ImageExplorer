@@ -16,7 +16,10 @@ import model.ImageLabel;
 import model.Utilities;
 
 public class PasteAction {
+	
 	MainExplorerController mainExplorerController;
+	
+	
 	public PasteAction(MainExplorerController mainUI) {
 		this.mainExplorerController = mainUI;
 		Clipboard clipboard = Clipboard.getSystemClipboard();

@@ -23,6 +23,7 @@ public class ImageFile {
 	private int width;
 
 	private String imageLastModifiedDate;
+	
 
 	public ImageFile(File file) {
 		imageFile = file;
@@ -178,5 +179,12 @@ public class ImageFile {
 		} else {
 			return imageFile.getName();
 		}
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == this) return true;
+		if(!(obj instanceof ImageFile)) return false; 
+		return ((ImageFile)obj).getImageFile().equals(this.imageFile);
 	}
 }
