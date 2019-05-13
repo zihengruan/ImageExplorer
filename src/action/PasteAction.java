@@ -16,7 +16,10 @@ import model.ImageLabel;
 import model.Utilities;
 
 public class PasteAction {
+	
 	MainExplorerController mainExplorerController;
+	
+	
 	public PasteAction(MainExplorerController mainUI) {
 		this.mainExplorerController = mainUI;
 		Clipboard clipboard = Clipboard.getSystemClipboard();
@@ -35,7 +38,8 @@ public class PasteAction {
 				//清除选中
 				for (ImageLabel iLabel : Utilities.selectedImage) {
 					iLabel.selected.set(false);
-					iLabel.setStyle("-fx-background-color:transparent;");
+					iLabel.setPress(false);
+//					iLabel.setStyle("-fx-background-color:transparent;");
 				}
 				
 				Utilities.selectedImage.clear();;

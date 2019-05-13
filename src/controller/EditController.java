@@ -21,6 +21,7 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
@@ -40,6 +41,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import model.ImageFile;
 import model.ImageLabel;
+import model.Utilities;
 
 public class EditController extends RootController {
 
@@ -47,6 +49,8 @@ public class EditController extends RootController {
 
 	@FXML
 	private ImageView imageView;
+	
+	private ImageFile imageFile;
 
 	@FXML
 	private TabPane functionPane;
@@ -162,6 +166,17 @@ public class EditController extends RootController {
 		this.saunaEffectImageView.setImage(image);
 		this.rougeEffectImageView.setImage(image);
 		this.suckyEffectImageView.setImage(image);
+	}
+	public void setImage(ImageFile imageFile) {
+		Image t_image;
+		try {
+			t_image = new Image(imageFile.getImageFile().toURI().toURL().toString(), true);
+			this.setImageView(t_image);
+			this.imageFile = imageFile;
+			model.Utilities.resetAll();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
 	}
 	private void calMaxSize() {
 		double height = this.getImage().getHeight();
@@ -365,9 +380,19 @@ public class EditController extends RootController {
 	void saveImage(ActionEvent event) {
 //		TODO should be selectedImage
 //		TODO bug fix
-		File file = ((MainViewerController) RootController.controllers.get("controller.MainViewerController"))
-				.getImagefile().getImageFile();
-
+		File file = this.imageFile.getImageFile();
+		
+		Utilities.imageFileList.remove(this.imageFile);
+		for(Node imageLabel: ((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).
+			getFlowPane().getChildren()) {
+			ImageFile imageFile = ((ImageLabel)imageLabel).getImageFile2();
+			if(imageFile.equals(this.imageFile)) {
+				((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).
+					getFlowPane().getChildren().remove(imageLabel);
+				break;
+			}
+		}
+		
 		try {
 			FileInputStream input = new FileInputStream(file);
 			BufferedInputStream inBuffer = new BufferedInputStream(input);
@@ -401,6 +426,8 @@ public class EditController extends RootController {
 		}
 		hsvAddjust(image, this.contrastValue, this.hueValue, this.saturationValue, this.brightnessValue);
 		Imgcodecs.imwrite("./tmp.jpg", image);
+		
+		
 
 		try {
 			FileInputStream input = new FileInputStream("./tmp.jpg");
@@ -426,6 +453,17 @@ public class EditController extends RootController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		ImageFile n_image = new ImageFile(file);
+		Utilities.imageFileList.add(n_image);
+		try {
+			((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).
+				getFlowPane().getChildren().add(new ImageLabel(n_image));
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 //		this.reset();
 	}
 
@@ -435,8 +473,7 @@ public class EditController extends RootController {
 	@FXML
 	void saveImageCopy(ActionEvent event) {
 //		TODO should be selectedImage
-		File file = ((MainViewerController) RootController.controllers.get("controller.MainViewerController"))
-				.getImagefile().getImageFile();
+		File file = this.imageFile.getImageFile();
 		try {
 			FileInputStream input = new FileInputStream(file);
 			BufferedInputStream inBuffer = new BufferedInputStream(input);
@@ -490,11 +527,6 @@ public class EditController extends RootController {
 			output.close();
 			input.close();
 			
-//			保存后，将副本加入flowpane
-			ImageFile imageFile = new ImageFile(imageCopyName);
-			ImageLabel imageLabel = new ImageLabel(imageFile);
-			((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).getFlowPane().getChildren().add(imageLabel);
-			
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -503,10 +535,15 @@ public class EditController extends RootController {
 			e.printStackTrace();
 		}
 		
-
-
-
-		
+		ImageFile n_image = new ImageFile(imageCopyName);
+		Utilities.imageFileList.add(n_image);
+		try {
+			((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).
+				getFlowPane().getChildren().add(new ImageLabel(n_image));
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 

@@ -22,19 +22,18 @@ import javafx.scene.input.DataFormat;
 import javafx.scene.input.MouseEvent;
 
 public class ImageLabel extends Label {
-	
-	private ImageFile imageFile;
-	
-	private Image image;
-	
-	private ImageView imageView;
-	
-	private ImageLabel imageLabel = this;
-	
-	public MainExplorerController mainScene;
-	
-	public BooleanProperty selected = new SimpleBooleanProperty();
 
+	private ImageFile imageFile;
+
+	private Image image;
+
+	private ImageView imageView;
+
+	private ImageLabel imageLabel = this;
+
+	public MainExplorerController mainScene;
+
+	public BooleanProperty selected = new SimpleBooleanProperty();
 
 	/**
 	 * @param imageFile
@@ -52,66 +51,63 @@ public class ImageLabel extends Label {
 		super.setPadding(new Insets(2, 2, 2, 2));
 		super.setAlignment(Pos.CENTER);
 		super.setTextOverrun(OverrunStyle.CENTER_ELLIPSIS);
-		this.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseEventHandler(this,imageFile));
-		
+		this.addEventHandler(MouseEvent.MOUSE_CLICKED, new MouseEventHandler(this, imageFile));
 
 	}
-	
-	
+
 	public void setSelected(boolean value) {
 		boolean istrue = selected.get();
 		selected.set(value);
 		if (selected.get() && !istrue) {
 			Utilities.selectedImage.add(this);
 			Utilities.selectedfiles.add(this.getImageFile());
-			
-			Utilities.selectedImageFiles.add(this.imageFile);//新增选中数组 imagefile
-			
-			imageLabel.setStyle("-fx-background-color:#a7a7a7;");
-		}
-		else if (istrue && !selected.get()) {
+
+			Utilities.selectedImageFiles.add(this.imageFile);// 新增选中数组 imagefile
+			imageLabel.setPress(true);
+
+		} else if (istrue && !selected.get()) {
 			Utilities.selectedImage.remove(this);
 			Utilities.selectedfiles.remove(this.getImageFile());
-			
-			Utilities.selectedImageFiles.remove(this.imageFile);//新增选中数组 imagefile
-			
-			imageLabel.setStyle("-fx-background-color:transparent;");
+
+			Utilities.selectedImageFiles.remove(this.imageFile);// 新增选中数组 imagefile
+			imageLabel.setPress(false);
 		}
-		
+
 //		TODO 统计选中
-		if(Utilities.selectedImageFiles != null) {
+		if (Utilities.selectedImageFiles != null) {
 			int amount = 0;
 			long size = 0L;
-			for(ImageFile imageFile : Utilities.selectedImageFiles) {
+			for (ImageFile imageFile : Utilities.selectedImageFiles) {
 				amount++;
 				size += imageFile.length();
 			}
-			if(amount != 0) {
+			if (amount != 0) {
 //				((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setStatusText(amount + "张图片(" + getAmountSize(size) + ")");
-				((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setAmountText("文件夹：" + MainExplorerController.diretoryName + " - 选中"+ amount + "张图片");
+				((MainExplorerController) RootController.controllers.get("controller.MainExplorerController"))
+						.setAmountText("文件夹：" + MainExplorerController.diretoryName + " - 选中" + amount + "张图片");
 				System.out.println(MainExplorerController.diretoryName);
-			}else {
+			} else {
 //				((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setStatusText("0张图片");
-				((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setAmountText("文件夹：" + MainExplorerController.diretoryName + " - 共0张图片");
+				((MainExplorerController) RootController.controllers.get("controller.MainExplorerController"))
+						.setAmountText("文件夹：" + MainExplorerController.diretoryName + " - 共0张图片");
 			}
 		}
-		
+
 		System.out.println(Utilities.selectedImage.size());
 		System.out.println(Utilities.selectedfiles.size());
 //		mainScene.getTextTwo().setText("已选中 "+selectedPictures.size()+" 张图片");
 	}
-	
 
 	public File getImageFile() {
 //		return this.imageFile;
 		return this.imageFile.getImageFile();
 	}
-	
+
 	public ImageFile getImageFile2() {
 		return this.imageFile;
 //		return this.imageFile.getImageFile();
 	}
-	
+
 	public void setImageFile(ImageFile imageFile) {
 		this.imageFile = imageFile;
 	}
@@ -124,14 +120,18 @@ public class ImageLabel extends Label {
 		return image;
 	}
 
+	public void setPress(boolean value) {
+		this.setFocused(value);
+	}
+
 	public static ObservableList<ImageLabel> getSelectedPictures() {
 		return Utilities.selectedImage;
 	}
-	
+
 	public static ObservableList<File> getSelectedPictureFiles() {
 		return Utilities.selectedfiles;
 	}
-	
+
 	public static ObservableList<ImageLabel> getCutedPictures() {
 		return Utilities.cutedPictures;
 	}

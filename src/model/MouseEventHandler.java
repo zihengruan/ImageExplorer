@@ -20,11 +20,12 @@ public class MouseEventHandler implements EventHandler<MouseEvent> {
 	public void handle(MouseEvent event) {
 		if (node instanceof ImageLabel) {
 //			System.out.println(event.getSource());
-			if (event.isControlDown() == false) {// Control没有按下
-				if (event.getButton() == MouseButton.PRIMARY) {
+			if(event.isControlDown() == false) {//Control没有按下
+				if(event.getButton()==MouseButton.PRIMARY) {
 					for (ImageLabel iLabel : Utilities.selectedImage) {
 						iLabel.selected.set(false);
-						iLabel.setStyle("-fx-background-color:transparent;");
+//						iLabel.setStyle("-fx-background-color:transparent;");
+						iLabel.setPress(false);
 					}
 
 					Utilities.selectedImage.removeAll(Utilities.selectedImage);
@@ -69,7 +70,8 @@ public class MouseEventHandler implements EventHandler<MouseEvent> {
 		} else {
 			for (ImageLabel iLabel : Utilities.selectedImage) {
 				iLabel.selected.set(false);
-				iLabel.setStyle("-fx-background-color:transparent;");
+				iLabel.setPress(false);
+//				iLabel.setStyle("-fx-background-color:transparent;");
 			}
 			Utilities.selectedImage.clear();
 			Utilities.selectedfiles.clear();

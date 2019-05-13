@@ -45,7 +45,8 @@ public class DeleteAction {
 
 		for (ImageLabel iLabel : Utilities.selectedImage) {
 			iLabel.selected.set(false);
-			iLabel.setStyle("-fx-background-color:transparent;");
+			iLabel.setPress(false);
+//			iLabel.setStyle("-fx-background-color:transparent;");
 		}
 		Utilities.selectedImage.clear();
 		Utilities.selectedfiles.clear();

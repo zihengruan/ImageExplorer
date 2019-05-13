@@ -155,16 +155,18 @@
 
 .imageList{
 	-fx-background-color: #ffffff;
-	-fx-padding: 0;
 	-fx-background-insets: 0;
 }
+
 
 .imageList>.label:hover{
 	-fx-background-color: #ccfcfc;
 }
 
-.imageList>.label:seleted {
-	-fx-background-color: #00fdfd;
+.imageList>.label:focused {
+	-fx-background-color: #00f5f5;
+	-fx-border-color: rgba(35,35,35,0.7);
+	-fx-border-image-width: 1
 }
 
 /*图片按钮 */
