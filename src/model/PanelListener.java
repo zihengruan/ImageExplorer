@@ -39,7 +39,7 @@ public class PanelListener {
 			selectRectangle.setY(this.nowY);
 			selectRectangle.setHeight(0);
 			selectRectangle.setWidth(0);
-			if(e.getButton()==MouseButton.PRIMARY) {
+			if(e.getButton()==MouseButton.PRIMARY && !e.isControlDown()) {
 				for (ImageLabel iLabel : Utilities.selectedImage) {
 					iLabel.selected.set(false);
 					iLabel.setPress(false);
