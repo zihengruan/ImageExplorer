@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 import javax.imageio.ImageIO;
 
@@ -36,6 +37,7 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import model.ImageFile;
 
 public class EditController extends RootController {
 
@@ -159,6 +161,16 @@ public class EditController extends RootController {
 		this.rougeEffectImageView.setImage(image);
 		this.suckyEffectImageView.setImage(image);
 	}
+	public void setImage(ImageFile imageFile) {
+		Image t_image;
+		try {
+			t_image = new Image(imageFile.getImageFile().toURI().toURL().toString(), true);
+			this.setImageView(t_image);
+			model.Utilities.resetAll();
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+	}
 	private void calMaxSize() {
 		double height = this.getImage().getHeight();
 		double width = this.getImage().getWidth();
@@ -194,7 +206,7 @@ public class EditController extends RootController {
 	@FXML
 	void shiftToCutPane(ActionEvent event) {
 		selectFuntionPane(0);
-		this.functionTabName.setText("裁剪与旋转");
+		this.functionTabName.setText("裁剪");
 	}
 
 	@FXML
@@ -395,6 +407,8 @@ public class EditController extends RootController {
 		}
 		hsvAddjust(image, this.contrastValue, this.hueValue, this.saturationValue, this.brightnessValue);
 		Imgcodecs.imwrite("./tmp.jpg", image);
+		
+		
 
 		try {
 			FileInputStream input = new FileInputStream("./tmp.jpg");

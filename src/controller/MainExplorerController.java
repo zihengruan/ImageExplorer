@@ -15,6 +15,7 @@ import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.TreeView;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.shape.Rectangle;
@@ -26,6 +27,7 @@ import model.ImageLabel;
 import model.ImageTreeView;
 import model.PanelListener;
 import model.RightClickMenu;
+import model.Utilities;
 
 public class MainExplorerController extends RootController  {
 	
@@ -48,7 +50,7 @@ public class MainExplorerController extends RootController  {
     private FlowPane flowPane;
     
     @FXML
-    private Button exitButton;
+    private Button openButton;
 
     @FXML
     private Button editButton;
@@ -116,6 +118,28 @@ public class MainExplorerController extends RootController  {
 		});
 		
 	}
+	
+    @FXML
+    void openFile(MouseEvent event) {
+		((MainViewerController)RootController.controllers.get("controller.MainViewerController")).setImage(new ImageFile(Utilities.selectedfiles.get(0)));
+		if(!RootController.controllers.get("controller.MainViewerController").getStage().isShowing()) {
+			((MainViewerController)RootController.controllers.get("controller.MainViewerController")).showStage();;
+		}
+    }
+	
+    @FXML
+    void showEditWindow(MouseEvent event) {
+		((EditController) RootController.controllers.get("controller.EditController"))
+		.setImage(new ImageFile(Utilities.selectedfiles.get(0)));
+		((EditController)RootController.controllers.get("controller.EditController")).showStage();
+    }
+    
+    @FXML
+    void showSlide(MouseEvent event) {
+		RootController.controllers.get("controller.SlideController").getStage().setFullScreen(true);
+		((SlideController) RootController.controllers.get("controller.SlideController")).setImage(new ImageFile(Utilities.selectedfiles.get(0)));
+		((SlideController) RootController.controllers.get("controller.SlideController")).showStage();
+    }
 
 	public FlowPane getFlowPane() {
 		return flowPane;

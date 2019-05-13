@@ -73,7 +73,7 @@
             </GridPane>
             <ButtonBar prefHeight="40.0" prefWidth="200.0">
               <buttons>
-                  <Button fx:id="exitButton" accessibleRoleDescription="fff" mnemonicParsing="false">
+                  <Button fx:id="openButton" accessibleRoleDescription="fff" mnemonicParsing="false" onMouseClicked="#openFile">
                      <styleClass>
                         <String fx:value="openButton" />
                         <String fx:value="rootButton" />
@@ -81,7 +81,7 @@
                      <tooltip>
                         <Tooltip text="退出" />
                      </tooltip></Button>
-                  <Button fx:id="editButton" contentDisplay="CENTER" mnemonicParsing="false">
+                  <Button fx:id="editButton" contentDisplay="CENTER" mnemonicParsing="false" onMouseClicked="#showEditWindow">
                      <styleClass>
                         <String fx:value="editButton" />
                         <String fx:value="rootButton" />
@@ -113,7 +113,7 @@
                      <tooltip>
                         <Tooltip text="删除" />
                      </tooltip></Button>
-                  <Button fx:id="slideButton" mnemonicParsing="false">
+                  <Button fx:id="slideButton" mnemonicParsing="false" onMouseClicked="#showSlide">
                      <styleClass>
                         <String fx:value="slideButton" />
                         <String fx:value="rootButton" />

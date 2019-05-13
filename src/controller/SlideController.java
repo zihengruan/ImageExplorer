@@ -116,10 +116,18 @@ public class SlideController extends RootController implements CanShowImage {
 	public void setImage(Image image) {
 		this.image.setImage(image);
 	}
+	
+	
 
 	@Override
 	public void setImage(ImageFile imageFile) {
-		Image image = new Image(imageFile.getImageFile().getAbsolutePath(), true);
+		Image image = null;
+		try {
+			image = new Image(imageFile.getImageFile().toURI().toURL().toString(), true);
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		this.setImage(image);
 	}
 
