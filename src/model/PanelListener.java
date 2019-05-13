@@ -24,7 +24,7 @@ public class PanelListener {
 		selectRectangle = rect;
 		selectRectangle.setStroke(Color.DARKGRAY);
 		selectRectangle.setStrokeWidth(1);
-		selectRectangle.setFill(Color.rgb(72, 214, 255, 0.6));
+		selectRectangle.setFill(Color.rgb(72, 214, 255, 0.5));
 		addListener();
 	}
 	private void addListener() {
