@@ -230,12 +230,12 @@
                         </VBox>
                         <VBox GridPane.rowIndex="1">
                            <children>
-                              <Label fx:id="filePath" ellipsisString="" text="路径" textFill="#5b5b5b">
+                              <Label ellipsisString="" text="路径" textFill="#5b5b5b">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label ellipsisString="" text="path">
+                              <Label fx:id="filePath" ellipsisString="" text="path">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>

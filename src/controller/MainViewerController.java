@@ -151,18 +151,20 @@ public class MainViewerController extends RootController {
 
 	@FXML
 	void getNextImage(MouseEvent event) {
-		ImageFile t_ImageFile = model.Utilities.getNextImageFile(this.imagefile);
-		if (t_ImageFile != null) {
-			this.setImage(t_ImageFile);
-		}
+//		ImageFile t_ImageFile = model.Utilities.getNextImageFile(this.imagefile);
+//		if (t_ImageFile != null) {
+//			this.setImage(t_ImageFile);
+//		}
+		this.setNextImage();
 	}
 
 	@FXML
 	void getPriviousImage(MouseEvent event) {
-		ImageFile t_ImageFile = model.Utilities.getPriviousImageFile(this.imagefile);
-		if (t_ImageFile != null) {
-			this.setImage(t_ImageFile);
-		}
+//		ImageFile t_ImageFile = model.Utilities.getPriviousImageFile(this.imagefile);
+//		if (t_ImageFile != null) {
+//			this.setImage(t_ImageFile);
+//		}
+		this.setPriviousImage();
 	}
 
 	@FXML

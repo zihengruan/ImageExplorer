@@ -44,7 +44,7 @@ public class MainExplorerController extends RootController  {
     private FlowPane flowPane;
     
     @FXML
-    private Button exitButton;
+    private Button openButton;
 
     @FXML
     private Button editButton;
@@ -110,6 +110,12 @@ public class MainExplorerController extends RootController  {
 				new DeleteAction(mainExplorerController);
 			}
 		});
+		
+//		TODO cut button
+		
+//		TODO open edit 
+
+//		TODO　open　silde
 		
 	}
 

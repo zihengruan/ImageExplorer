@@ -66,13 +66,13 @@
             </GridPane>
             <ButtonBar prefHeight="40.0" prefWidth="200.0">
               <buttons>
-                  <Button fx:id="exitButton" accessibleRoleDescription="fff" mnemonicParsing="false">
+                  <Button fx:id="openButton" accessibleRoleDescription="fff" mnemonicParsing="false">
                      <styleClass>
                         <String fx:value="openButton" />
                         <String fx:value="rootButton" />
                      </styleClass>
                      <tooltip>
-                        <Tooltip text="退出" />
+                        <Tooltip text="打开" />
                      </tooltip></Button>
                   <Button fx:id="editButton" contentDisplay="CENTER" mnemonicParsing="false">
                      <styleClass>

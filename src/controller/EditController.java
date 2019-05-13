@@ -7,6 +7,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 import javax.imageio.ImageIO;
 
@@ -36,6 +37,9 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
+import model.ImageFile;
+import model.ImageLabel;
 
 public class EditController extends RootController {
 
@@ -194,7 +198,7 @@ public class EditController extends RootController {
 	@FXML
 	void shiftToCutPane(ActionEvent event) {
 		selectFuntionPane(0);
-		this.functionTabName.setText("裁剪与旋转");
+		this.functionTabName.setText("裁剪");
 	}
 
 	@FXML
@@ -420,7 +424,7 @@ public class EditController extends RootController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.reset();
+//		this.reset();
 	}
 
 	/*
@@ -483,7 +487,12 @@ public class EditController extends RootController {
 			outBuffer.close();
 			output.close();
 			input.close();
-
+			
+//			保存后，将副本加入flowpane
+			ImageFile imageFile = new ImageFile(imageCopyName);
+			ImageLabel imageLabel = new ImageLabel(imageFile);
+			((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).getFlowPane().getChildren().add(imageLabel);
+			
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -491,6 +500,11 @@ public class EditController extends RootController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+
+
+
+		
 
 	}
 
@@ -628,11 +642,23 @@ public class EditController extends RootController {
 		this.brightnessValue = brightnessValue;
 				
 	}
+	
+	private void addCloseAction() {
+		this.editStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+
+			@Override
+			public void handle(WindowEvent event) {
+				EditController.this.reset();
+				EditController.this.selectFuntionPane(0);
+			}
+		});
+	}
 
 	public void showStage() {
 		addAdjustTab();
 		addEffectTab();
 		addDragAction();
+		addCloseAction();
 		this.rect.setX(0);
 		this.rect.setY(0);
 		this.rect.setHeight(0);

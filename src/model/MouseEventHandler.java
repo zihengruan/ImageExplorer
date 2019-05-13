@@ -7,57 +7,60 @@ import javafx.scene.Node;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
-public class MouseEventHandler implements EventHandler<MouseEvent>{
+public class MouseEventHandler implements EventHandler<MouseEvent> {
 	Node node;
 	ImageFile imageFile;
-	public MouseEventHandler(Node node,ImageFile imageFile) {
+
+	public MouseEventHandler(Node node, ImageFile imageFile) {
 		this.node = node;
 		this.imageFile = imageFile;
 	}
-	
+
 	@Override
 	public void handle(MouseEvent event) {
-		if(node instanceof ImageLabel) {
+		if (node instanceof ImageLabel) {
 //			System.out.println(event.getSource());
-			if(event.isControlDown() == false) {//Control没有按下
-				if(event.getButton()==MouseButton.PRIMARY ) {
+			if (event.isControlDown() == false) {// Control没有按下
+				if (event.getButton() == MouseButton.PRIMARY) {
 					for (ImageLabel iLabel : Utilities.selectedImage) {
 						iLabel.selected.set(false);
 						iLabel.setStyle("-fx-background-color:transparent;");
 					}
-					
+
 					Utilities.selectedImage.removeAll(Utilities.selectedImage);
 					Utilities.selectedfiles.removeAll(Utilities.selectedfiles);
 					System.out.println("clean all selected image&files");
 					System.out.println("print imageFIleList:");
 					System.out.println(Utilities.selectedfiles);
 				}
-				((ImageLabel)node).setSelected(true);
+				((ImageLabel) node).setSelected(true);
 				System.out.println("选中");
 				System.out.println("print imageFIleList:");
 				System.out.println(Utilities.selectedfiles);
-				if(event.getClickCount()>=2 && event.getButton() == MouseButton.PRIMARY){
-					//双击打开事件
-					((ImageLabel)node).setSelected(true);
-					((MainViewerController)RootController.controllers.get("controller.MainViewerController")).setImage(this.imageFile);
-					if(!RootController.controllers.get("controller.MainViewerController").getStage().isShowing()) {
-						((MainViewerController)RootController.controllers.get("controller.MainViewerController")).showStage();;
+				if (event.getClickCount() >= 2 && event.getButton() == MouseButton.PRIMARY) {
+					// 双击打开事件
+					((ImageLabel) node).setSelected(true);
+					((MainViewerController) RootController.controllers.get("controller.MainViewerController"))
+							.setImage(this.imageFile);
+					if (!RootController.controllers.get("controller.MainViewerController").getStage().isShowing()) {
+						((MainViewerController) RootController.controllers.get("controller.MainViewerController"))
+								.showStage();
+						;
 					}
 					System.out.println("Open!");
 //					System.out.println(PictureNode.getSelectedPictures().size()+"~~~");
-				}		
-				if(event.getButton()==MouseButton.SECONDARY) {
-					new RightClickMenu(((ImageLabel)node),((ImageLabel)node).mainScene,true);
+				}
+				if (event.getButton() == MouseButton.SECONDARY) {
+					new RightClickMenu(((ImageLabel) node), ((ImageLabel) node).mainScene, true);
 				}
 			}
-			if(event.isControlDown() && event.getClickCount()==1) {//Control按下
-				((ImageLabel)node).setSelected(true);
+			if (event.isControlDown() && event.getClickCount() == 1) {// Control按下
+				((ImageLabel) node).setSelected(true);
 				System.out.println("多选中");
 				System.out.println("print imageFIleList:");
 				System.out.println(Utilities.selectedfiles);
 			}
-		}
-		else {
+		} else {
 			for (ImageLabel iLabel : Utilities.selectedImage) {
 				iLabel.selected.set(false);
 				iLabel.setStyle("-fx-background-color:transparent;");
@@ -66,8 +69,8 @@ public class MouseEventHandler implements EventHandler<MouseEvent>{
 			Utilities.selectedfiles.clear();
 			System.out.println("clean all selected image&files");
 			System.out.println("print imageFIleList:");
-			System.out.println(Utilities.selectedfiles);		
+			System.out.println(Utilities.selectedfiles);
 		}
-		
+
 	}
 }
