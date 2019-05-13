@@ -17,6 +17,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.TreeView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -39,6 +40,9 @@ public class MainExplorerController extends RootController  {
 	private ArrayList<File> files;
     @FXML
     private TreeView<ImageFile> treeView;
+    
+    @FXML
+    private Rectangle rect;
 
     @FXML
     private FlowPane flowPane;
@@ -85,18 +89,18 @@ public class MainExplorerController extends RootController  {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		treeView = new ImageTreeView(treeView).getTreeView();
-		new PanelListener(flowPane,mainExplorerController);
+		new PanelListener(flowPane, mainExplorerController, rect);
 		
 		new RightClickMenu(flowPane, mainExplorerController, false);
 		
-		this.copyButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+		this.copyButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
 				new CopyAction();
 			}
 		});
 		
-		this.pasteButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+		this.pasteButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
 				new PasteAction(mainExplorerController);
@@ -104,7 +108,7 @@ public class MainExplorerController extends RootController  {
 		});
 		
 		
-		this.deleteButton.setOnMousePressed(new EventHandler<MouseEvent>() {
+		this.deleteButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
 				new DeleteAction(mainExplorerController);

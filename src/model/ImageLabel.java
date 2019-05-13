@@ -64,12 +64,14 @@ public class ImageLabel extends Label {
 		if (selected.get() && !istrue) {
 			Utilities.selectedImage.add(this);
 			Utilities.selectedfiles.add(this.getImageFile());
-			imageLabel.setStyle("-fx-background-color:#a7a7a7;");
+			imageLabel.setPress(true);
+//			imageLabel.setStyle("-fx-background-color:#a7a7a7;");
 		}
 		else if (istrue && !selected.get()) {
 			Utilities.selectedImage.remove(this);
 			Utilities.selectedfiles.remove(this.getImageFile());
-			imageLabel.setStyle("-fx-background-color:transparent;");
+			imageLabel.setPress(false);
+//			imageLabel.setStyle("-fx-background-color:transparent;");
 		}
 		System.out.println(Utilities.selectedImage.size());
 		System.out.println(Utilities.selectedfiles.size());
@@ -97,6 +99,10 @@ public class ImageLabel extends Label {
 
 	public Image getImage() {
 		return image;
+	}
+	
+	public void setPress(boolean value) {
+		this.setFocused(value);
 	}
 
 	public static ObservableList<ImageLabel> getSelectedPictures() {

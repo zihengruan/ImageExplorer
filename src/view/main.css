@@ -155,7 +155,6 @@
 
 .imageList{
 	-fx-background-color: #ffffff;
-	-fx-padding: 0;
 	-fx-background-insets: 0;
 }
 
@@ -163,7 +162,7 @@
 	-fx-background-color: #ccfcfc;
 }
 
-.imageList>.label:seleted {
+.imageList>.label:focused {
 	-fx-background-color: #00fdfd;
 }
 
