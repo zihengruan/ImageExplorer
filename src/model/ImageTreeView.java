@@ -56,6 +56,7 @@ public class ImageTreeView{
 			public void changed(ObservableValue<? extends TreeItem<ImageFile>> observable, TreeItem<ImageFile> oldValue,
 					TreeItem<ImageFile> newValue) {
 				//单选展开
+//				System.gc();
 				if(!newValue.getChildren().isEmpty()) {
 					newValue.setExpanded(true);
 				}

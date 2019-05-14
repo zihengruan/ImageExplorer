@@ -45,7 +45,8 @@ public class PanelListener {
 					iLabel.setPress(false);
 //					iLabel.setStyle("-fx-background-color:transparent;");
 				}
-
+				((MainExplorerController) RootController.controllers.get("controller.MainExplorerController"))
+				.setAmountText("文件夹：" + MainExplorerController.diretoryName + " - 共0张图片");
 			}
 		
 		});

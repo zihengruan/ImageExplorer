@@ -1,5 +1,6 @@
 package model;
 
+import controller.MainExplorerController;
 import controller.MainViewerController;
 import controller.RootController;
 import javafx.event.EventHandler;
@@ -77,6 +78,9 @@ public class MouseEventHandler implements EventHandler<MouseEvent> {
 			Utilities.selectedfiles.clear();
 			
 			Utilities.selectedImageFiles.clear();//新增选中数组
+			
+//			((MainExplorerController) RootController.controllers.get("controller.MainExplorerController"))
+//			.setAmountText("文件夹：" + MainExplorerController.diretoryName + " - 共0张图片");
 			
 			System.out.println("clean all selected image&files");
 			System.out.println("print imageFIleList:");

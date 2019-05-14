@@ -73,25 +73,28 @@ public class ImageLabel extends Label {
 			imageLabel.setPress(false);
 		}
 
-//		TODO 统计选中
+//		 统计选中
 		if (Utilities.selectedImageFiles != null) {
 			int amount = 0;
-			long size = 0L;
+//			long size = 0L;
 //			for (ImageFile imageFile : Utilities.selectedImageFiles) {
 //				amount++;
 //				size += imageFile.length();
 //			}
 			amount = Utilities.selectedImageFiles.size();
-			if (amount != 0) {
-//				((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setStatusText(amount + "张图片(" + getAmountSize(size) + ")");
-				((MainExplorerController) RootController.controllers.get("controller.MainExplorerController"))
-						.setAmountText("文件夹：" + MainExplorerController.diretoryName + " - 选中" + amount + "张图片");
-				System.out.println(MainExplorerController.diretoryName);
-			} else {
-//				((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setStatusText("0张图片");
-				((MainExplorerController) RootController.controllers.get("controller.MainExplorerController"))
-						.setAmountText("文件夹：" + MainExplorerController.diretoryName + " - 共0张图片");
-			}
+			
+			((MainExplorerController) RootController.controllers.get("controller.MainExplorerController"))
+			.setAmountText("文件夹：" + MainExplorerController.diretoryName + " - 选中" + amount + "张图片");
+			
+//			if (amount != 0) {
+////				((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setStatusText(amount + "张图片(" + getAmountSize(size) + ")");
+//				((MainExplorerController) RootController.controllers.get("controller.MainExplorerController"))
+//						.setAmountText("文件夹：" + MainExplorerController.diretoryName + " - 选中" + amount + "张图片");
+//			} else {
+////				((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setStatusText("0张图片");
+//				((MainExplorerController) RootController.controllers.get("controller.MainExplorerController"))
+//						.setAmountText("文件夹：" + MainExplorerController.diretoryName + " - 共0张图片");
+//			}
 		}
 
 		System.out.println(Utilities.selectedImage.size());
