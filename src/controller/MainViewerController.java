@@ -298,10 +298,20 @@ public class MainViewerController extends RootController {
     	if(MainViewerController.this.detailsFrame.getPrefWidth() == 0) {
 //    		MainViewerController.this.detailsFrame.setPrefWidth(450);
     		this.showDetails.play();
+    		this.fileSize.setEllipsisString("...");
+    		this.fileDate.setEllipsisString("...");
+    		this.fileResolution.setEllipsisString("...");
+    		this.filePath.setEllipsisString("...");
+    		this.fileName.setEllipsisString("...");
     	}
     	else {
 //    		MainViewerController.this.detailsFrame.setPrefWidth(0);
     		this.closeDetails.play();
+    		this.fileSize.setEllipsisString("");
+    		this.fileDate.setEllipsisString("");
+    		this.fileResolution.setEllipsisString("");
+    		this.filePath.setEllipsisString("");
+    		this.fileName.setEllipsisString("");
     	}
     }
 

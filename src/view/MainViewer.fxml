@@ -184,7 +184,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="fileSize" ellipsisString="" text="size">
+                              <Label fx:id="fileSize" ellipsisString="" text="size" textOverrun="CENTER_WORD_ELLIPSIS">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>
@@ -201,7 +201,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="fileDate" ellipsisString="" text="date">
+                              <Label fx:id="fileDate" ellipsisString="" text="date" textOverrun="CENTER_WORD_ELLIPSIS">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>
@@ -218,7 +218,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="fileResolution" ellipsisString="" text="resolution">
+                              <Label fx:id="fileResolution" ellipsisString="" text="resolution" textOverrun="CENTER_WORD_ELLIPSIS">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>
@@ -235,7 +235,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="filePath" ellipsisString="" text="path">
+                              <Label fx:id="filePath" ellipsisString="" text="path" textOverrun="CENTER_WORD_ELLIPSIS">
                                  <padding>
                                     <Insets left="10.0" />
                                  </padding>
@@ -255,7 +255,7 @@
                                     <Font size="20.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="fileName" ellipsisString="" text="name">
+                              <Label fx:id="fileName" ellipsisString="" text="name" textOverrun="CENTER_WORD_ELLIPSIS">
                                  <opaqueInsets>
                                     <Insets />
                                  </opaqueInsets>
