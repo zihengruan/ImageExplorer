@@ -9,6 +9,8 @@ import action.CopyAction;
 import action.DeleteAction;
 import action.PasteAction;
 import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -17,6 +19,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.TreeView;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -36,6 +39,9 @@ public class MainExplorerController extends RootController  {
 	public static String theFilePath;
 	
 	public static String diretoryName;
+	
+    @FXML
+    private AnchorPane parentPane;
 	
 	private MainExplorerController mainExplorerController;
 	
@@ -90,8 +96,12 @@ public class MainExplorerController extends RootController  {
     @FXML
     private Text statusText;
     
+    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		
+		
+		
 		treeView = new ImageTreeView(treeView).getTreeView();
 		new PanelListener(flowPane, mainExplorerController, rect);
 		
@@ -117,15 +127,24 @@ public class MainExplorerController extends RootController  {
 			public void handle(MouseEvent event) {
 				new DeleteAction(mainExplorerController);
 			}
+		
+		
+			
 		});
 		
-//		TODO cut button
 		
-//		TODO open image
-		
-//		TODO open edit 
+		this.parentPane.widthProperty().addListener(new ChangeListener<Number>() {
+			@Override
+			public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+				MainExplorerController.this.flowPane.setPrefWidth((double)newValue-MainExplorerController.this.treeView.getWidth()-10);
+//				MainExplorerController.this.flowPane.setMinHeight(MainExplorerController.this.parentPane.getHeight());
+				
+			}
 
-//		TODO　open　silde
+			
+			
+		});
+		
 		
 	}
 	

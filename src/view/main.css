@@ -72,6 +72,10 @@
 	-fx-color: -fx-pressed-base;
 }
 
+.image-scroll-pane> .viewport{
+	-fx-background-color: #ffffff
+}
+
 
 /*压缩滚动条宽度 */
 .scroll-bar:vertical .thumb, 
@@ -168,6 +172,8 @@
 	-fx-border-color: rgba(35,35,35,0.7);
 	-fx-border-image-width: 1
 }
+
+
 
 /*图片按钮 */
 

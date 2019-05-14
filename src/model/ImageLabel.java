@@ -77,10 +77,11 @@ public class ImageLabel extends Label {
 		if (Utilities.selectedImageFiles != null) {
 			int amount = 0;
 			long size = 0L;
-			for (ImageFile imageFile : Utilities.selectedImageFiles) {
-				amount++;
-				size += imageFile.length();
-			}
+//			for (ImageFile imageFile : Utilities.selectedImageFiles) {
+//				amount++;
+//				size += imageFile.length();
+//			}
+			amount = Utilities.selectedImageFiles.size();
 			if (amount != 0) {
 //				((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setStatusText(amount + "张图片(" + getAmountSize(size) + ")");
 				((MainExplorerController) RootController.controllers.get("controller.MainExplorerController"))

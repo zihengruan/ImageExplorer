@@ -50,6 +50,7 @@ public class Main extends Application {
 			stage.getIcons().add(new Image("/view/icon.jpg"));
 			RootController.controllers.get(controllerName).setStage(stage);
 			if(isShow) {
+				stage.setMaximized(true);
 				stage.show();
 			}
 			
