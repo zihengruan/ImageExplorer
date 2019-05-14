@@ -234,6 +234,7 @@ public class EditController extends RootController {
 		this.hueSlider.setValue(0.5);
 		this.saturationSlider.setValue(0.5);
 		this.brightnessSlider.setValue(0.5);
+		this.setHsvValue(0, 0, 0, 0);
 	}
 
 	private void addEffectTab() {
@@ -247,6 +248,8 @@ public class EditController extends RootController {
 		rouge(this.rougeEffectImageView);
 
 		sucky(this.suckyEffectImageView);
+		
+		this.setHsvValue(0, 0, 0, 0);
 
 		this.originalEffectButton.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
@@ -577,7 +580,12 @@ public class EditController extends RootController {
 			for (int c = 0; c < width; c++) {
 				double[] hsv = m.get(r, c);
 				hsv[0] = hsv[0] + dh * 90;
-				hsv[0] %= 180;
+				if(hsv[0] <0) {
+					hsv[0] += 180;
+				}else {
+					hsv[0] %= 180;
+				}
+				
 
 				if (hsv[1] + ds * 255 > 255) {
 					hsv[1] = 255;
