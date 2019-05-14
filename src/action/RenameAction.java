@@ -107,7 +107,6 @@ public class RenameAction {
 			     }
 			 });
 		 Scene scene=new Scene(grid);
-		 scene.getStylesheets().add("view/iVCSS.css");
 		 anotherStage.setTitle("重命名");
 		 anotherStage.setScene(scene);
 		 anotherStage.show();
@@ -174,8 +173,10 @@ public class RenameAction {
 		for(int i=0;i<oldList.size();i++) {
 			oldList.get(i).setSelected(false);
 			((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).getFlowPane().getChildren().remove(oldList.get(i));
+			Utilities.imageFileList.remove(oldList.get(i).getImageFile2());
 			newList.get(i).setSelected(true);
 			((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).getFlowPane().getChildren().add(newList.get(i));
+			Utilities.imageFileList.add(newList.get(i).getImageFile2());
 		}
 		System.out.println("selected image"+Utilities.selectedImage);
 		System.out.println("selected files"+Utilities.selectedfiles);

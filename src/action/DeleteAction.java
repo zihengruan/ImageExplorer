@@ -26,6 +26,7 @@ public class DeleteAction {
 			for(ImageLabel iLabel:Utilities.selectedImage) {
 				((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).getFlowPane().getChildren().remove(iLabel);
 				Utilities.selectedfiles.remove(iLabel.getImageFile());
+				Utilities.imageFileList.remove(iLabel.getImageFile2());
 				iLabel.getImageFile().delete();
 			}
 			Utilities.selectedImage.clear();
