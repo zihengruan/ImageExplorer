@@ -159,7 +159,6 @@ public class EditController extends RootController {
 
 	public void setImageView(Image image) {
 		this.imageView.setImage(image);
-		this.calMaxSize();
 		this.originalEffectImageView.setImage(image);
 		this.overlayEffectImageview.setImage(image);
 		this.exclusionEffectImageView.setImage(image);
@@ -630,12 +629,14 @@ public class EditController extends RootController {
 				if(event.getEventType().equals(MouseEvent.MOUSE_PRESSED) && EditController.this.isDrag==false 
 						&& EditController.this.functionPane.getSelectionModel().getSelectedIndex()==0) {
 					EditController.this.isDrag = true;
+					EditController.this.calMaxSize();
 					EditController.this.rX = event.getX();
 					EditController.this.rY = event.getY();
 					EditController.this.rect.setFill(Color.rgb(255, 255, 255, 0.5));
 					System.out.println("Drag in");
 				}
 				else if(event.getEventType().equals(MouseEvent.MOUSE_DRAGGED) && EditController.this.isDrag==true) {
+					System.out.println("pos: " + event.getX()+ ", " + event.getY());
 					if(event.getX() >= 0 && event.getX() <= EditController.this.maxWidth) {
 						EditController.this.cutWidth = event.getX() - EditController.this.rX;
 					}
@@ -660,7 +661,8 @@ public class EditController extends RootController {
 						EditController.this.rect.setY(EditController.this.rY + EditController.this.cutHeight);
 						EditController.this.rect.setHeight(-EditController.this.cutHeight);
 					}
-
+					
+					System.out.println("pos: " + rect.getX()+ ", " + rect.getY() + ", "+ rect.getWidth()+ ", " + rect.getHeight());
 					
 				}
 				else if(event.getEventType().equals(MouseEvent.MOUSE_RELEASED) && EditController.this.isDrag==true) {
@@ -698,10 +700,10 @@ public class EditController extends RootController {
 		addEffectTab();
 		addDragAction();
 		addCloseAction();
-		this.rect.setX(0);
-		this.rect.setY(0);
-		this.rect.setHeight(0);
-		this.rect.setWidth(0);
+//		this.rect.setX(0);
+//		this.rect.setY(0);
+//		this.rect.setHeight(0);
+//		this.rect.setWidth(0);
 		this.editStage.show();
 	}
 }
