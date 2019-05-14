@@ -13,11 +13,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
-import javafx.scene.control.MenuBar;
 import javafx.scene.control.TreeView;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.FlowPane;
@@ -188,13 +185,11 @@ public class MainExplorerController extends RootController  {
 
 	@Override
 	public Stage getStage() {
-		// TODO Auto-generated method stub
 		return mainStage;
 	}
 
 	@Override
 	public void setStage(Stage stage) {
-		// TODO Auto-generated method stub
 
 		this.mainStage = stage;
 		//主窗体关闭事件

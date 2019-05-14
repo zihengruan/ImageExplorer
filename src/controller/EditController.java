@@ -9,32 +9,24 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
-import javax.imageio.ImageIO;
-
 import org.opencv.core.Mat;
 import org.opencv.core.Rect;
 import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 
 import javafx.beans.value.ObservableValue;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TabPane;
-import javafx.scene.effect.Blend;
-import javafx.scene.effect.BlendMode;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -347,7 +339,6 @@ public class EditController extends RootController {
 					this.colorAdjust.setContrast(2 * newValue.doubleValue() - 1);
 					contrastValue = (2 * newValue.doubleValue() - 1);
 					EditController.this.imageView.setEffect(colorAdjust);
-					System.out.println("contast:" + contrastValue);
 				});
 
 		this.hueSlider.valueProperty()
@@ -355,7 +346,6 @@ public class EditController extends RootController {
 					this.colorAdjust.setHue(2 * newValue.doubleValue() - 1);
 					hueValue = (2 * newValue.doubleValue() - 1);
 					EditController.this.imageView.setEffect(colorAdjust);
-					System.out.println("hue:" + hueValue);
 				});
 
 		this.saturationSlider.valueProperty()
@@ -363,7 +353,6 @@ public class EditController extends RootController {
 					this.colorAdjust.setSaturation(2 * newValue.doubleValue() - 1);
 					saturationValue = (2 * newValue.doubleValue() - 1);
 					EditController.this.imageView.setEffect(colorAdjust);
-					System.out.println("saturation:" + saturationValue);
 				});
 
 		this.brightnessSlider.valueProperty()
@@ -371,14 +360,11 @@ public class EditController extends RootController {
 					this.colorAdjust.setBrightness(2 * newValue.doubleValue() - 1);
 					brightnessValue = (2 * newValue.doubleValue() - 1);
 					EditController.this.imageView.setEffect(colorAdjust);
-					System.out.println("brightness:" + brightnessValue);
 				});
 	}
 
 	@FXML
 	void saveImage(ActionEvent event) {
-//		TODO should be selectedImage
-//		TODO bug fix
 		File file = this.imageFile.getImageFile();
 		
 		Utilities.imageFileList.remove(this.imageFile);
@@ -471,7 +457,6 @@ public class EditController extends RootController {
 	 */
 	@FXML
 	void saveImageCopy(ActionEvent event) {
-//		TODO should be selectedImage
 		File file = this.imageFile.getImageFile();
 		try {
 			FileInputStream input = new FileInputStream(file);
@@ -633,10 +618,8 @@ public class EditController extends RootController {
 					EditController.this.rX = event.getX();
 					EditController.this.rY = event.getY();
 					EditController.this.rect.setFill(Color.rgb(255, 255, 255, 0.5));
-					System.out.println("Drag in");
 				}
 				else if(event.getEventType().equals(MouseEvent.MOUSE_DRAGGED) && EditController.this.isDrag==true) {
-					System.out.println("pos: " + event.getX()+ ", " + event.getY());
 					if(event.getX() >= 0 && event.getX() <= EditController.this.maxWidth) {
 						EditController.this.cutWidth = event.getX() - EditController.this.rX;
 					}
@@ -662,13 +645,10 @@ public class EditController extends RootController {
 						EditController.this.rect.setHeight(-EditController.this.cutHeight);
 					}
 					
-					System.out.println("pos: " + rect.getX()+ ", " + rect.getY() + ", "+ rect.getWidth()+ ", " + rect.getHeight());
-					
 				}
 				else if(event.getEventType().equals(MouseEvent.MOUSE_RELEASED) && EditController.this.isDrag==true) {
 					EditController.this.isDrag = false;
 					EditController.this.rect.setFill(Color.rgb(255, 255, 255, 0.2));
-					System.out.println("Drag out");
 				}
 				
 			}

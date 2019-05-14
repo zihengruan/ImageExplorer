@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
-import javafx.stage.Stage;
 
 public abstract class RootController implements Initializable, ControllerInterface{
 	

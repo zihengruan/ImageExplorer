@@ -28,7 +28,6 @@ public class RightClickMenu {
 	public RightClickMenu(Node node, MainExplorerController mainEController, boolean choice) {
 		this.mainExplorerController = mainEController;
 		if (choice) {
-			System.out.println("!");
 			PictureMenu(node);
 		}
 		nullMenu(node);
@@ -51,7 +50,6 @@ public class RightClickMenu {
 			if(!RootController.controllers.get("controller.MainViewerController").getStage().isShowing()) {
 				((MainViewerController)RootController.controllers.get("controller.MainViewerController")).showStage();;
 			}
-			System.out.println("Open!");
 		});
 		copy.setOnAction(e -> {
 			new CopyAction();
@@ -89,14 +87,12 @@ public class RightClickMenu {
 			for (Node childrenNode : ((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).getFlowPane().getChildren()) {
 				if (childrenNode instanceof ImageLabel) {
 					((ImageLabel) childrenNode).setSelected(true);
-					System.out.println("select all");
 				}
 				
 			}	
 		});
 		node.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e) -> {
 			Node clickNode = e.getPickResult().getIntersectedNode();
-			// System.out.println(clickNode.toString());
 			if (clickNode instanceof FlowPane && !(clickNode instanceof ImageLabel) && !(clickNode instanceof Text) && e.getButton() == MouseButton.SECONDARY) {// 鼠标点击非图片节点
 //				ImageLabelsclearSelected();// 清空已选
 				for (ImageLabel iLabel : Utilities.selectedImage) {
@@ -108,11 +104,6 @@ public class RightClickMenu {
 				Utilities.selectedImage.removeAll(Utilities.selectedImage);
 				Utilities.selectedfiles.removeAll(Utilities.selectedfiles);
 				
-				System.out.println("clean all selected image&files");
-				
-				System.out.println("print imageFIleList:");
-				System.out.println(Utilities.selectedfiles);
-
 				if (e.getButton() == MouseButton.SECONDARY) {// 鼠标右键
 					Clipboard clipboard = Clipboard.getSystemClipboard();
 					List<File> files = (List<File>) (clipboard.getContent(DataFormat.FILES));

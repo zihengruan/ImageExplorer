@@ -2,15 +2,11 @@ package model;
 
 import java.io.File;
 import java.net.MalformedURLException;
-import java.util.HashMap;
-
 import controller.MainExplorerController;
-import controller.MainViewerController;
 import controller.RootController;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.ContentDisplay;
@@ -18,7 +14,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.OverrunStyle;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.DataFormat;
 import javafx.scene.input.MouseEvent;
 
 public class ImageLabel extends Label {
@@ -97,8 +92,6 @@ public class ImageLabel extends Label {
 //			}
 		}
 
-		System.out.println(Utilities.selectedImage.size());
-		System.out.println(Utilities.selectedfiles.size());
 //		mainScene.getTextTwo().setText("已选中 "+selectedPictures.size()+" 张图片");
 	}
 

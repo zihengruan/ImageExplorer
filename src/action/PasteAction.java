@@ -44,10 +44,6 @@ public class PasteAction {
 				
 				Utilities.selectedImage.clear();;
 				Utilities.selectedfiles.clear();;
-				System.out.println("clean all selected image&files");
-				System.out.println("print selectedImage&files");
-				System.out.println(Utilities.selectedImage);
-				System.out.println(Utilities.selectedfiles);
 				ImageLabel.getCutedPictures().clear();
 				clipboard.clear();
 				return;	
@@ -76,8 +72,6 @@ public class PasteAction {
 			ImageFile iFile = new ImageFile(newFile);
 			if(!Utilities.imageFileList.contains(iFile)) {
 				Utilities.imageFileList.add(new ImageFile(newFile));
-				System.out.println("成功添加复制文件！");
-				System.out.println("Utilities.imageFileList.add(new ImageFile(newFile));");
 			}
 			try {
 				((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).getFlowPane().getChildren().add(new ImageLabel(new ImageFile(newFile)));

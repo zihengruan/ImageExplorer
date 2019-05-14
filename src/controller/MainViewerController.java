@@ -4,8 +4,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -25,7 +23,6 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import model.ImageFile;
-import model.ImageTreeView;
 
 public class MainViewerController extends RootController {
 
@@ -139,8 +136,6 @@ public class MainViewerController extends RootController {
 		long t1 = System.currentTimeMillis();
 		this.fileResolution.setText(imageFile.getResolution());
 		long t2 = System.currentTimeMillis();
-		
-		System.out.println("time: " + (t2-t1));
 		
 		this.imagefile = imageFile;
 		Image t_image;

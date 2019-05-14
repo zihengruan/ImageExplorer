@@ -52,7 +52,6 @@ public class PanelListener {
 		});
 		
 		node.addEventHandler(MouseEvent.MOUSE_DRAGGED, (MouseEvent e) -> {
-			System.out.println("" + e.getX() + "," + e.getY() );
 			if(this.isDragged = true) {
 				if(e.getX() >= 0) {
 					this.width = e.getX() - this.nowX;
@@ -93,9 +92,6 @@ public class PanelListener {
 				Utilities.selectedImage.removeAll(Utilities.selectedImage);
 				Utilities.selectedfiles.removeAll(Utilities.selectedfiles);
 				Utilities.selectedImageFiles.removeAll(Utilities.selectedImageFiles);//新增选中数组
-				System.out.println("clean all selected image&files");
-				System.out.println("print imageFIleList:");
-				System.out.println(Utilities.selectedfiles);
 				for(Node childrenNode:  ((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).getFlowPane().getChildren()) {
 					if(childrenNode instanceof ImageLabel) {
 						if(isRectOverlap((ImageLabel)childrenNode))
@@ -119,15 +115,9 @@ public class PanelListener {
 			
 			selectRectangle.setWidth(0);
 			selectRectangle.setHeight(0);
-			
-//			System.out.println(selectRectangle);
-			
 
 			//图片和选择矩阵的判断
 
-			
-			
-			
 		});
 	}
 	private boolean isRectOverlap(ImageLabel  imageLabel) {

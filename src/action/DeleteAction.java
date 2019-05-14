@@ -23,20 +23,12 @@ public class DeleteAction {
 		}
 		
 		if(MyAlert.showAlert("是否删除选中的图片？", "", Main.mainStage)) {
-			System.out.println("before delete:");
-			System.out.println("selectedImage:"+Utilities.selectedImage);
-			System.out.println("selectedImage size:"+Utilities.selectedImage.size());
-			System.out.println("selectedfiles:"+Utilities.selectedfiles);
-			
 			for(ImageLabel iLabel:Utilities.selectedImage) {
 				((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).getFlowPane().getChildren().remove(iLabel);
 				Utilities.selectedfiles.remove(iLabel.getImageFile());
 				iLabel.getImageFile().delete();
 			}
 			Utilities.selectedImage.clear();
-			System.out.println("after delete:");
-			System.out.println(Utilities.selectedImage);
-			System.out.println(Utilities.selectedfiles);		
 //			ImageLabel.getSelectedPictureFiles().clear();
 			
 		}else {
@@ -50,6 +42,5 @@ public class DeleteAction {
 		}
 		Utilities.selectedImage.clear();
 		Utilities.selectedfiles.clear();
-		System.out.println("clean all selected image&files");
 	}
 }

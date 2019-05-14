@@ -2,14 +2,10 @@ package application;
 	
 import java.io.IOException;
 
-import controller.MainViewerController;
 import controller.RootController;
-import controller.SlideController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

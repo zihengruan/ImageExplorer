@@ -70,7 +70,6 @@ public class ImageTreeView{
 					MainExplorerController.diretoryName = currentFile.getImageName();
 					ImageFile[] imageFiles = currentFile.listImageFiles(); //1279ms 
 //					long et = System.currentTimeMillis();//test
-//					System.out.println(et - st);//test
 					if(imageFiles != null) {
 						int amount = 0;
 						long size = 0L;
@@ -84,7 +83,6 @@ public class ImageTreeView{
 								e.printStackTrace();
 							}
 						}
-						System.out.println("往imageFileList加图片");
 						model.Utilities.imageFileList.setAll(imageFiles);
 						if(amount != 0) {
 							((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).setStatusText(amount + "张图片(" + getAmountSize(size) + ")");
@@ -94,7 +92,6 @@ public class ImageTreeView{
 					}
 				}
 				long et = System.currentTimeMillis();
-				System.out.println(et - st);
 			}
 		});
 	}
