@@ -249,7 +249,7 @@ public class EditController extends RootController {
 
 		sucky(this.suckyEffectImageView);
 		
-		this.setHsvValue(0, 0, 0, 0);
+		this.reset();
 
 		this.originalEffectButton.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
@@ -297,36 +297,50 @@ public class EditController extends RootController {
 
 	private void original(ImageView imageView) {
 		imageView.setEffect(null);
+		this.setchsvSlider(0, 0, 0, 0);
+		this.setHsvValue(0, 0, 0, 0);
 	}
 
 	private void overlay(ImageView imageView) {
 		ColorAdjust colorAdjust = new ColorAdjust(0.6, 0, -0.3, 0.25);
+		this.setchsvSlider(0.25, 0.6, 0, -0.3);
 		imageView.setEffect(colorAdjust);
-		this.setHsvValue(0.6, 0, -0.3, 0.25);
+		this.setHsvValue(0.25, 0.6, 0, -0.3);
 	}
 
 	private void exclusion(ImageView imageView) {
 		ColorAdjust colorAdjust = new ColorAdjust(-0.3, -0.1, -0.3, -0.25);
+		this.setchsvSlider(-0.25, -0.3, -0.1, -0.3 );
 		imageView.setEffect(colorAdjust);
-		this.setHsvValue(-0.3, -0.1, -0.3, -0.25);
+		this.setHsvValue(-0.25, -0.3, -0.1, -0.3);
 	}
 
 	private void sauna(ImageView imageView) {
 		ColorAdjust colorAdjust = new ColorAdjust(-0.1, -0.1, -0.1, -0.2);
+		this.setchsvSlider(-0.2, -0.1, -0.1, -0.1) ;
 		imageView.setEffect(colorAdjust);
-		this.setHsvValue(-0.1, -0.1, -0.1, -0.2);
+		this.setHsvValue(-0.2, -0.1, -0.1, -0.1);
 	}
 
 	private void rouge(ImageView imageView) {
 		ColorAdjust colorAdjust = new ColorAdjust(0.15, -0.13, -0.1, -0.17);
+		this.setchsvSlider(-0.17, 0.15, -0.13, -0.1 );
 		imageView.setEffect(colorAdjust);
-		this.setHsvValue(0.15, -0.13, -0.1, -0.17);
+		this.setHsvValue(-0.17, 0.15, -0.13, -0.1 );
 	}
 
 	private void sucky(ImageView imageView) {
 		ColorAdjust colorAdjust = new ColorAdjust(0.30, 0.5, 0.1, 0.1);
+		this.setchsvSlider(0.1, 0.30, 0.5, 0.1 );
 		imageView.setEffect(colorAdjust);
-		this.setHsvValue(0.30, 0.5, 0.1, 0.1);
+		this.setHsvValue(0.1, 0.30, 0.5, 0.1);
+	}
+	
+	private void setchsvSlider(double c, double h, double s, double v) {
+		this.ContrastSlider.setValue((1+c)/2);
+		this.hueSlider.setValue((1+h)/2);
+		this.saturationSlider.setValue((1+s)/2);
+		this.brightnessSlider.setValue((1+v)/2);
 	}
 
 	// 滑动条[0,1] 映射到 colorAdjust[-1,1]
