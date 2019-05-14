@@ -23,7 +23,6 @@ public class MouseEventHandler implements EventHandler<MouseEvent> {
 				if(event.getButton()==MouseButton.PRIMARY) {
 					for (ImageLabel iLabel : Utilities.selectedImage) {
 						iLabel.selected.set(false);
-//						iLabel.setStyle("-fx-background-color:transparent;");
 						iLabel.setPress(false);
 					}
 
@@ -61,7 +60,6 @@ public class MouseEventHandler implements EventHandler<MouseEvent> {
 			}
 			Utilities.selectedImage.clear();
 			Utilities.selectedfiles.clear();
-			
 			Utilities.selectedImageFiles.clear();//新增选中数组
 		}
 

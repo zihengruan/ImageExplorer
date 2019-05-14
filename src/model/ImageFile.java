@@ -84,14 +84,6 @@ public class ImageFile {
 	}
 
 	public String getResolution() {
-//		try {
-//			BufferedImage reader = ImageIO.read(this.imageFile);
-//			this.height = reader.getHeight();
-//			this.width = reader.getWidth();
-//
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
 		Iterator<ImageReader> iter = ImageIO.getImageReadersByFormatName(this.imageFile.getName().substring(this.imageFile.getName().lastIndexOf(".") + 1));
 		ImageReader reader = null;
 		int width = 0, height = 0;
@@ -123,20 +115,6 @@ public class ImageFile {
 
 	public boolean isHidden() {
 		return imageFile.isHidden();
-	}
-
-	/*
-	 * 弃用函数
-	 */
-	public boolean isImageFile() {
-		if (imageFile.getPath().toLowerCase().endsWith(".jpg") || imageFile.getPath().toLowerCase().endsWith(".jpeg")
-				|| imageFile.getPath().toLowerCase().endsWith(".gif")
-				|| imageFile.getPath().toLowerCase().endsWith(".png")
-				|| imageFile.getPath().toLowerCase().endsWith(".bmp")) {
-			return true;
-		} else {
-			return false;
-		}
 	}
 
 	public long length() {

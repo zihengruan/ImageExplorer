@@ -21,10 +21,7 @@ public class CutAction {
 		ClipboardContent clipboardContent = new ClipboardContent();
 		clipboard.clear();
 		for(ImageLabel imageLabel : ImageLabel.getSelectedPictures()) {
-//			ImageLabel.getSelectedPictureFiles().add(imageLabel.getImageFile());
-			
 			imageLabel.getImageView().setEffect(new ColorAdjust(0, 0, 0.5, 0));//标志被剪切
-//			ImageLabel.addCutedPictures(imageLabel);
 			Utilities.cutedPictures.add(imageLabel);
 		}
 		

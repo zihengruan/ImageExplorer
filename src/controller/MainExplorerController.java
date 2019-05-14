@@ -154,12 +154,6 @@ public class MainExplorerController extends RootController  {
 					.showStage();
 		}
     }
-//    void openFile(MouseEvent event) {
-//		((MainViewerController)RootController.controllers.get("controller.MainViewerController")).setImage(new ImageFile(Utilities.selectedfiles.get(0)));
-//		if(!RootController.controllers.get("controller.MainViewerController").getStage().isShowing()) {
-//			((MainViewerController)RootController.controllers.get("controller.MainViewerController")).showStage();;
-//		}
-//    }
 	
     @FXML
     void showEditWindow(MouseEvent event) {
@@ -171,7 +165,12 @@ public class MainExplorerController extends RootController  {
     @FXML
     void showSlide(MouseEvent event) {
 		RootController.controllers.get("controller.SlideController").getStage().setFullScreen(true);
-		((SlideController) RootController.controllers.get("controller.SlideController")).setImage(new ImageFile(Utilities.selectedfiles.get(0)));
+		if(Utilities.selectedImageFiles.size() == 0) {
+			((SlideController) RootController.controllers.get("controller.SlideController")).setImage(Utilities.imageFileList.get(0));
+		}else {
+			((SlideController) RootController.controllers.get("controller.SlideController")).setImage(Utilities.selectedImageFiles.get(0));
+		}
+		
 		((SlideController) RootController.controllers.get("controller.SlideController")).showStage();
     }
 
@@ -203,8 +202,6 @@ public class MainExplorerController extends RootController  {
 		
 	}
 	
-	
-	
 	public void setDateText(String text) {
 		this.dateText.setText(text);
 	}
@@ -232,10 +229,5 @@ public class MainExplorerController extends RootController  {
 	public void setStatusText(String text) {
 		this.statusText.setText(text);
 	}
-
-	
-
-
-
 
 }

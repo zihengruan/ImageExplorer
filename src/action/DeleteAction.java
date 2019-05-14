@@ -29,8 +29,6 @@ public class DeleteAction {
 				iLabel.getImageFile().delete();
 			}
 			Utilities.selectedImage.clear();
-//			ImageLabel.getSelectedPictureFiles().clear();
-			
 		}else {
 			ImageLabel.getSelectedPictureFiles().clear();
 		}
@@ -38,7 +36,6 @@ public class DeleteAction {
 		for (ImageLabel iLabel : Utilities.selectedImage) {
 			iLabel.selected.set(false);
 			iLabel.setPress(false);
-//			iLabel.setStyle("-fx-background-color:transparent;");
 		}
 		Utilities.selectedImage.clear();
 		Utilities.selectedfiles.clear();

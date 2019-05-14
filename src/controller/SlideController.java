@@ -71,10 +71,8 @@ public class SlideController extends RootController implements CanShowImage {
     void playPause(MouseEvent event) {
     	if(this.playPauseButton.isSelected()) {
     		timeline.play();
-//    		playPauseButton.setText("Pause");
     	}else {
     		timeline.pause();
-//    		playPauseButton.setText("Play");
     	}
     }
     
@@ -105,6 +103,7 @@ public class SlideController extends RootController implements CanShowImage {
 					SlideController.this.getStage().hide();
 					i = currentIndex + 1;
 					timeline.stop();
+					SlideController.this.playPauseButton.setSelected(false);
 				}
 
 			}

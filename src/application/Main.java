@@ -38,9 +38,7 @@ public class Main extends Application {
 		try {
 			Parent root = FXMLLoader.load(getClass().getResource(fxmlPath));
 			Scene scene = new Scene(root);
-//			scene.setFill(null);
 			Stage stage = new Stage();
-//			stage.initStyle(StageStyle.TRANSPARENT);
 			stage.setScene(scene);
 			stage.setTitle("ImageExplorer");
 			stage.getIcons().add(new Image("/view/icon.jpg"));

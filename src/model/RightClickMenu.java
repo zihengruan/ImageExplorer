@@ -94,11 +94,9 @@ public class RightClickMenu {
 		node.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e) -> {
 			Node clickNode = e.getPickResult().getIntersectedNode();
 			if (clickNode instanceof FlowPane && !(clickNode instanceof ImageLabel) && !(clickNode instanceof Text) && e.getButton() == MouseButton.SECONDARY) {// 鼠标点击非图片节点
-//				ImageLabelsclearSelected();// 清空已选
 				for (ImageLabel iLabel : Utilities.selectedImage) {
 					iLabel.selected.set(false);
 					iLabel.setPress(false);
-//					iLabel.setStyle("-fx-background-color:transparent;");
 				}
 				
 				Utilities.selectedImage.removeAll(Utilities.selectedImage);

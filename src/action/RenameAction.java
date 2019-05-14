@@ -83,7 +83,6 @@ public class RenameAction {
 			    public void handle(ActionEvent e) {
 					if(single) {
 						if ((name.getText() != null && !name.getText().isEmpty())) {
-//				            msg.setText("Thank 	"+name.getText() );
 				        	if(renameSingle()) {
 				        		anotherStage.close();
 				        	}else{
@@ -129,7 +128,6 @@ public class RenameAction {
 
 		ImageLabel nNode;
 		try {
-//			nNode = new ImageLabel(new ImageFile(tmp), mainExplorerController);
 			nNode = new ImageLabel(new ImageFile(tmp));
 			((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).getFlowPane().getChildren().remove(pNode);
 			((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).getFlowPane().getChildren().add(nNode);
@@ -137,8 +135,6 @@ public class RenameAction {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-//		((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).showPicture();
 		return true;
 	}
 	private boolean renameMore() {
@@ -166,7 +162,6 @@ public class RenameAction {
 			oldList.add(image);	
 			ImageLabel newImage;
 			try {
-//				newImage = new ImageLabel(new ImageFile(tmp), mainExplorerController);
 				newImage = new ImageLabel(new ImageFile(tmp));
 				newList.add(newImage);
 			} catch (MalformedURLException e) {
@@ -178,13 +173,10 @@ public class RenameAction {
 		}
 		for(int i=0;i<oldList.size();i++) {
 			oldList.get(i).setSelected(false);
-//			mainExplorerController.removePictures(oldList.get(i));
 			((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).getFlowPane().getChildren().remove(oldList.get(i));
 			newList.get(i).setSelected(true);
-//			mainExplorerController.addPictures(newList.get(i));
 			((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).getFlowPane().getChildren().add(newList.get(i));
 		}
-//		mainExplorerController.showPicture();
 		System.out.println("selected image"+Utilities.selectedImage);
 		System.out.println("selected files"+Utilities.selectedfiles);
 		return true;

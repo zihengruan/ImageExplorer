@@ -56,20 +56,16 @@ public class ImageTreeView{
 			public void changed(ObservableValue<? extends TreeItem<ImageFile>> observable, TreeItem<ImageFile> oldValue,
 					TreeItem<ImageFile> newValue) {
 				//单选展开
-//				System.gc();
 				if(!newValue.getChildren().isEmpty()) {
 					newValue.setExpanded(true);
 				}
 				//右侧显示
 				((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).clearFlowPane();
-				long st = System.currentTimeMillis();
 				ImageFile currentFile = newValue.getValue();
 				if(currentFile.isDirectory()) {
-//					long st = System.currentTimeMillis();//test
 					MainExplorerController.theFilePath = currentFile.getImageFile().getAbsolutePath();
 					MainExplorerController.diretoryName = currentFile.getImageName();
-					ImageFile[] imageFiles = currentFile.listImageFiles(); //1279ms 
-//					long et = System.currentTimeMillis();//test
+					ImageFile[] imageFiles = currentFile.listImageFiles(); 
 					if(imageFiles != null) {
 						int amount = 0;
 						long size = 0L;
@@ -91,7 +87,6 @@ public class ImageTreeView{
 						}
 					}
 				}
-				long et = System.currentTimeMillis();
 			}
 		});
 	}

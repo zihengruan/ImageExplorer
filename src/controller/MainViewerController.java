@@ -131,18 +131,13 @@ public class MainViewerController extends RootController {
 		this.fileDate.setText(imageFile.getImageLastModifiedDate());
 		this.fileName.setText(imageFile.getImageName());
 		this.filePath.setText(imageFile.getImagePath());
-		
 		this.fileSize.setText(imageFile.getImageSize());
-		long t1 = System.currentTimeMillis();
 		this.fileResolution.setText(imageFile.getResolution());
-		long t2 = System.currentTimeMillis();
-		
 		this.imagefile = imageFile;
 		Image t_image;
 		try {
 			t_image = new Image(imageFile.getImageFile().toURI().toURL().toString(), true);
 			this.image.setImage(t_image);
-//			this.fileResolution.setText(String.format("%d×%d", (int)t_image.getWidth(), (int)t_image.getHeight()));
 			model.Utilities.resetAll();
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
@@ -152,19 +147,11 @@ public class MainViewerController extends RootController {
 
 	@FXML
 	void getNextImage(MouseEvent event) {
-//		ImageFile t_ImageFile = model.Utilities.getNextImageFile(this.imagefile);
-//		if (t_ImageFile != null) {
-//			this.setImage(t_ImageFile);
-//		}
 		this.setNextImage();
 	}
 
 	@FXML
 	void getPriviousImage(MouseEvent event) {
-//		ImageFile t_ImageFile = model.Utilities.getPriviousImageFile(this.imagefile);
-//		if (t_ImageFile != null) {
-//			this.setImage(t_ImageFile);
-//		}
 		this.setPriviousImage();
 	}
 
@@ -288,7 +275,6 @@ public class MainViewerController extends RootController {
     @FXML
     void toggleDetails(ActionEvent event) {
     	if(MainViewerController.this.detailsFrame.getPrefWidth() == 0) {
-//    		MainViewerController.this.detailsFrame.setPrefWidth(450);
     		this.showDetails.play();
     		this.fileSize.setEllipsisString("...");
     		this.fileDate.setEllipsisString("...");
@@ -297,7 +283,6 @@ public class MainViewerController extends RootController {
     		this.fileName.setEllipsisString("...");
     	}
     	else {
-//    		MainViewerController.this.detailsFrame.setPrefWidth(0);
     		this.closeDetails.play();
     		this.fileSize.setEllipsisString("");
     		this.fileDate.setEllipsisString("");

@@ -297,18 +297,12 @@ public class EditController extends RootController {
 	}
 
 	private void overlay(ImageView imageView) {
-//		Blend blend = new Blend();
-//		blend.setMode(BlendMode.OVERLAY);
-//		imageView.setEffect(blend);
 		ColorAdjust colorAdjust = new ColorAdjust(0.6, 0, -0.3, 0.25);
 		imageView.setEffect(colorAdjust);
 		this.setHsvValue(0.6, 0, -0.3, 0.25);
 	}
 
 	private void exclusion(ImageView imageView) {
-//		Blend blend = new Blend();
-//		blend.setMode(BlendMode.EXCLUSION);
-//		imageView.setEffect(blend);
 		ColorAdjust colorAdjust = new ColorAdjust(-0.3, -0.1, -0.3, -0.25);
 		imageView.setEffect(colorAdjust);
 		this.setHsvValue(-0.3, -0.1, -0.3, -0.25);
