@@ -700,10 +700,10 @@ public class EditController extends RootController {
 		addEffectTab();
 		addDragAction();
 		addCloseAction();
-//		this.rect.setX(0);
-//		this.rect.setY(0);
-//		this.rect.setHeight(0);
-//		this.rect.setWidth(0);
+		this.rect.setX(0);
+		this.rect.setY(0);
+		this.rect.setHeight(0);
+		this.rect.setWidth(0);
 		this.editStage.show();
 	}
 }
