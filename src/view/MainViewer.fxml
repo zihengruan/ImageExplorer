@@ -54,15 +54,6 @@
                                     <Tooltip text="放大" />
                                  </tooltip>
                               </Button>
-                              <Button fx:id="deleteButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false">
-                                 <styleClass>
-                                    <String fx:value="deleteButton" />
-                                    <String fx:value="rootButton" />
-                                 </styleClass>
-                                 <tooltip>
-                                    <Tooltip text="删除" />
-                                 </tooltip>
-                              </Button>
                               <Button fx:id="rotateButton" layoutX="30.0" layoutY="30.0" mnemonicParsing="false" onMouseClicked="#rotateImage">
                                  <styleClass>
                                     <String fx:value="rotateButton" />

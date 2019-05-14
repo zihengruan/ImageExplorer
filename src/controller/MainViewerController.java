@@ -66,9 +66,6 @@ public class MainViewerController extends RootController {
 	private ImageView image;
 
 	@FXML
-	private Button deleteButton;
-
-	@FXML
 	private Button rotateButton;
 
 	@FXML
