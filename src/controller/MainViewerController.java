@@ -4,6 +4,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -131,17 +133,24 @@ public class MainViewerController extends RootController {
 	}
 
 	public void setImage(ImageFile imageFile) {
+		
 		this.fileDate.setText(imageFile.getImageLastModifiedDate());
 		this.fileName.setText(imageFile.getImageName());
 		this.filePath.setText(imageFile.getImagePath());
+		
 		this.fileSize.setText(imageFile.getImageSize());
+		long t1 = System.currentTimeMillis();
 		this.fileResolution.setText(imageFile.getResolution());
+		long t2 = System.currentTimeMillis();
+		
+		System.out.println("time: " + (t2-t1));
 		
 		this.imagefile = imageFile;
 		Image t_image;
 		try {
 			t_image = new Image(imageFile.getImageFile().toURI().toURL().toString(), true);
 			this.image.setImage(t_image);
+//			this.fileResolution.setText(String.format("%d×%d", (int)t_image.getWidth(), (int)t_image.getHeight()));
 			model.Utilities.resetAll();
 		} catch (MalformedURLException e) {
 			e.printStackTrace();

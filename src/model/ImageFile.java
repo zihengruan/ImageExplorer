@@ -1,14 +1,21 @@
 package model;
 
+import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.io.Reader;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.Iterator;
 import java.util.regex.Pattern;
 
 import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.FileImageInputStream;
+import javax.imageio.stream.ImageInputStream;
+import javax.swing.ImageIcon;
 
 public class ImageFile {
 
@@ -23,7 +30,6 @@ public class ImageFile {
 	private int width;
 
 	private String imageLastModifiedDate;
-	
 
 	public ImageFile(File file) {
 		imageFile = file;
@@ -32,7 +38,7 @@ public class ImageFile {
 		this.imageSize = getFileSize(this.imageFile.length());
 
 		SimpleDateFormat dFormat = new SimpleDateFormat("yyyy 年 MM 月 dd 日, E HH:mm");
-		
+
 		this.imageLastModifiedDate = dFormat.format(this.imageFile.lastModified());
 	}
 
@@ -43,7 +49,7 @@ public class ImageFile {
 		this.imageSize = getFileSize(this.imageFile.length());
 
 		SimpleDateFormat dFormat = new SimpleDateFormat("yyyy年MM月dd日,E HH:mm");
-		
+
 		this.imageLastModifiedDate = dFormat.format(this.imageFile.lastModified());
 	}
 
@@ -82,13 +88,27 @@ public class ImageFile {
 	}
 
 	public String getResolution() {
+//		try {
+//			BufferedImage reader = ImageIO.read(this.imageFile);
+//			this.height = reader.getHeight();
+//			this.width = reader.getWidth();
+//
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
+		Iterator<ImageReader> iter = ImageIO.getImageReadersByFormatName(this.imageFile.getName().substring(this.imageFile.getName().lastIndexOf(".") + 1));
+		ImageReader reader = null;
+		int width = 0, height = 0;
 		try {
-			BufferedImage reader = ImageIO.read(this.imageFile);
-			this.height = reader.getHeight();
-			this.width = reader.getWidth();
-
+			ImageInputStream stream = new FileImageInputStream(new File(this.imageFile.getAbsolutePath()));
+			reader = iter.next();
+			reader.setInput(stream);
+			width = reader.getWidth(reader.getMinIndex());
+			height = reader.getHeight(reader.getMinIndex());
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			reader.dispose();
 		}
 		return String.format("%d×%d", width, height);
 	}
@@ -183,8 +203,10 @@ public class ImageFile {
 
 	@Override
 	public boolean equals(Object obj) {
-		if(obj == this) return true;
-		if(!(obj instanceof ImageFile)) return false; 
-		return ((ImageFile)obj).getImageFile().equals(this.imageFile);
+		if (obj == this)
+			return true;
+		if (!(obj instanceof ImageFile))
+			return false;
+		return ((ImageFile) obj).getImageFile().equals(this.imageFile);
 	}
 }
