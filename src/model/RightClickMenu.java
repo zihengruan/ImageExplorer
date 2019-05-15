@@ -3,11 +3,6 @@ package model;
 import java.io.File;
 import java.util.List;
 
-import action.CopyAction;
-import action.CutAction;
-import action.DeleteAction;
-import action.PasteAction;
-import action.RenameAction;
 import controller.MainExplorerController;
 import controller.MainViewerController;
 import controller.RootController;
@@ -52,16 +47,16 @@ public class RightClickMenu {
 			}
 		});
 		copy.setOnAction(e -> {
-			new CopyAction();
+			new CopyImage();
 		});
 		cut.setOnAction(e -> {
-			new CutAction();
+			new CutImage();
 		});
 		rename.setOnAction(e -> {
-			new RenameAction(mainExplorerController);
+			new RenameImage(mainExplorerController);
 		});
 		delete.setOnAction(e -> {
-			new DeleteAction(mainExplorerController);
+			new DeleteImage(mainExplorerController);
 		});
 
 		node.addEventHandler(MouseEvent.MOUSE_CLICKED, (MouseEvent e) -> {
@@ -81,7 +76,7 @@ public class RightClickMenu {
 		mouseRightClickMenu.getItems().add(paste);
 		mouseRightClickMenu.getItems().add(all);
 		paste.setOnAction(e -> {
-			new PasteAction(mainExplorerController);
+			new PasteImage(mainExplorerController);
 		});
 		all.setOnAction(e -> {
 			for (Node childrenNode : ((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).getFlowPane().getChildren()) {

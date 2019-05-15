@@ -56,14 +56,12 @@ public class ImageLabel extends Label {
 		if (selected.get() && !istrue) {
 			Utilities.selectedImage.add(this);
 			Utilities.selectedfiles.add(this.getImageFile());
-
 			Utilities.selectedImageFiles.add(this.imageFile);// 新增选中数组 imagefile
 			imageLabel.setPress(true);
 
 		} else if (istrue && !selected.get()) {
 			Utilities.selectedImage.remove(this);
 			Utilities.selectedfiles.remove(this.getImageFile());
-
 			Utilities.selectedImageFiles.remove(this.imageFile);// 新增选中数组 imagefile
 			imageLabel.setPress(false);
 		}
@@ -72,7 +70,6 @@ public class ImageLabel extends Label {
 		if (Utilities.selectedImageFiles != null) {
 			int amount = 0;
 			amount = Utilities.selectedImageFiles.size();
-			
 			((MainExplorerController) RootController.controllers.get("controller.MainExplorerController"))
 			.setAmountText("文件夹：" + MainExplorerController.diretoryName + " - 选中" + amount + "张图片");
 		}

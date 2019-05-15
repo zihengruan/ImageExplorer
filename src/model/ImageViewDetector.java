@@ -8,7 +8,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
-public class PanelListener {
+public class ImageViewDetector {
 	Node node;
 	MainExplorerController mainExplorerController;
 	private Rectangle selectRectangle;
@@ -18,7 +18,7 @@ public class PanelListener {
 	double height;
 	private boolean isDragged;
 	
-	public PanelListener(Node node,MainExplorerController mainExplorerController, Rectangle rect) {
+	public ImageViewDetector(Node node,MainExplorerController mainExplorerController, Rectangle rect) {
 		this.node = node;
 		this.mainExplorerController = mainExplorerController;
 		selectRectangle = rect;

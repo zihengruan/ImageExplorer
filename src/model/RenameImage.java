@@ -1,4 +1,4 @@
-package action;
+package model;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -15,11 +15,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import model.ImageFile;
-import model.ImageLabel;
-import model.Utilities;
 
-public class RenameAction {
+public class RenameImage {
 	private MainExplorerController mainExplorerController;
 	private Stage anotherStage;
 	private Label msg;
@@ -30,7 +27,7 @@ public class RenameAction {
 	final private TextField bitNum = new TextField();
 	private boolean single;
 	
-	public  RenameAction(MainExplorerController mainUI) {
+	public  RenameImage(MainExplorerController mainUI) {
 		this.mainExplorerController = mainUI;
 		single = true;
 		if(Utilities.selectedImage.size()==1) {
@@ -178,8 +175,6 @@ public class RenameAction {
 			((MainExplorerController)RootController.controllers.get("controller.MainExplorerController")).getFlowPane().getChildren().add(newList.get(i));
 			Utilities.imageFileList.add(newList.get(i).getImageFile2());
 		}
-		System.out.println("selected image"+Utilities.selectedImage);
-		System.out.println("selected files"+Utilities.selectedfiles);
 		return true;
 	}
 	private String createName(int id,int bit) {

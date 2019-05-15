@@ -1,4 +1,4 @@
-package action;
+package model;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,16 +11,13 @@ import controller.MainExplorerController;
 import controller.RootController;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.DataFormat;
-import model.ImageFile;
-import model.ImageLabel;
-import model.Utilities;
 
-public class PasteAction {
+public class PasteImage {
 	
 	MainExplorerController mainExplorerController;
 	
 	
-	public PasteAction(MainExplorerController mainUI) {
+	public PasteImage(MainExplorerController mainUI) {
 		this.mainExplorerController = mainUI;
 		Clipboard clipboard = Clipboard.getSystemClipboard();
 		List<File> files = (List<File>) (clipboard.getContent(DataFormat.FILES));
