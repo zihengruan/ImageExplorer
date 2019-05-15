@@ -302,6 +302,11 @@ public class MainViewerController extends RootController {
 	public void showStage() {
 
 		detailsFrame.setPrefWidth(0);
+		this.fileSize.setEllipsisString("");
+		this.fileDate.setEllipsisString("");
+		this.fileResolution.setEllipsisString("");
+		this.filePath.setEllipsisString("");
+		this.fileName.setEllipsisString("");
 		this.viewerStage.show();
 	}
 

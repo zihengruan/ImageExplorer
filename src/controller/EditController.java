@@ -599,8 +599,6 @@ public class EditController extends RootController {
 				}else {
 					hsv[0] %= 180;
 				}
-				
-
 				if (hsv[1] + ds * 255 > 255) {
 					hsv[1] = 255;
 				} else if (hsv[1] + ds * 255 < 0) {
