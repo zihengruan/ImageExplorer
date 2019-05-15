@@ -5,9 +5,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import action.CopyAction;
-import action.DeleteAction;
-import action.PasteAction;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -22,10 +19,13 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
+import model.CopyImage;
+import model.DeleteImage;
 import model.ImageFile;
 import model.ImageLabel;
 import model.ImageTreeView;
-import model.PanelListener;
+import model.ImageViewDetector;
+import model.PasteImage;
 import model.RightClickMenu;
 import model.Utilities;
 
@@ -100,21 +100,21 @@ public class MainExplorerController extends RootController  {
 		
 		
 		treeView = new ImageTreeView(treeView).getTreeView();
-		new PanelListener(flowPane, mainExplorerController, rect);
+		new ImageViewDetector(flowPane, mainExplorerController, rect);
 		
 		new RightClickMenu(flowPane, mainExplorerController, false);
 		
 		this.copyButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				new CopyAction();
+				new CopyImage();
 			}
 		});
 		
 		this.pasteButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				new PasteAction(mainExplorerController);
+				new PasteImage(mainExplorerController);
 			}
 		});
 		
@@ -122,7 +122,7 @@ public class MainExplorerController extends RootController  {
 		this.deleteButton.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
-				new DeleteAction(mainExplorerController);
+				new DeleteImage(mainExplorerController);
 			}
 		
 		

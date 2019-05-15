@@ -1,12 +1,11 @@
-package action;
+package model;
 
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
-import model.ImageLabel;
-import model.Utilities;
 
-public class CopyAction {
-	public CopyAction() {
+public class CutImage {
+	public CutImage() {
 		if(ImageLabel.getSelectedPictures().size()<=0) {
 			return;
 		}
@@ -16,13 +15,15 @@ public class CopyAction {
 			}
 			ImageLabel.getCutedPictures().clear();
 		}
-		
 		Clipboard clipboard = Clipboard.getSystemClipboard();
 		ClipboardContent clipboardContent = new ClipboardContent();
 		clipboard.clear();
-
+		for(ImageLabel imageLabel : ImageLabel.getSelectedPictures()) {
+			imageLabel.getImageView().setEffect(new ColorAdjust(0, 0, 0.5, 0));//标志被剪切
+			Utilities.cutedPictures.add(imageLabel);
+		}
 		
-		clipboardContent.putFiles(Utilities.selectedfiles);
+		clipboardContent.putFiles(ImageLabel.getSelectedPictureFiles());
 		clipboard.setContent(clipboardContent);
 		clipboard = null;
 		clipboardContent = null;

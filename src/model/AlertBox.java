@@ -7,7 +7,7 @@ import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Window;
 
-public class MyAlert {
+public class AlertBox {
 	public static boolean showAlert(String p_header,String p_message,Window stage){
 //      按钮部分可以使用预设的也可以像这样自己 new 一个
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION,p_message,new ButtonType("取消", ButtonBar.ButtonData.NO),
